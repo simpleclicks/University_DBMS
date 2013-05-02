@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 
+import edu.dao.ConnectionPool;
 import edu.dao.IDao;
 import edu.db.entity.Instructor;
 import edu.db.entity.Person;
@@ -18,8 +19,15 @@ public class InstructorDaoImpl implements IDao {
 	Statement stmt = null;
 	ResultSet rs = null;
 	
-	public InstructorDaoImpl(){
-			
+boolean isPoolingUsed = false;
+	
+	public InstructorDaoImpl()
+	{
+		getConnectionFromPool();
+	}
+	
+	private void getSingleConnection()
+	{
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(
@@ -27,7 +35,7 @@ public class InstructorDaoImpl implements IDao {
 			stmt = conn.createStatement();
 
 			if (!conn.isClosed())
-				System.out.println("Successfully connected");
+				System.out.println("Successfully connectiod");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
@@ -37,6 +45,30 @@ public class InstructorDaoImpl implements IDao {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void getConnectionFromPool()
+	{
+			
+		try {
+			
+				conn = ConnectionPool.getConnectionInstanceFromPool();
+				System.out.println(conn);
+				if(conn != null)
+				{
+					stmt = conn.createStatement();
+					isPoolingUsed = true;
+					if (!conn.isClosed())
+						System.out.println("Successfully connectiod");
+				}
+				else
+				{
+					System.out.println("Connection Pool Threshold");
+				}
+			} catch (SQLException e) 
+			{
+			e.printStackTrace();
+			}
 	}
 	
 	@Override

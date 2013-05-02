@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import edu.dao.ConnectionPool;
 import edu.dao.IDao;
 import edu.db.entity.Person;
 
@@ -14,8 +15,16 @@ public class PersonDaoImpl implements IDao {
 	Connection conn = null;
 	static ResultSet rs;
 	Statement stmt = null;
-
-	public PersonDaoImpl() {
+	
+boolean isPoolingUsed = false;
+	
+	public PersonDaoImpl()
+	{
+		getConnectionFromPool();
+	}
+	
+	private void getSingleConnection()
+	{
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(
@@ -33,6 +42,29 @@ public class PersonDaoImpl implements IDao {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void getConnectionFromPool()
+	{
+		try {
+			
+				conn = ConnectionPool.getConnectionInstanceFromPool();
+				System.out.println(conn);
+				if(conn != null)
+				{
+					stmt = conn.createStatement();
+					isPoolingUsed = true;
+					if (!conn.isClosed())
+						System.out.println("Successfully connectiod");
+				}
+				else
+				{
+					System.out.println("Connection Pool Threshold");
+				}
+			} catch (SQLException e) 
+			{
+			e.printStackTrace();
+			}
 	}
 
 	@Override
