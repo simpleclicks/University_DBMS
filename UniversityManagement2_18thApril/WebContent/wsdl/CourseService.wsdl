@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.edu" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.edu" xmlns:intf="http://service.edu" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.edu" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getAssignedInstructorForCourse">
+    <complexType>
+     <sequence>
+      <element name="courseId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAssignedInstructorForCourseResponse">
+    <complexType>
+     <sequence>
+      <element name="getAssignedInstructorForCourseReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCourseById">
+    <complexType>
+     <sequence>
+      <element name="courseId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCourseByIdResponse">
+    <complexType>
+     <sequence>
+      <element name="getCourseByIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getEnrolledStudentForCourse">
+    <complexType>
+     <sequence>
+      <element name="courseId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getEnrolledStudentForCourseResponse">
+    <complexType>
+     <sequence>
+      <element name="getEnrolledStudentForCourseReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllCourses">
+    <complexType/>
+   </element>
+   <element name="getAllCoursesResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllCoursesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteCourse">
+    <complexType>
+     <sequence>
+      <element name="courseId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteCourseResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteCourseReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findCourse">
+    <complexType>
+     <sequence>
+      <element name="search" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findCourseResponse">
+    <complexType>
+     <sequence>
+      <element name="findCourseReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateCourse">
+    <complexType>
+     <sequence>
+      <element name="courseId" type="xsd:string"/>
+      <element name="courseSelection" type="xsd:string"/>
+      <element name="courseName" type="xsd:string"/>
+      <element name="courseLocation" type="xsd:string"/>
+      <element name="days" type="xsd:string"/>
+      <element name="timing" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateCourseResponse">
+    <complexType>
+     <sequence>
+      <element name="updateCourseReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCourse">
+    <complexType>
+     <sequence>
+      <element name="courseId" type="xsd:string"/>
+      <element name="courseName" type="xsd:string"/>
+      <element name="courseSelection" type="xsd:string"/>
+      <element name="location" type="xsd:string"/>
+      <element name="day" type="xsd:string"/>
+      <element name="timing" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCourseResponse">
+    <complexType>
+     <sequence>
+      <element name="addCourseReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getCourseByIdRequest">
+
+      <wsdl:part element="impl:getCourseById" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateCourseResponse">
+
+      <wsdl:part element="impl:updateCourseResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllCoursesRequest">
+
+      <wsdl:part element="impl:getAllCourses" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAssignedInstructorForCourseRequest">
+
+      <wsdl:part element="impl:getAssignedInstructorForCourse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteCourseRequest">
+
+      <wsdl:part element="impl:deleteCourse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteCourseResponse">
+
+      <wsdl:part element="impl:deleteCourseResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCourseResponse">
+
+      <wsdl:part element="impl:addCourseResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAssignedInstructorForCourseResponse">
+
+      <wsdl:part element="impl:getAssignedInstructorForCourseResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateCourseRequest">
+
+      <wsdl:part element="impl:updateCourse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEnrolledStudentForCourseRequest">
+
+      <wsdl:part element="impl:getEnrolledStudentForCourse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCourseByIdResponse">
+
+      <wsdl:part element="impl:getCourseByIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCourseRequest">
+
+      <wsdl:part element="impl:addCourse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEnrolledStudentForCourseResponse">
+
+      <wsdl:part element="impl:getEnrolledStudentForCourseResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllCoursesResponse">
+
+      <wsdl:part element="impl:getAllCoursesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findCourseRequest">
+
+      <wsdl:part element="impl:findCourse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findCourseResponse">
+
+      <wsdl:part element="impl:findCourseResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CourseService">
+
+      <wsdl:operation name="getAssignedInstructorForCourse">
+
+         <wsdl:input message="impl:getAssignedInstructorForCourseRequest" name="getAssignedInstructorForCourseRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAssignedInstructorForCourseResponse" name="getAssignedInstructorForCourseResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCourseById">
+
+         <wsdl:input message="impl:getCourseByIdRequest" name="getCourseByIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCourseByIdResponse" name="getCourseByIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEnrolledStudentForCourse">
+
+         <wsdl:input message="impl:getEnrolledStudentForCourseRequest" name="getEnrolledStudentForCourseRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getEnrolledStudentForCourseResponse" name="getEnrolledStudentForCourseResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllCourses">
+
+         <wsdl:input message="impl:getAllCoursesRequest" name="getAllCoursesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllCoursesResponse" name="getAllCoursesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteCourse">
+
+         <wsdl:input message="impl:deleteCourseRequest" name="deleteCourseRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteCourseResponse" name="deleteCourseResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findCourse">
+
+         <wsdl:input message="impl:findCourseRequest" name="findCourseRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findCourseResponse" name="findCourseResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateCourse">
+
+         <wsdl:input message="impl:updateCourseRequest" name="updateCourseRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateCourseResponse" name="updateCourseResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCourse">
+
+         <wsdl:input message="impl:addCourseRequest" name="addCourseRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addCourseResponse" name="addCourseResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CourseServiceSoapBinding" type="impl:CourseService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAssignedInstructorForCourse">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAssignedInstructorForCourseRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAssignedInstructorForCourseResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCourseById">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCourseByIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCourseByIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEnrolledStudentForCourse">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEnrolledStudentForCourseRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEnrolledStudentForCourseResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllCourses">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllCoursesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllCoursesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteCourse">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteCourseRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteCourseResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findCourse">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findCourseRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findCourseResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateCourse">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateCourseRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateCourseResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCourse">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addCourseRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addCourseResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CourseServiceService">
+
+      <wsdl:port binding="impl:CourseServiceSoapBinding" name="CourseService">
+
+         <wsdlsoap:address location="http://localhost:8080/UniversityManagement2/services/CourseService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
