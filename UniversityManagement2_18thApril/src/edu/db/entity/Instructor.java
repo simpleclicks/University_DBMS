@@ -40,4 +40,6 @@ public class Instructor extends Person {
 	public void setInstructorEmpId(String instructorEmpId) {
 		this.instructorEmpId = instructorEmpId;
 	}
+	
+	
 }

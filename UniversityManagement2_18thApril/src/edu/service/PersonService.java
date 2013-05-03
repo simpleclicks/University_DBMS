@@ -5,15 +5,13 @@ import javax.jws.WebService;
 import edu.dao.IDao;
 import edu.dao.impl.InstructorDaoImpl;
 import edu.dao.impl.PersonDaoImpl;
-import edu.db.entity.Instructor;
 import edu.db.entity.Person;
 
 @WebService
 public class PersonService {
 	
-	
 	public String addPerson(String firstname, String lastname, String address,
-			String city, String state, int zipCode) {
+		String city, String state, int zipCode) {
 		Person person = new Person();
 		person.setFirstName(firstname);
 		person.setLastName(lastname);
@@ -25,8 +23,6 @@ public class PersonService {
 		IDao dao = new PersonDaoImpl();
 		return dao.add(person);
 
-		 //return db.addPerson(firstname, lastname, address, city, state,
-		 //zipCode);
 	}
 
 	private String deletePerson(String personId ) {
@@ -37,7 +33,8 @@ public class PersonService {
 	}
 	
 	public String getAllPerson( )
-	{		
+	{
+		
 		IDao dao = new PersonDaoImpl();
 		return dao.findAll();
 	}

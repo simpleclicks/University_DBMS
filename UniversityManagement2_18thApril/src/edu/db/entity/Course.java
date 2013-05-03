@@ -1,9 +1,12 @@
 package edu.db.entity;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 
 public class Course {
 
 	private String courseName;
+	private String courseSection;
 	private String location;
 	private String courseId;
 	private String search;
@@ -40,11 +43,18 @@ public class Course {
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
+	public String getCourseSection() {
+		return courseSection;
+	}
+	public void setCourseSection(String courseSection) {
+		this.courseSection = courseSection;
+	}
 	public String getLocation() {
 		return location;
 	}
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
 	
 }

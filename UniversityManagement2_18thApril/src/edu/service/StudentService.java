@@ -12,34 +12,33 @@ import edu.service.PersonService;
 @WebService
 public class StudentService {
 	
-	PersonService helper = null;
-	
-	public StudentService() {
-		this.helper = new PersonService();
-	}
 	
 	public String addStudent(String studentId, String firstname,
 			String lastname, String address, String city, String state,
 			int zipCode) {
-		PersonService ph = new PersonService();
-		int personId = Integer.parseInt(ph.addPerson(firstname, lastname, address,
-				city, state, zipCode));
-		Student student=new Student();
-		student.setStudentId(studentId);
-		student.setPersonId(personId);
 		
-		IDao dao = new StudentDaoImpl();
-		return dao.add(student);
-		
-//		 return db.addStudent(studentId, personId);
+		String result = getStudentById(studentId);
+		if ( result.equals("false:Not Found"))
+		{ 
+			PersonService ph = new PersonService();
+			int personId = Integer.parseInt(ph.addPerson(firstname, lastname, address,
+					city, state, zipCode));
+			System.out.println("Person inserted");
+			Student student=new Student();
+			student.setStudentId(studentId);
+			student.setPersonId(personId);
+			
+			IDao dao = new StudentDaoImpl();
+			return dao.add(student);
+		}
+		else
+		{
+			 System.out.println("found");
+			return "false:Duplicate Entry";
+		}
+
 	}
 
-	/*
-	public String deleteStudent(Object student) {
-		IDao dao = new StudentDaoImpl();
-		return dao.delete(student);
-	}
-	*/
 	
 	public String deleteStudent(String studentId) {
 		Student student=new Student();
@@ -54,11 +53,12 @@ public class StudentService {
 		Student student=new Student();
 		student.setStudentId(studentId);
 		IDao dao = new StudentDaoImpl();
-		return dao.findById(studentId);
+		return dao.findById(student);
 	}
 	
 	public String getAllStudent( )
-	{		
+	{
+		
 		IDao dao = new StudentDaoImpl();
 		return dao.findAll();
 	}

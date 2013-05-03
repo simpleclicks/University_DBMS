@@ -6,9 +6,8 @@ public interface IDao {
 	
 	public String delete(Object object);
 	
-	public String findById(String id);
-	
 	public String update(Object object);
+	public String findById(Object object);
 	
 	public String find(Object object);
 	

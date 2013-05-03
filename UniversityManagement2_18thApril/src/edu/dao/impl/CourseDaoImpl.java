@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
 import edu.dao.ConnectionPool;
 import edu.dao.IDao;
 import edu.db.entity.Course;
@@ -66,7 +64,7 @@ public class CourseDaoImpl implements IDao {
 			e.printStackTrace();
 			}
 	}
-
+	
 	@Override
 	public String add(Object object) {
 
@@ -74,6 +72,7 @@ public class CourseDaoImpl implements IDao {
 		
 		String courseId = c.getCourseId();
 		String courseName = c.getCourseName();
+		String courseSection = c.getCourseSection();
 		String location = c.getLocation();
 		
 		String result = "";
@@ -82,7 +81,7 @@ public class CourseDaoImpl implements IDao {
 		try {
 			String query = "Insert into course (courseId,courseName,location) values"
 					+ " ('"
-					+ courseId
+					+ courseId+"-"+courseSection
 					+ "', '"
 					+ courseName
 					+ "', '"
@@ -107,7 +106,10 @@ public class CourseDaoImpl implements IDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
+		// return connection instance to the pool
+		if(isPoolingUsed)	
+			ConnectionPool.returnConnectionInstanceToPool();
 		return result;
 	}
 
@@ -129,12 +131,15 @@ public class CourseDaoImpl implements IDao {
 				result = "true";
 				System.out.println("course Deleted successful");
 			} else {
-				result = "false:The data could not be deleted in the databse";
+				result = "false:Record not found";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
+		// return connection instance to the pool
+		if(isPoolingUsed)	
+			ConnectionPool.returnConnectionInstanceToPool();
 		return result;
 	}
 	
@@ -167,6 +172,7 @@ if (option==true) //this one if we search by ID
 			while (rs.next()) {
 				System.out.println("5");
                 System.out.println("Course Id" + rs.getString("courseId") + "Course Name" + rs.getString("courseName"));
+                result = rs.getString("courseId")+ "/"+rs.getString("courseName")+ "/"+ rs.getString("location");
 			}
 			}
 			catch (SQLException e) {
@@ -190,6 +196,7 @@ else if (option==false) //this one is if we search by name
 				while (rs.next()) {
 	                 
 	                System.out.println("Course Id" + rs.getString("courseId") + "Course Name" + rs.getString("courseName"));
+	                result = rs.getString("courseId")+ "/"+rs.getString("courseName")+ "/"+ rs.getString("location");
 
 				}
 			
@@ -203,14 +210,25 @@ else if (option==false) //this one is if we search by name
 		}
 		
 	}
-		return result;
+	// return connection instance to the pool
+	if(isPoolingUsed)	
+	ConnectionPool.returnConnectionInstanceToPool();
+		
+	return result;
 
 }
 
+	@Override
+	public String findById(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public String findAll() {
 		// TODO Auto-generated method stub
+	
+		String result="";
 		try {
 			String query = "Select * from 	course";
 			rs = stmt.executeQuery(query);
@@ -218,12 +236,20 @@ else if (option==false) //this one is if we search by name
 			while(rs.next())
 			{
 				System.out.println(rs.getString("courseId")+ " "+rs.getString("courseName")+ " "+ rs.getString("location"));
+				result += rs.getString("courseId")+ "/"+rs.getString("courseName")+ "/"+ rs.getString("location");
+				result += "!";
+
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
-		return rs.toString();
+		
+		// return connection instance to the pool
+		if(isPoolingUsed)	
+			ConnectionPool.returnConnectionInstanceToPool();
+		//return rs.toString();
+		return result;
 	}
 
 	public String getEnrolledStudentForCourse(String courseId)
@@ -243,6 +269,10 @@ else if (option==false) //this one is if we search by name
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		// return connection instance to the pool
+		if(isPoolingUsed)	
+			ConnectionPool.returnConnectionInstanceToPool();
 		return rs.toString();
 	}
 	
@@ -263,9 +293,15 @@ else if (option==false) //this one is if we search by name
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		// return connection instance to the pool
+		if(isPoolingUsed)	
+			ConnectionPool.returnConnectionInstanceToPool();
+		
 		return rs.toString();
 	}
 
+	/*
 	@Override
 	public String findById(String id) {
 String result = null;
@@ -289,6 +325,7 @@ String result = null;
 		System.out.println("Printing result set " + rs.toString()); 
 		return result;
 	}
+	*/
 
 	@Override
 	public String update(Object object) {

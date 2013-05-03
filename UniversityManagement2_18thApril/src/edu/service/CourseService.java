@@ -3,53 +3,57 @@ package edu.service;
 import edu.dao.IDao;
 import edu.dao.impl.CourseDaoImpl;
 import edu.dao.impl.InstructorDaoImpl;
-import edu.dao.impl.PersonDaoImpl;
-import edu.dao.impl.StudentDaoImpl;
 import edu.db.entity.Course;
-import edu.db.entity.Person;
-import edu.db.entity.Student;
 
 public class CourseService {
-	public String addCourse(String courseId, String courseName,
-			String courseSelection, String location, String day, String timing) {
-
+	public String addCourse(String courseId, String courseName, String courseSection, String location, String day, String timing)
+	{
+		
 		Course c = new Course();
-		c.setCourseId(courseId + "-" + courseSelection);
+		c.setCourseId(courseId);
 		c.setCourseName(courseName);
-		c.setLocation(location);
+		c.setCourseSection(courseSection);
+		c.setLocation(location);		
 		c.setDays(day);
 		c.setTimings(timing);
 		IDao dao = new CourseDaoImpl();
 		return dao.add(c);
 
 	}
-
-	public String deleteCourse(String courseId) {
+	
+	
+	public String deleteCourse(String courseId)
+	{
 		Course c = new Course();
-		c.setCourseId(courseId);
+		c.setCourseId(courseId);		
 		IDao dao = new CourseDaoImpl();
 		return dao.delete(c);
-
+		
 	}
-
-	public String findCourse(String search) {
+	
+	
+	public String findCourse(String search)
+	{			
 		Course c = new Course();
-		c.setSearch(search);
+		c.setSearch(search);		
 		IDao dao = new CourseDaoImpl();
 		return dao.find(c);
 	}
-
-	public String getAllCourses() {
+	
+	public String getAllCourses( )
+	{
 		IDao dao = new CourseDaoImpl();
 		return dao.findAll();
 	}
-
-	public String getEnrolledStudentForCourse(String courseId) {
+	
+	public String getEnrolledStudentForCourse(String courseId)
+	{
 		CourseDaoImpl cdao = new CourseDaoImpl();
 		return cdao.getEnrolledStudentForCourse(courseId);
 	}
-
-	public String getAssignedInstructorForCourse(String courseId) {
+	
+	public String getAssignedInstructorForCourse(String courseId)
+	{
 		CourseDaoImpl cdao = new CourseDaoImpl();
 		return cdao.getAssignedInstructorForCourse(courseId);
 	}

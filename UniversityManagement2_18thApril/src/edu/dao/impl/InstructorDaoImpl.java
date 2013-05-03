@@ -18,8 +18,7 @@ public class InstructorDaoImpl implements IDao {
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	
-boolean isPoolingUsed = false;
+	boolean isPoolingUsed = false;
 	
 	public InstructorDaoImpl()
 	{
@@ -72,7 +71,8 @@ boolean isPoolingUsed = false;
 	}
 	
 	@Override
-	public String add(Object object) {
+	public String add(Object object)
+	{
 		
 		Instructor I = (Instructor) object;
 		String instructorId = I.getInstructorEmpId();
@@ -107,14 +107,19 @@ boolean isPoolingUsed = false;
 			System.out.println("exception");
 			e.printStackTrace();
 		}
-
+		
+		// return connection instance to the pool
+		if(isPoolingUsed)	
+			ConnectionPool.returnConnectionInstanceToPool();
+				
 		return result;
 		
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public String delete(Object object) {
+	public String delete(Object object)
+	{
 		// TODO Auto-generated method stub
 		
 		Instructor I = (Instructor) object;
@@ -125,6 +130,11 @@ boolean isPoolingUsed = false;
 		
 		p.setPersonId(getPersonIdForInstructor(instructorId));
 		System.out.println("Instructor Deleted Successfully");
+		
+		// return connection instance to the pool
+				if(isPoolingUsed)	
+					ConnectionPool.returnConnectionInstanceToPool();
+				
 		return pdao.delete(p);		
 		
 	}
@@ -150,37 +160,51 @@ boolean isPoolingUsed = false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
+		// return connection instance to the pool
+				if(isPoolingUsed)	
+					ConnectionPool.returnConnectionInstanceToPool();
+				
 		return personId;
 	}
 
 	@Override
-	public String findById(String instructorId) {
+	public String findById(Object object) 
+	{
 		// TODO Auto-generated method stub
 		
-		String result = null;
+		Instructor I = (Instructor) object;
+		String  instructorId = I.getInstructorEmpId();
+		boolean found = false;
+		String result="";
 		
 		try {
-			System.out.println("Inside findById func"); 
 			String query = "Select * from 	person  where personId = (Select personId from instructor where instructorId =" + "'"
 					+ instructorId + "')";
 			rs = stmt.executeQuery(query);
-			System.out.println("Result set" + rs);
+			
 			while(rs.next())
 			{
-			//	System.out.println("name:"+ rs.getString("firstName")+ " "+ rs.getString("lastName") );
-				System.out.println(rs.getString("firstName")+ " "+ rs.getString("lastName")+ " "+ rs.getString("address")+ " "+ rs.getString("city") + " "+ rs.getString("state") + 
-						" "+ rs.getString("zipCode")+" ");
+				found = true;
+				System.out.println("name:"+ rs.getString("firstName")+ " "+ rs.getString("lastName") );
 				result =(rs.getString("firstName")+ "/"+ rs.getString("lastName")+ "/"+ rs.getString("address")+ "/"+ rs.getString("city") + "/"+ rs.getString("state") + 
 						"/"+ rs.getString("zipCode")+"/");
+
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		System.out.println("Printing result set " + rs.toString()); 
-		return result;
+		// return connection instance to the pool
+				if(isPoolingUsed)	
+					ConnectionPool.returnConnectionInstanceToPool();
+				
+			if(found)	
+				//return rs.toString();
+				return result;
+			else
+				return "false:Not Found";
 	}
 
 	@Override
@@ -190,8 +214,10 @@ boolean isPoolingUsed = false;
 	}
 
 	@Override
-	public String findAll() {
+	public String findAll() 
+	{
 		// TODO Auto-generated method stub
+		String result = "";
 		
 		try {
 			String query = "Select * from 	person INNER JOIN instructor  ON  person.personId = instructor.personId";
@@ -201,14 +227,23 @@ boolean isPoolingUsed = false;
 			{
 				System.out.println(rs.getString("instructorId")+ " "+rs.getString("firstName")+ " "+ rs.getString("lastName")+ " "+ rs.getString("address")+ " "+ rs.getString("city") + " "+ rs.getString("state") + 
 						" "+ rs.getString("zipCode")+" "+ rs.getString("department"));
+				result += rs.getString("instructorId")+ "/"+rs.getString("firstName")+ "/"+ rs.getString("lastName")+ "/"+ 
+						rs.getString("address")+ "/"+ rs.getString("city") + "/"+ rs.getString("state") + 
+					"/"+ rs.getString("zipCode")+"/"+ rs.getString("department");
+				result += "!";
+
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		
-		return rs.toString();
+		// return connection instance to the pool
+				if(isPoolingUsed)	
+					ConnectionPool.returnConnectionInstanceToPool();
+		
+		//return rs.toString();
+			return result;
 		
 	}
 
@@ -228,11 +263,16 @@ boolean isPoolingUsed = false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		// return connection instance to the pool
+				if(isPoolingUsed)	
+					ConnectionPool.returnConnectionInstanceToPool();
 		return rs.toString();
 	}
 	
 	public String assignInstructor(String courseId,
-			String instructorId) {
+			String instructorId)
+	{
 		String result = "";
 		int rowcount;
 
@@ -254,10 +294,14 @@ boolean isPoolingUsed = false;
 			e.printStackTrace();
 		}
 
+		// return connection instance to the pool
+				if(isPoolingUsed)	
+					ConnectionPool.returnConnectionInstanceToPool();
 		return result;
 	}
 	
-	public String unAssignInstructor(String instructorId) {
+	public String unAssignInstructor(String instructorId)
+	{
 		String result = "";
 		int rowcount;
 
@@ -274,7 +318,10 @@ boolean isPoolingUsed = false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
+		// return connection instance to the pool
+				if(isPoolingUsed)	
+					ConnectionPool.returnConnectionInstanceToPool();
 		return result;
 	}
 
@@ -303,6 +350,5 @@ boolean isPoolingUsed = false;
 
 		return String.valueOf(res);
 	}
-	
 	
 }

@@ -10,13 +10,14 @@ import edu.dao.ConnectionPool;
 import edu.dao.IDao;
 import edu.db.entity.Person;
 
+
 public class PersonDaoImpl implements IDao {
 
 	Connection conn = null;
 	static ResultSet rs;
 	Statement stmt = null;
-	
-boolean isPoolingUsed = false;
+	//java.sql.PreparedStatement stmt = null;
+	boolean isPoolingUsed = false;
 	
 	public PersonDaoImpl()
 	{
@@ -29,7 +30,7 @@ boolean isPoolingUsed = false;
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/univesitydb", "root", "root");
-			stmt = conn.createStatement();
+			//stmt = conn.createStatement();
 
 			if (!conn.isClosed())
 				System.out.println("Successfully connectiod");
@@ -66,21 +67,78 @@ boolean isPoolingUsed = false;
 			e.printStackTrace();
 			}
 	}
-
+	
+	/*
 	@Override
-	public String add(Object object) {
+	public String add(Object object) 
+	{
 		// TODO Auto-generated method stub
-
-		Person p = (Person) object;
+		
+		Person p = (Person) object ;
 		String firstName = p.getFirstName();
 		String lastName = p.getLastName();
 		String address = p.getAddress();
 		String city = p.getCity();
 		String state = p.getState();
 		int zipCode = p.getZipCode();
-
+		
 		String result = "";
-		int personId = 0;
+		int personId=0;
+
+		try {
+		
+				String query = 
+					 "Insert into person (firstName,lastName,address,city,state,zipCode) values (?,?,?,?,?,?)"; 
+					    
+					 stmt = conn.prepareStatement(query);
+			stmt.setString(1, firstName);
+			stmt.setString(2, lastName);
+			stmt.setString(3, city);
+			stmt.setString(4, address);
+			stmt.setString(5, state);
+			stmt.setInt(6, zipCode);
+					 
+			stmt.executeUpdate();
+			rs = stmt.getGeneratedKeys();
+
+			if (rs.next()) {
+				personId = rs.getInt(1);
+				System.out.println("Person inserted successful");
+				System.out.println("personId: "+personId);
+			} else {
+				result = "false:The data could not be inserted in the databse";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		// return connection instance to the pool
+				if(isPoolingUsed)	
+					ConnectionPool.returnConnectionInstanceToPool();
+				
+		return ""+personId;
+		
+		
+	}
+*/
+
+	
+	@Override
+	public String add(Object object) 
+	{
+		// TODO Auto-generated method stub
+		
+		Person p = (Person) object ;
+		String firstName = p.getFirstName();
+		String lastName = p.getLastName();
+		String address = p.getAddress();
+		String city = p.getCity();
+		String state = p.getState();
+		int zipCode = p.getZipCode();
+		System.out.println(firstName);
+		String result = "";
+		int personId=0;
 
 		try {
 			String query = "Insert into person (firstName,lastName,address,city,state,zipCode) values"
@@ -90,31 +148,45 @@ boolean isPoolingUsed = false;
 					+ lastName
 					+ "', '"
 					+ address
-					+ "', '" + city + "', '" + state + "', '" + zipCode + "')";
-			stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+					+ "', '"
+					+ city
+					+ "', '"
+					+ state
+					+ "', '"
+					+ zipCode
+					+  "')";
+			
+			stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+			System.out.println("Here");
 			rs = stmt.getGeneratedKeys();
 
 			if (rs.next()) {
 				personId = rs.getInt(1);
 				System.out.println("Person inserted successful");
-				System.out.println("personId: " + personId);
+				System.out.println("personId: "+personId);
 			} else {
 				result = "false:The data could not be inserted in the databse";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		return "" + personId;
-
+		
+		// return connection instance to the pool
+				if(isPoolingUsed)	
+					ConnectionPool.returnConnectionInstanceToPool();
+				
+		return ""+personId;
+		
+		
 	}
-
+	
 	@Override
-	public String delete(Object object) {
+	public String delete(Object object) 
+	{
 		// TODO Auto-generated method stub
-		Person p = (Person) object;
+		Person p = (Person) object ;
 		int personId = p.getPersonId();
-
+		
 		String result = "";
 		int rowcount;
 
@@ -126,15 +198,24 @@ boolean isPoolingUsed = false;
 				result = "true";
 				System.out.println("Person Deleted successful");
 			} else {
-				result = "false:The data could not be deleted in the databse";
+				result = "false:Record not found";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return "true";
+		// return connection instance to the pool
+				if(isPoolingUsed)	
+					ConnectionPool.returnConnectionInstanceToPool();
+		return result;
+		
+		//return db.deletePerson(personId);
+	}
 
-		// return db.deletePerson(personId);
+	@Override
+	public String findById(Object object) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -144,31 +225,29 @@ boolean isPoolingUsed = false;
 	}
 
 	@Override
-	public String findAll() {
+	public String findAll()
+	{
 		// TODO Auto-generated method stub
 		try {
 			String query = "Select * from 	person";
 			rs = stmt.executeQuery(query);
-
-			while (rs.next()) {
-				System.out.println(rs.getString("firstName") + " "
-						+ rs.getString("lastName") + " "
-						+ rs.getString("address") + " " + rs.getString("city")
-						+ " " + rs.getString("state") + " "
-						+ rs.getString("zipCode"));
+			
+			while(rs.next())
+			{
+				System.out.println(rs.getString("firstName")+ " "+ rs.getString("lastName")+ " "+ rs.getString("address")+ " "+ rs.getString("city") + " "+ rs.getString("state") + 
+						" "+ rs.getString("zipCode"));
 			}
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}	
+		
+		// return connection instance to the pool
+				if(isPoolingUsed)	
+					ConnectionPool.returnConnectionInstanceToPool();
 		return rs.toString();
 	}
 
-	@Override
-	public String findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public String update(Object object) {
