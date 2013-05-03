@@ -304,4 +304,10 @@ public class StudentDaoImpl implements IDao {
 		return null;
 	}
 
+	@Override
+	public String search(String columnName, String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

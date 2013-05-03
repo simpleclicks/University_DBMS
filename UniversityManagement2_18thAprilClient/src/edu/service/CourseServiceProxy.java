@@ -50,22 +50,10 @@ public class CourseServiceProxy implements edu.service.CourseService {
     return courseService.getAssignedInstructorForCourse(courseId);
   }
   
-  public java.lang.String getCourseById(java.lang.String courseId) throws java.rmi.RemoteException{
+  public java.lang.String addCourse(java.lang.String courseId, java.lang.String courseName, java.lang.String courseSection, java.lang.String location, java.lang.String day, java.lang.String timing) throws java.rmi.RemoteException{
     if (courseService == null)
       _initCourseServiceProxy();
-    return courseService.getCourseById(courseId);
-  }
-  
-  public java.lang.String getEnrolledStudentForCourse(java.lang.String courseId) throws java.rmi.RemoteException{
-    if (courseService == null)
-      _initCourseServiceProxy();
-    return courseService.getEnrolledStudentForCourse(courseId);
-  }
-  
-  public java.lang.String getAllCourses() throws java.rmi.RemoteException{
-    if (courseService == null)
-      _initCourseServiceProxy();
-    return courseService.getAllCourses();
+    return courseService.addCourse(courseId, courseName, courseSection, location, day, timing);
   }
   
   public java.lang.String deleteCourse(java.lang.String courseId) throws java.rmi.RemoteException{
@@ -86,10 +74,28 @@ public class CourseServiceProxy implements edu.service.CourseService {
     return courseService.updateCourse(courseId, courseSelection, courseName, courseLocation, days, timing);
   }
   
-  public java.lang.String addCourse(java.lang.String courseId, java.lang.String courseName, java.lang.String courseSelection, java.lang.String location, java.lang.String day, java.lang.String timing) throws java.rmi.RemoteException{
+  public java.lang.String getCourseById(java.lang.String courseId) throws java.rmi.RemoteException{
     if (courseService == null)
       _initCourseServiceProxy();
-    return courseService.addCourse(courseId, courseName, courseSelection, location, day, timing);
+    return courseService.getCourseById(courseId);
+  }
+  
+  public java.lang.String getEnrolledStudentForCourse(java.lang.String courseId) throws java.rmi.RemoteException{
+    if (courseService == null)
+      _initCourseServiceProxy();
+    return courseService.getEnrolledStudentForCourse(courseId);
+  }
+  
+  public java.lang.String getAllCourses() throws java.rmi.RemoteException{
+    if (courseService == null)
+      _initCourseServiceProxy();
+    return courseService.getAllCourses();
+  }
+  
+  public java.lang.String searchCourse(java.lang.String attribute, java.lang.String keyword) throws java.rmi.RemoteException{
+    if (courseService == null)
+      _initCourseServiceProxy();
+    return courseService.searchCourse(attribute, keyword);
   }
   
   

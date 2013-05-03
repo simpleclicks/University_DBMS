@@ -44,34 +44,16 @@ public class InstructorServiceProxy implements edu.service.InstructorService {
     return instructorService;
   }
   
-  public java.lang.String updateInstructor(java.lang.String instructorEmpId, java.lang.String firstname, java.lang.String lastname, java.lang.String address, java.lang.String city, java.lang.String state, int zip, java.lang.String department, java.lang.String days, java.lang.String timings) throws java.rmi.RemoteException{
+  public java.lang.String getEnrolledCoursesForInstructor(java.lang.String instructorId) throws java.rmi.RemoteException{
     if (instructorService == null)
       _initInstructorServiceProxy();
-    return instructorService.updateInstructor(instructorEmpId, firstname, lastname, address, city, state, zip, department, days, timings);
-  }
-  
-  public java.lang.String unAssignInstructor(java.lang.String instructorId) throws java.rmi.RemoteException{
-    if (instructorService == null)
-      _initInstructorServiceProxy();
-    return instructorService.unAssignInstructor(instructorId);
-  }
-  
-  public java.lang.String assignInstructor(java.lang.String courseId, java.lang.String instructorId) throws java.rmi.RemoteException{
-    if (instructorService == null)
-      _initInstructorServiceProxy();
-    return instructorService.assignInstructor(courseId, instructorId);
+    return instructorService.getEnrolledCoursesForInstructor(instructorId);
   }
   
   public java.lang.String getAllInstructor() throws java.rmi.RemoteException{
     if (instructorService == null)
       _initInstructorServiceProxy();
     return instructorService.getAllInstructor();
-  }
-  
-  public java.lang.String getInstructorById(java.lang.String instructorId) throws java.rmi.RemoteException{
-    if (instructorService == null)
-      _initInstructorServiceProxy();
-    return instructorService.getInstructorById(instructorId);
   }
   
   public java.lang.String deleteInstructor(java.lang.String instructorId) throws java.rmi.RemoteException{
@@ -86,10 +68,28 @@ public class InstructorServiceProxy implements edu.service.InstructorService {
     return instructorService.addInstructor(instructorId, firstname, lastname, address, city, state, zipCode, department, days, timings);
   }
   
-  public java.lang.String getEnrolledCoursesForInstructor(java.lang.String instructorId) throws java.rmi.RemoteException{
+  public java.lang.String getInstructorById(java.lang.String instructorId) throws java.rmi.RemoteException{
     if (instructorService == null)
       _initInstructorServiceProxy();
-    return instructorService.getEnrolledCoursesForInstructor(instructorId);
+    return instructorService.getInstructorById(instructorId);
+  }
+  
+  public java.lang.String assignInstructor(java.lang.String courseId, java.lang.String instructorId) throws java.rmi.RemoteException{
+    if (instructorService == null)
+      _initInstructorServiceProxy();
+    return instructorService.assignInstructor(courseId, instructorId);
+  }
+  
+  public java.lang.String unAssignInstructor(java.lang.String instructorId) throws java.rmi.RemoteException{
+    if (instructorService == null)
+      _initInstructorServiceProxy();
+    return instructorService.unAssignInstructor(instructorId);
+  }
+  
+  public java.lang.String updateInstructor(java.lang.String instructorEmpId, java.lang.String firstname, java.lang.String lastname, java.lang.String address, java.lang.String city, java.lang.String state, int zip, java.lang.String department, java.lang.String days, java.lang.String timings) throws java.rmi.RemoteException{
+    if (instructorService == null)
+      _initInstructorServiceProxy();
+    return instructorService.updateInstructor(instructorEmpId, firstname, lastname, address, city, state, zip, department, days, timings);
   }
   
   

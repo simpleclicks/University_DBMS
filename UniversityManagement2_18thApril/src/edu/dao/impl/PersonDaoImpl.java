@@ -270,4 +270,10 @@ public class PersonDaoImpl implements IDao {
 		return String.valueOf(res);
 	}
 
+	@Override
+	public String search(String columnName, String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

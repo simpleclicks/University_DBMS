@@ -220,16 +220,16 @@ public class InstructorDaoImpl implements IDao {
 		String result = "";
 		
 		try {
-			String query = "Select * from 	person INNER JOIN instructor  ON  person.personId = instructor.personId";
+			String query = "SELECT p.firstName,p.lastName,p.address,p.city,p.state,p.zipCode,i.instructorId,i.department,it.day,it.time FROM person AS p left JOIN instructor AS i ON p.personId = i.personId left JOIN instructortiming  AS  it ON i.instructorId = it.instructorId";
 			rs = stmt.executeQuery(query);
 			
 			while(rs.next())
 			{
 				System.out.println(rs.getString("instructorId")+ " "+rs.getString("firstName")+ " "+ rs.getString("lastName")+ " "+ rs.getString("address")+ " "+ rs.getString("city") + " "+ rs.getString("state") + 
-						" "+ rs.getString("zipCode")+" "+ rs.getString("department"));
+						" "+ rs.getString("zipCode")+" "+ rs.getString("department") +" " + rs.getString("day")+" "+ rs.getString("time"));
 				result += rs.getString("instructorId")+ "/"+rs.getString("firstName")+ "/"+ rs.getString("lastName")+ "/"+ 
 						rs.getString("address")+ "/"+ rs.getString("city") + "/"+ rs.getString("state") + 
-					"/"+ rs.getString("zipCode")+"/"+ rs.getString("department");
+					"/"+ rs.getString("zipCode")+"/"+ rs.getString("department") +"/"+ rs.getString("day")+"/"+ rs.getString("time");
 				result += "!";
 
 			}
@@ -349,6 +349,12 @@ public class InstructorDaoImpl implements IDao {
 		}
 
 		return String.valueOf(res);
+	}
+
+	@Override
+	public String search(String columnName, String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
