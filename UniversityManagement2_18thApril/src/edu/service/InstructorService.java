@@ -2,10 +2,13 @@ package edu.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.jws.WebService;
 
 import edu.dao.IDao;
+import edu.dao.impl.CourseDaoImpl;
 import edu.dao.impl.InstructorDaoImpl;
 import edu.dao.impl.PersonDaoImpl;
 import edu.dao.impl.StudentDaoImpl;
@@ -14,6 +17,22 @@ import edu.service.PersonService;
 
 @WebService
 public class InstructorService {
+	
+	static Map<String, String> attrToColumn = new HashMap<String, String>() {
+		{
+			put("First Name", "p.firstName");
+			put("Last Name", "p.lastName");
+			put("Address", "p.address");
+			put("City", "p.city");
+			put("State", "p.state");
+			put("Zip Code", "p.zipCode");
+			put("Instructor Id", "i.instructorId");
+			put("Department", "i.department");
+			put("Office Hours(Day)", "it.day");
+			put("Office Hours(Timing)", "it.time");
+		}
+	};
+	
 	public String addInstructor(String instructorId,String firstname, String lastname, String address,
 			String city, String state, int zipCode, 
 			String department, String days, String timings )
@@ -102,4 +121,17 @@ public class InstructorService {
 		result = Idao.update(i);
 		return result;
 	}
+	
+	public String searchInstructor(String attribute, String keyword) {
+		//String result = null;
+		IDao dao = new InstructorDaoImpl();
+		String columnName = attrToColumn.get(attribute);
+		
+		if (columnName == null || columnName == "") {
+			return "False:attribute name " + attribute + " is invalid.";
+		}
+		
+		return dao.search(columnName, keyword);
+	}
+
 }

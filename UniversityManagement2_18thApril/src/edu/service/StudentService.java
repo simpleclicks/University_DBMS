@@ -1,8 +1,12 @@
 package edu.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.jws.WebService;
 
 import edu.dao.IDao;
+import edu.dao.impl.InstructorDaoImpl;
 import edu.dao.impl.PersonDaoImpl;
 import edu.dao.impl.StudentDaoImpl;
 import edu.db.entity.Person;
@@ -12,6 +16,17 @@ import edu.service.PersonService;
 @WebService
 public class StudentService {
 	
+	static Map<String, String> attrToColumn = new HashMap<String, String>() {
+		{
+			put("First Name", "firstName");
+			put("Last Name", "lastName");
+			put("Address", "address");
+			put("City", "city");
+			put("State", "state");
+			put("Zip Code", "zipCode");
+			put("Student Id", "studentId");
+		}
+	};
 	
 	public String addStudent(String studentId, String firstname,
 			String lastname, String address, String city, String state,
@@ -96,5 +111,17 @@ public class StudentService {
 		s.setPersonId(personId);
 		result = pDao.update(s);
 		return result;
+	}
+	
+	public String searchStudent(String attribute, String keyword) {
+		//String result = null;
+		IDao dao = new StudentDaoImpl();
+		String columnName = attrToColumn.get(attribute);
+		
+		if (columnName == null || columnName == "") {
+			return "False:attribute name " + attribute + " is invalid.";
+		}
+		
+		return dao.search(columnName, keyword);
 	}
 }

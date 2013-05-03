@@ -306,8 +306,38 @@ public class StudentDaoImpl implements IDao {
 
 	@Override
 	public String search(String columnName, String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		String result = "";
+		try {
+			String query = "Select * from person as p inner JOIN student as s ON  p.personId = s.personId where "+columnName+" LIKE '%"+keyword+"%'";
+			rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+				System.out.println(rs.getString("studentId") + " "
+						+ rs.getString("firstName") + " "
+						+ rs.getString("lastName") + " "
+						+ rs.getString("address") + " " + rs.getString("city")
+						+ " " + rs.getString("state") + " "
+						+ rs.getString("zipCode"));
+				
+				result += rs.getString("studentId") + "/"
+						+ rs.getString("firstName") + "/"
+						+ rs.getString("lastName") + "/"
+						+ rs.getString("address") + "/" + rs.getString("city")
+						+ "/" + rs.getString("state") + "/"
+						+ rs.getString("zipCode");
+				result += "!";
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// return connection instance to the pool
+		if (isPoolingUsed)
+			ConnectionPool.returnConnectionInstanceToPool();
+
+		// return rs.toString();
+		return result;
 	}
 
 }
