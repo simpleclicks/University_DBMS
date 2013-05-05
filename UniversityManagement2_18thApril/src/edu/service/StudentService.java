@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.jws.WebService;
 
 import edu.dao.IDao;
-import edu.dao.impl.InstructorDaoImpl;
 import edu.dao.impl.PersonDaoImpl;
 import edu.dao.impl.StudentDaoImpl;
 import edu.db.entity.Person;
@@ -30,7 +29,7 @@ public class StudentService {
 	
 	public String addStudent(String studentId, String firstname,
 			String lastname, String address, String city, String state,
-			int zipCode) {
+			String zipCode) {
 		
 		String result = getStudentById(studentId);
 		if ( result.equals("false:Not Found"))
@@ -78,16 +77,16 @@ public class StudentService {
 		return dao.findAll();
 	}
 	
-	public String enrollStudent(String courseId, String studentId )
+	public String enrollStudent(String courseId, String section, String studentId )
 	{
 		StudentDaoImpl sdao = new StudentDaoImpl();
-		return sdao.enrollStudent(courseId, studentId);
+		return sdao.enrollStudent(courseId, section, studentId);
 	}
 	
-	public String unEnrollStudent(String studentId )
+	public String unEnrollStudent(String studentId, String courseId, String section )
 	{
 		StudentDaoImpl sdao = new StudentDaoImpl();
-		return sdao.unEnrollStudent( studentId);
+		return sdao.unEnrollStudent( studentId,  courseId,  section);
 	}
 	
 	public String getEnrolledCoursesForStudent(String studentId)
@@ -96,7 +95,7 @@ public class StudentService {
 		return sdao.getEnrolledCoursesForStudent( studentId);
 	}
 	
-	public String updateStudent(String studentId, String firstname, String lastname, String address, String city, String state, int zip){
+	public String updateStudent(String studentId, String firstname, String lastname, String address, String city, String state, String zip){
 		String result = null;
 		Person s = new Person();
 		s.setFirstName(firstname);
@@ -109,6 +108,7 @@ public class StudentService {
 		StudentDaoImpl sDao = new StudentDaoImpl();
 		int personId = sDao.getPersonIdForStudent(studentId);
 		s.setPersonId(personId);
+		System.out.println("pers:" + personId);
 		result = pDao.update(s);
 		return result;
 	}

@@ -157,16 +157,30 @@
   <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
   <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
  </ns1:service>
+ <ns1:service name="LoginService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="login" qname="ns28:login" returnQName="ns28:loginReturn" returnType="xsd:string" soapAction="" xmlns:ns28="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns28:id" type="xsd:string"/>
+   <ns1:parameter qname="ns28:password" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="login"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="LoginService"/>
+  <ns1:parameter name="className" value="edu.service.LoginService"/>
+  <ns1:parameter name="wsdlServicePort" value="LoginService"/>
+  <ns1:parameter name="schemaQualified" value="http://service.edu"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.edu"/>
+  <ns1:parameter name="wsdlServiceElement" value="LoginServiceService"/>
+ </ns1:service>
  <ns1:service name="StudentService" provider="java:RPC" style="wrapped" use="literal">
-  <ns1:operation name="addStudent" qname="ns28:addStudent" returnQName="ns28:addStudentReturn" returnType="xsd:string" soapAction="" xmlns:ns28="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns28:studentId" type="xsd:string"/>
-   <ns1:parameter qname="ns28:firstname" type="xsd:string"/>
-   <ns1:parameter qname="ns28:lastname" type="xsd:string"/>
-   <ns1:parameter qname="ns28:address" type="xsd:string"/>
-   <ns1:parameter qname="ns28:city" type="xsd:string"/>
-   <ns1:parameter qname="ns28:state" type="xsd:string"/>
-   <ns1:parameter qname="ns28:zipCode" type="xsd:int"/>
-   <ns1:parameter qname="ns28:courseList" type="xsd:string"/>
+  <ns1:operation name="addStudent" qname="ns29:addStudent" returnQName="ns29:addStudentReturn" returnType="xsd:string" soapAction="" xmlns:ns29="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns29:studentId" type="xsd:string"/>
+   <ns1:parameter qname="ns29:firstname" type="xsd:string"/>
+   <ns1:parameter qname="ns29:lastname" type="xsd:string"/>
+   <ns1:parameter qname="ns29:address" type="xsd:string"/>
+   <ns1:parameter qname="ns29:city" type="xsd:string"/>
+   <ns1:parameter qname="ns29:state" type="xsd:string"/>
+   <ns1:parameter qname="ns29:zipCode" type="xsd:int"/>
+   <ns1:parameter qname="ns29:courseList" type="xsd:string"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="addStudent"/>
   <ns1:parameter name="wsdlPortType" value="StudentService"/>
@@ -182,46 +196,46 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="InstructorService" provider="java:RPC" style="wrapped" use="literal">
-  <ns1:operation name="getEnrolledCoursesForInstructor" qname="ns29:getEnrolledCoursesForInstructor" returnQName="ns29:getEnrolledCoursesForInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns29="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns29:instructorId" type="xsd:string"/>
+  <ns1:operation name="getEnrolledCoursesForInstructor" qname="ns30:getEnrolledCoursesForInstructor" returnQName="ns30:getEnrolledCoursesForInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns30="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns30:instructorId" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="updateInstructor" qname="ns30:updateInstructor" returnQName="ns30:updateInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns30="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns30:instructorEmpId" type="xsd:string"/>
-   <ns1:parameter qname="ns30:firstname" type="xsd:string"/>
-   <ns1:parameter qname="ns30:lastname" type="xsd:string"/>
-   <ns1:parameter qname="ns30:address" type="xsd:string"/>
-   <ns1:parameter qname="ns30:city" type="xsd:string"/>
-   <ns1:parameter qname="ns30:state" type="xsd:string"/>
-   <ns1:parameter qname="ns30:zip" type="xsd:int"/>
-   <ns1:parameter qname="ns30:department" type="xsd:string"/>
-   <ns1:parameter qname="ns30:days" type="xsd:string"/>
-   <ns1:parameter qname="ns30:timings" type="xsd:string"/>
+  <ns1:operation name="updateInstructor" qname="ns31:updateInstructor" returnQName="ns31:updateInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns31="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns31:instructorEmpId" type="xsd:string"/>
+   <ns1:parameter qname="ns31:firstname" type="xsd:string"/>
+   <ns1:parameter qname="ns31:lastname" type="xsd:string"/>
+   <ns1:parameter qname="ns31:address" type="xsd:string"/>
+   <ns1:parameter qname="ns31:city" type="xsd:string"/>
+   <ns1:parameter qname="ns31:state" type="xsd:string"/>
+   <ns1:parameter qname="ns31:zip" type="xsd:int"/>
+   <ns1:parameter qname="ns31:department" type="xsd:string"/>
+   <ns1:parameter qname="ns31:days" type="xsd:string"/>
+   <ns1:parameter qname="ns31:timings" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="unAssignInstructor" qname="ns31:unAssignInstructor" returnQName="ns31:unAssignInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns31="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns31:instructorId" type="xsd:string"/>
-  </ns1:operation>
-  <ns1:operation name="assignInstructor" qname="ns32:assignInstructor" returnQName="ns32:assignInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns32="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns32:courseId" type="xsd:string"/>
+  <ns1:operation name="unAssignInstructor" qname="ns32:unAssignInstructor" returnQName="ns32:unAssignInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns32="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns32:instructorId" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="getAllInstructor" qname="ns33:getAllInstructor" returnQName="ns33:getAllInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns33="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  <ns1:operation name="getInstructorById" qname="ns34:getInstructorById" returnQName="ns34:getInstructorByIdReturn" returnType="xsd:string" soapAction="" xmlns:ns34="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns34:instructorId" type="xsd:string"/>
+  <ns1:operation name="assignInstructor" qname="ns33:assignInstructor" returnQName="ns33:assignInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns33="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns33:courseId" type="xsd:string"/>
+   <ns1:parameter qname="ns33:instructorId" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="deleteInstructor" qname="ns35:deleteInstructor" returnQName="ns35:deleteInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns35="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="getAllInstructor" qname="ns34:getAllInstructor" returnQName="ns34:getAllInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns34="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getInstructorById" qname="ns35:getInstructorById" returnQName="ns35:getInstructorByIdReturn" returnType="xsd:string" soapAction="" xmlns:ns35="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns35:instructorId" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="addInstructor" qname="ns36:addInstructor" returnQName="ns36:addInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns36="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="deleteInstructor" qname="ns36:deleteInstructor" returnQName="ns36:deleteInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns36="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns36:instructorId" type="xsd:string"/>
-   <ns1:parameter qname="ns36:firstname" type="xsd:string"/>
-   <ns1:parameter qname="ns36:lastname" type="xsd:string"/>
-   <ns1:parameter qname="ns36:address" type="xsd:string"/>
-   <ns1:parameter qname="ns36:city" type="xsd:string"/>
-   <ns1:parameter qname="ns36:state" type="xsd:string"/>
-   <ns1:parameter qname="ns36:zipCode" type="xsd:int"/>
-   <ns1:parameter qname="ns36:department" type="xsd:string"/>
-   <ns1:parameter qname="ns36:days" type="xsd:string"/>
-   <ns1:parameter qname="ns36:timings" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="addInstructor" qname="ns37:addInstructor" returnQName="ns37:addInstructorReturn" returnType="xsd:string" soapAction="" xmlns:ns37="http://service.edu" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns37:instructorId" type="xsd:string"/>
+   <ns1:parameter qname="ns37:firstname" type="xsd:string"/>
+   <ns1:parameter qname="ns37:lastname" type="xsd:string"/>
+   <ns1:parameter qname="ns37:address" type="xsd:string"/>
+   <ns1:parameter qname="ns37:city" type="xsd:string"/>
+   <ns1:parameter qname="ns37:state" type="xsd:string"/>
+   <ns1:parameter qname="ns37:zipCode" type="xsd:int"/>
+   <ns1:parameter qname="ns37:department" type="xsd:string"/>
+   <ns1:parameter qname="ns37:days" type="xsd:string"/>
+   <ns1:parameter qname="ns37:timings" type="xsd:string"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="updateInstructor assignInstructor unAssignInstructor deleteInstructor addInstructor getEnrolledCoursesForInstructor getInstructorById getAllInstructor"/>
   <ns1:parameter name="wsdlPortType" value="InstructorService"/>

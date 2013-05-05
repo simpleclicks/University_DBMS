@@ -11,7 +11,7 @@ import edu.db.entity.Person;
 public class PersonService {
 	
 	public String addPerson(String firstname, String lastname, String address,
-		String city, String state, int zipCode) {
+		String city, String state, String zipCode) {
 		Person person = new Person();
 		person.setFirstName(firstname);
 		person.setLastName(lastname);
@@ -25,7 +25,7 @@ public class PersonService {
 
 	}
 
-	private String deletePerson(String personId ) {
+	public String deletePerson(String personId ) {
 		Person person = new Person();
 		person.setPersonId(Integer.parseInt(personId));
 		IDao dao = new PersonDaoImpl();		
@@ -39,9 +39,9 @@ public class PersonService {
 		return dao.findAll();
 	}
 	
-	public String updatePerson(String instructorEmpId, String firstname, String lastname, String address, String city, String state, int zip){
-		String result = null;
+	public String updatePerson(String personId, String firstname, String lastname, String address, String city, String state, String zip){
 		Person i = new Person();
+		i.setPersonId(Integer.parseInt(personId));
 		i.setFirstName(firstname);
 		i.setLastName(lastname);
 		i.setAddress(address);
@@ -49,7 +49,6 @@ public class PersonService {
 		i.setState(state);
 		i.setZipCode(zip);
 		PersonDaoImpl pimpl = new PersonDaoImpl();
-		pimpl.update(i);
-		return result;
+		return pimpl.update(i);
 	}
 }

@@ -2,13 +2,11 @@ package edu.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
-
+import java.util.HashMap;
 import javax.jws.WebService;
 
 import edu.dao.IDao;
-import edu.dao.impl.CourseDaoImpl;
 import edu.dao.impl.InstructorDaoImpl;
 import edu.dao.impl.PersonDaoImpl;
 import edu.dao.impl.StudentDaoImpl;
@@ -34,7 +32,7 @@ public class InstructorService {
 	};
 	
 	public String addInstructor(String instructorId,String firstname, String lastname, String address,
-			String city, String state, int zipCode, 
+			String city, String state, String zipCode, 
 			String department, String days, String timings )
 			
 	{
@@ -84,25 +82,25 @@ public class InstructorService {
 		return dao.findAll();
 	}
 	
-	public String assignInstructor(String courseId, String instructorId) {
+	public String assignInstructor(String courseId, String section, String instructorId) {
 		InstructorDaoImpl Idao = new InstructorDaoImpl();
-		return Idao.assignInstructor(courseId, instructorId);
+		return Idao.assignInstructor(courseId, section, instructorId);
 	}
 
-	public String unAssignInstructor(String instructorId) {
+	public String unAssignInstructor(String instructorId, String courseId, String section) {
 		InstructorDaoImpl Idao = new InstructorDaoImpl();
-		return Idao.unAssignInstructor(instructorId);
+		return Idao.unAssignInstructor(instructorId, courseId, section);
 	}
 	
-	public String getEnrolledCoursesForInstructor(String instructorId)
+	public String getAssignedCoursesForInstructor(String instructorId)
 	{
 		InstructorDaoImpl Idao = new InstructorDaoImpl();
-		return Idao.getEnrolledCoursesForInstructor(instructorId);
+		return Idao.getAssignedCoursesForInstructor(instructorId);
 	}
 
 	public String updateInstructor(String instructorEmpId, String firstname,
 			String lastname, String address, String city, String state,
-			int zip, String department, String days, String timings) {
+			String zip, String department, String days, String timings) {
 		String result = null;
 		Instructor i = new Instructor();
 		i.setInstructorEmpId(instructorEmpId);

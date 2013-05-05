@@ -10,7 +10,7 @@ public class Person {
 	private String address;
 	private String city;
 	private String state;
-	private int zipCode;
+	private String zipCode;
 	private ArrayList<String> associatedCourses = new ArrayList<String>();
 	
 	public String getFirstName() {
@@ -49,13 +49,13 @@ public class Person {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public int getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
-	public void setZipCode(int zipCode) {
+	public void setZipCode(String  zipCode) {
 		this.zipCode = zipCode;
 	}
-	public ArrayList<String> getAssociatedCourses() {
+	public ArrayList<String> getAssociatedCouStringses() {
 		return associatedCourses;
 	}
 	public void setAssociatedCourses(ArrayList<String> associatedCourses) {
