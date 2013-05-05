@@ -78,6 +78,7 @@ public class InstructorDaoImpl implements IDao {
 		Instructor I = (Instructor) object;
 		String instructorId = I.getInstructorEmpId();
 		String department = I.getDepartment();
+		String password = I.getPassword();
 	//	DateFormat officeHrs = I.getOfficeHours();
 		int personId = I.getPersonId();
 		

@@ -24,12 +24,13 @@ public class StudentService {
 			put("State", "state");
 			put("Zip Code", "zipCode");
 			put("Student Id", "studentId");
+			put("Password", "password");
 		}
 	};
 	
 	public String addStudent(String studentId, String firstname,
 			String lastname, String address, String city, String state,
-			String zipCode) {
+			String zipCode, String password) {
 		
 		String result = getStudentById(studentId);
 		if ( result.equals("false:Not Found"))
@@ -95,7 +96,7 @@ public class StudentService {
 		return sdao.getEnrolledCoursesForStudent( studentId);
 	}
 	
-	public String updateStudent(String studentId, String firstname, String lastname, String address, String city, String state, String zip){
+	public String updateStudent(String studentId, String firstname, String lastname, String address, String city, String state, String zip,String password){
 		String result = null;
 		Person s = new Person();
 		s.setFirstName(firstname);
@@ -104,6 +105,7 @@ public class StudentService {
 		s.setCity(city);
 		s.setState(state);
 		s.setZipCode(zip);
+		s.setPassword(password);
 		PersonDaoImpl pDao = new PersonDaoImpl();
 		StudentDaoImpl sDao = new StudentDaoImpl();
 		int personId = sDao.getPersonIdForStudent(studentId);

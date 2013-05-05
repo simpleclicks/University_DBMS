@@ -28,12 +28,13 @@ public class InstructorService {
 			put("Department", "i.department");
 			put("Office Hours(Day)", "it.day");
 			put("Office Hours(Timing)", "it.time");
+			put("Password", "p.password");
 		}
 	};
 	
 	public String addInstructor(String instructorId,String firstname, String lastname, String address,
 			String city, String state, String zipCode, 
-			String department, String days, String timings )
+			String department, String days, String timings,String password )
 			
 	{
 		
@@ -48,6 +49,7 @@ public class InstructorService {
 			I.setDepartment(department);
 			I.setDays(days);
 			I.setTiming(timings);
+			I.setPassword(password);
 			//I.setOfficeHours(meetingTime);
 			I.setPersonId(personId);
 			IDao dao = new InstructorDaoImpl();

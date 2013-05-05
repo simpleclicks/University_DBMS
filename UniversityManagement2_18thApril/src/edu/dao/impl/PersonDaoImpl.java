@@ -83,6 +83,7 @@ public class PersonDaoImpl implements IDao {
 		String city = p.getCity();
 		String state = p.getState();
 		String zipCode = p.getZipCode();
+		String password = p.getPassword();
 		
 		String result = "";
 		int personId=0;
@@ -91,7 +92,7 @@ public class PersonDaoImpl implements IDao {
 		try {
 		
 				String query = 
-					 "Insert into person (firstName,lastName,address,city,state,zipCode) values (?,?,?,?,?,?)"; 
+					 "Insert into person (firstName,lastName,address,city,state,zipCode,password) values (?,?,?,?,?,?,?)"; 
 					    
 					 stmt = conn.prepareStatement(query);
 					stmt.setString(1, firstName);
@@ -100,6 +101,7 @@ public class PersonDaoImpl implements IDao {
 					stmt.setString(4, address);
 					stmt.setString(5, state);
 					stmt.setString(6, zipCode);
+					stmt.setString(7, password);
 							 
 					stmt.executeUpdate();
 					rs = stmt.getGeneratedKeys();
