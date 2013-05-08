@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.service.InstructorServiceProxy;
+import edu.service.StudentServiceProxy;
 
 /**
- * Servlet implementation class DeleteInstructor
+ * Servlet implementation class UnenrollStudent
  */
-@WebServlet("/DeleteInstructor")
-public class DeleteInstructor extends HttpServlet {
+@WebServlet("/UnenrollStudent")
+public class UnenrollStudent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	InstructorServiceProxy proxy = new InstructorServiceProxy();
-       
+     
+	StudentServiceProxy proxy = new StudentServiceProxy();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteInstructor() {
+    public UnenrollStudent() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,35 +39,35 @@ public class DeleteInstructor extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-PrintWriter out = response.getWriter();
-		
+	
+		PrintWriter out = response.getWriter();
+
 		response.setContentType("text/html");
 		String result="";
 		
+
 		try {
-			String instructorEmpId = request.getParameter("eid");
-proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/InstructorService");
-		    
-			result = proxy.deleteInstructor(instructorEmpId);
-		
-			request.setAttribute("result",result);
-			if (result.equalsIgnoreCase("true")){
-				
-				request.getRequestDispatcher("/View/Result.jsp").forward(request, response);
-			}
-			else{
-				result = result.substring(6);
-				request.setAttribute("result",result);
-				request.getRequestDispatcher("/View/Error.jsp").forward(request, response);
-			}
+			String studentId = request.getParameter("sid");
+			String courses[] = (request.getParameter("cid")).split("-");
+			String courseId = courses[0];
+			String section = courses[1];
+			
+			System.out.println("course,sect "+ courseId +", "+section);
+			proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/StudentService");
+			result = proxy.unEnrollStudent(studentId,courseId, section);
+			System.out.println("Inside unenroll student "+result); 
+
+			if (result.equalsIgnoreCase("true"))
+				request.setAttribute("assignResult", "Instructor assigned successfully");
+			else
+				request.setAttribute("assignResult", "Failed to assign Instructor");
+
+			request.getRequestDispatcher("/View/AssignInstructor.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
 		}
-		
-		
-		
+	
 	}
 
 }

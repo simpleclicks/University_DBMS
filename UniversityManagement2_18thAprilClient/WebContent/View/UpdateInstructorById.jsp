@@ -66,7 +66,7 @@ function isallfieldsfilled()
 		<form name="form1" id="form1" class="form" method="post" action="UpdateInstructorId">
 			<table align="center" class="form" width="100%">
 				<tr>
-				<td align="right"><h3>Enter Instructor Id for Updation</h3></td>
+				<td align="right"><h3>Enter Instructor Id </h3></td>
 				</tr>
 				<tr/>
 				

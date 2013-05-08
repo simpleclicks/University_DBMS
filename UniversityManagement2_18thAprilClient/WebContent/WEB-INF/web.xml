@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>University Management</display-name>
   <welcome-file-list>
-    <welcome-file>/View/AddInstructor.jsp</welcome-file>
+    <welcome-file>/View/Login.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -14,9 +14,6 @@
     <servlet-name>AddInstructor</servlet-name>
     <url-pattern>/View/AddInstructor</url-pattern>
   </servlet-mapping>
-  <welcome-file-list>
-    <welcome-file>/View/DeleteInstructor.jsp</welcome-file>
-  </welcome-file-list>
   <servlet>
     <description></description>
     <display-name>DeleteInstructor</display-name>
@@ -27,9 +24,6 @@
     <servlet-name>DeleteInstructor</servlet-name>
     <url-pattern>/View/DeleteInstructor</url-pattern>
   </servlet-mapping>
-  <welcome-file-list>
-    <welcome-file>/View/UpdateInstructorById.jsp</welcome-file>
-  </welcome-file-list>
   <servlet>
     <description></description>
     <display-name>UpdateInstructorId</display-name>
@@ -40,9 +34,6 @@
     <servlet-name>UpdateInstructorId</servlet-name>
     <url-pattern>/View/UpdateInstructorId</url-pattern>
   </servlet-mapping>
-  <welcome-file-list>
-    <welcome-file>/View/updateInstructor.jsp</welcome-file>
-  </welcome-file-list>
   <servlet>
     <description></description>
     <display-name>UpdateInstructorInfo</display-name>
@@ -53,4 +44,220 @@
     <servlet-name>UpdateInstructorInfo</servlet-name>
     <url-pattern>/View/UpdateInstructorInfo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListInstructor</display-name>
+    <servlet-name>ListInstructor</servlet-name>
+    <servlet-class>servlet.ListInstructor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListInstructor</servlet-name>
+    <url-pattern>/View/ListInstructor</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AssignInstructor</display-name>
+    <servlet-name>AssignInstructor</servlet-name>
+    <servlet-class>servlet.AssignInstructor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AssignInstructor</servlet-name>
+    <url-pattern>/View/AssignInstructor</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/View/AddCourse.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>AddCourse</display-name>
+    <servlet-name>AddCourse</servlet-name>
+    <servlet-class>servlet.AddCourse</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCourse</servlet-name>
+    <url-pattern>/View/AddCourse</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/View/DeleteCourse.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>DeleteCourse</display-name>
+    <servlet-name>DeleteCourse</servlet-name>
+    <servlet-class>servlet.DeleteCourse</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteCourse</servlet-name>
+    <url-pattern>/View/DeleteCourse</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/View/UpdateCourseId.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>UpdateCourseId</display-name>
+    <servlet-name>UpdateCourseId</servlet-name>
+    <servlet-class>servlet.UpdateCourseId</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateCourseId</servlet-name>
+    <url-pattern>/View/UpdateCourseId</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/View/UpdateCourse.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>UpdateCourseInfo</display-name>
+    <servlet-name>UpdateCourseInfo</servlet-name>
+    <servlet-class>servlet.UpdateCourseInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateCourseInfo</servlet-name>
+    <url-pattern>/View/UpdateCourseInfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListCourse</display-name>
+    <servlet-name>ListCourse</servlet-name>
+    <servlet-class>servlet.ListCourse</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListCourse</servlet-name>
+    <url-pattern>/View/ListCourse</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/View/AddStudent.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>AddStudent</display-name>
+    <servlet-name>AddStudent</servlet-name>
+    <servlet-class>servlet.AddStudent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddStudent</servlet-name>
+    <url-pattern>/View/AddStudent</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/View/DeleteStudent.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>DeleteStudent</display-name>
+    <servlet-name>DeleteStudent</servlet-name>
+    <servlet-class>servlet.DeleteStudent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteStudent</servlet-name>
+    <url-pattern>/View/DeleteStudent</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/View/updateStudentId.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>UpdateStudentId</display-name>
+    <servlet-name>UpdateStudentId</servlet-name>
+    <servlet-class>servlet.UpdateStudentId</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateStudentId</servlet-name>
+    <url-pattern>/View/UpdateStudentId</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/View/updateStudent.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>UpdateStudentInfo</display-name>
+    <servlet-name>UpdateStudentInfo</servlet-name>
+    <servlet-class>servlet.UpdateStudentInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateStudentInfo</servlet-name>
+    <url-pattern>/View/UpdateStudentInfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListStudent</display-name>
+    <servlet-name>ListStudent</servlet-name>
+    <servlet-class>servlet.ListStudent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListStudent</servlet-name>
+    <url-pattern>/View/ListStudent</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AssignStudent</display-name>
+    <servlet-name>AssignStudent</servlet-name>
+    <servlet-class>servlet.AssignStudent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AssignStudent</servlet-name>
+    <url-pattern>/View/AssignStudent</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchStudent</display-name>
+    <servlet-name>SearchStudent</servlet-name>
+    <servlet-class>servlet.SearchStudent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchStudent</servlet-name>
+    <url-pattern>/View/SearchStudent</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchInstructor</display-name>
+    <servlet-name>SearchInstructor</servlet-name>
+    <servlet-class>servlet.SearchInstructor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchInstructor</servlet-name>
+    <url-pattern>/View/SearchInstructor</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchCourse</display-name>
+    <servlet-name>SearchCourse</servlet-name>
+    <servlet-class>servlet.SearchCourse</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchCourse</servlet-name>
+    <url-pattern>/View/SearchCourse</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Login</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>servlet.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/View/Login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UnenrollStudentId</display-name>
+    <servlet-name>UnenrollStudentId</servlet-name>
+    <servlet-class>servlet.UnenrollStudentId</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UnenrollStudentId</servlet-name>
+    <url-pattern>/View/UnenrollStudentId</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>UnenrollStudent</display-name>
+    <servlet-name>UnenrollStudent</servlet-name>
+    <servlet-class>servlet.UnenrollStudent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UnenrollStudent</servlet-name>
+    <url-pattern>/View/UnenrollStudent</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

@@ -13,21 +13,21 @@ import edu.service.CourseServiceProxy;
 import edu.service.InstructorServiceProxy;
 
 /**
- * Servlet implementation class AddCourse
+ * Servlet implementation class DeleteCourse
  */
-@WebServlet("/AddCourse")
-public class AddCourse extends HttpServlet {
+@WebServlet("/DeleteCourse")
+public class DeleteCourse extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	CourseServiceProxy proxy = new CourseServiceProxy();
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public AddCourse() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DeleteCourse() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,46 +41,35 @@ public class AddCourse extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		PrintWriter out = response.getWriter();
-
+		
+PrintWriter out = response.getWriter();
+		
 		response.setContentType("text/html");
 		String result="";
-		String dayValues = "";
-		String timeValues = "";
+		
 		try {
-
-			String courseName = request.getParameter("cname");
-			String courseId = request.getParameter("cid");
-			String section = request.getParameter("section");
-			String location = request.getParameter("location");
-			String[] days = request.getParameterValues("days");
-
-			for (int i = 0; i < days.length; i++) {
-				dayValues += days[i]+","; 
-			}
-			System.out.println("Days" + dayValues);
-			String[] strttime = request.getParameterValues("starttime");
-			String[] endtime = request.getParameterValues("endtime");
-			for (int i = 0; i < strttime.length; i++) {
-				timeValues += strttime[i]+"-"+endtime[i]+","; 
-			}
-			System.out.println("Time "+ timeValues);
+			String courseId = request.getParameter("courseid");
 			proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/CourseService");
-
-			result = proxy.addCourse(courseId, courseName,section, location,dayValues,timeValues);			
+		    
+			result = proxy.deleteCourse(courseId);
+		
+			
 			request.setAttribute("result",result);
+			System.out.println("Result is "+result );
 			if (result.equalsIgnoreCase("true")){
-
+				
 				request.getRequestDispatcher("/View/Result.jsp").forward(request, response);
 			}
 			else{
+				result = result.substring(6);
+				request.setAttribute("result", result);
 				request.getRequestDispatcher("/View/Error.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
 		}
+		
 	}
 
 }

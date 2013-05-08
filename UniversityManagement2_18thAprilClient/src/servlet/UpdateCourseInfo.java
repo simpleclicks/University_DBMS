@@ -10,13 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.service.CourseServiceProxy;
-import edu.service.InstructorServiceProxy;
 
 /**
- * Servlet implementation class AddCourse
+ * Servlet implementation class UpdateCourseInfo
  */
-@WebServlet("/AddCourse")
-public class AddCourse extends HttpServlet {
+@WebServlet("/UpdateCourseInfo")
+public class UpdateCourseInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	CourseServiceProxy proxy = new CourseServiceProxy();
@@ -24,7 +23,7 @@ public class AddCourse extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AddCourse() {
+	public UpdateCourseInfo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -50,10 +49,10 @@ public class AddCourse extends HttpServlet {
 		String timeValues = "";
 		try {
 
-			String courseName = request.getParameter("cname");
 			String courseId = request.getParameter("cid");
-			String section = request.getParameter("section");
+			String courseName  = request.getParameter("cname");
 			String location = request.getParameter("location");
+			String section = request.getParameter("section");
 			String[] days = request.getParameterValues("days");
 
 			for (int i = 0; i < days.length; i++) {
@@ -65,18 +64,13 @@ public class AddCourse extends HttpServlet {
 			for (int i = 0; i < strttime.length; i++) {
 				timeValues += strttime[i]+"-"+endtime[i]+","; 
 			}
-			System.out.println("Time "+ timeValues);
+
 			proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/CourseService");
 
-			result = proxy.addCourse(courseId, courseName,section, location,dayValues,timeValues);			
-			request.setAttribute("result",result);
-			if (result.equalsIgnoreCase("true")){
+			result = proxy.updateCourse(courseId, section, courseName, location, dayValues, timeValues);
 
-				request.getRequestDispatcher("/View/Result.jsp").forward(request, response);
-			}
-			else{
-				request.getRequestDispatcher("/View/Error.jsp").forward(request, response);
-			}
+			request.setAttribute("result",result);
+			request.getRequestDispatcher("/View/Result.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception

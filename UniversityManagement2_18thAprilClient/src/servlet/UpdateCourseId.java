@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,10 +14,10 @@ import edu.service.CourseServiceProxy;
 import edu.service.InstructorServiceProxy;
 
 /**
- * Servlet implementation class AddCourse
+ * Servlet implementation class UpdateCourseId
  */
-@WebServlet("/AddCourse")
-public class AddCourse extends HttpServlet {
+@WebServlet("/UpdateCourseId")
+public class UpdateCourseId extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	CourseServiceProxy proxy = new CourseServiceProxy();
@@ -24,7 +25,7 @@ public class AddCourse extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AddCourse() {
+	public UpdateCourseId() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -46,41 +47,46 @@ public class AddCourse extends HttpServlet {
 
 		response.setContentType("text/html");
 		String result="";
-		String dayValues = "";
-		String timeValues = "";
+		//String[] data; 
+
 		try {
-
-			String courseName = request.getParameter("cname");
+			ResultSet rs;
 			String courseId = request.getParameter("cid");
-			String section = request.getParameter("section");
-			String location = request.getParameter("location");
-			String[] days = request.getParameterValues("days");
 
-			for (int i = 0; i < days.length; i++) {
-				dayValues += days[i]+","; 
-			}
-			System.out.println("Days" + dayValues);
-			String[] strttime = request.getParameterValues("starttime");
-			String[] endtime = request.getParameterValues("endtime");
-			for (int i = 0; i < strttime.length; i++) {
-				timeValues += strttime[i]+"-"+endtime[i]+","; 
-			}
-			System.out.println("Time "+ timeValues);
 			proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/CourseService");
+			result = proxy.getCourseById(courseId);
+			System.out.println("Result is "+result);
+			if(!result.startsWith("false")){
+				String[] data = result.split("/");
+				request.setAttribute("cname", data[0]);
+				request.setAttribute("location", data[1]);
+				request.setAttribute("cid", data[2]);
+				request.setAttribute("section", data[3]);
+				String days[] = data[4].split(",");
+				request.setAttribute("numdays", days.length);
+				for (int j = 0; j < days.length; j++) {
+					request.setAttribute("days"+j, days[j]);
+				}
+				String time[] = data[5].split(",");
+				for (int j = 0; j < time.length; j++) {
+					String splittime[] = time[j].split("-"); 
+					if(splittime[0].equals("!"))
+						break;
+					request.setAttribute("starttime"+j, splittime[0]);
+					request.setAttribute("endtime"+j, splittime[1]);
+				}
 
-			result = proxy.addCourse(courseId, courseName,section, location,dayValues,timeValues);			
-			request.setAttribute("result",result);
-			if (result.equalsIgnoreCase("true")){
-
-				request.getRequestDispatcher("/View/Result.jsp").forward(request, response);
-			}
-			else{
+				request.getRequestDispatcher("/View/UpdateCourse.jsp").forward(request, response);
+			} else {
+				result = result.substring(6);
+				request.setAttribute("result", result);
 				request.getRequestDispatcher("/View/Error.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
 		}
+
 	}
 
 }

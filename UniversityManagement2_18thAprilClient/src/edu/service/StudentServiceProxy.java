@@ -44,10 +44,10 @@ public class StudentServiceProxy implements edu.service.StudentService {
     return studentService;
   }
   
-  public java.lang.String addStudent(java.lang.String studentId, java.lang.String firstname, java.lang.String lastname, java.lang.String address, java.lang.String city, java.lang.String state, java.lang.String zipCode, java.lang.String password) throws java.rmi.RemoteException{
+  public java.lang.String getEnrolledCoursesForStudent(java.lang.String studentId) throws java.rmi.RemoteException{
     if (studentService == null)
       _initStudentServiceProxy();
-    return studentService.addStudent(studentId, firstname, lastname, address, city, state, zipCode, password);
+    return studentService.getEnrolledCoursesForStudent(studentId);
   }
   
   public java.lang.String searchStudent(java.lang.String attribute, java.lang.String keyword) throws java.rmi.RemoteException{
@@ -56,34 +56,10 @@ public class StudentServiceProxy implements edu.service.StudentService {
     return studentService.searchStudent(attribute, keyword);
   }
   
-  public java.lang.String updateStudent(java.lang.String studentId, java.lang.String firstname, java.lang.String lastname, java.lang.String address, java.lang.String city, java.lang.String state, java.lang.String zip) throws java.rmi.RemoteException{
+  public java.lang.String addStudent(java.lang.String studentId, java.lang.String firstname, java.lang.String lastname, java.lang.String address, java.lang.String city, java.lang.String state, java.lang.String zipCode, java.lang.String password) throws java.rmi.RemoteException{
     if (studentService == null)
       _initStudentServiceProxy();
-    return studentService.updateStudent(studentId, firstname, lastname, address, city, state, zip);
-  }
-  
-  public java.lang.String getEnrolledCoursesForStudent(java.lang.String studentId) throws java.rmi.RemoteException{
-    if (studentService == null)
-      _initStudentServiceProxy();
-    return studentService.getEnrolledCoursesForStudent(studentId);
-  }
-  
-  public java.lang.String unEnrollStudent(java.lang.String studentId, java.lang.String courseId, java.lang.String section) throws java.rmi.RemoteException{
-    if (studentService == null)
-      _initStudentServiceProxy();
-    return studentService.unEnrollStudent(studentId, courseId, section);
-  }
-  
-  public java.lang.String enrollStudent(java.lang.String courseId, java.lang.String section, java.lang.String studentId) throws java.rmi.RemoteException{
-    if (studentService == null)
-      _initStudentServiceProxy();
-    return studentService.enrollStudent(courseId, section, studentId);
-  }
-  
-  public java.lang.String getAllStudent() throws java.rmi.RemoteException{
-    if (studentService == null)
-      _initStudentServiceProxy();
-    return studentService.getAllStudent();
+    return studentService.addStudent(studentId, firstname, lastname, address, city, state, zipCode, password);
   }
   
   public java.lang.String deleteStudent(java.lang.String studentId) throws java.rmi.RemoteException{
@@ -96,6 +72,30 @@ public class StudentServiceProxy implements edu.service.StudentService {
     if (studentService == null)
       _initStudentServiceProxy();
     return studentService.getStudentById(studentId);
+  }
+  
+  public java.lang.String unEnrollStudent(java.lang.String studentId, java.lang.String courseId, java.lang.String section) throws java.rmi.RemoteException{
+    if (studentService == null)
+      _initStudentServiceProxy();
+    return studentService.unEnrollStudent(studentId, courseId, section);
+  }
+  
+  public java.lang.String updateStudent(java.lang.String studentId, java.lang.String firstname, java.lang.String lastname, java.lang.String address, java.lang.String city, java.lang.String state, java.lang.String zip) throws java.rmi.RemoteException{
+    if (studentService == null)
+      _initStudentServiceProxy();
+    return studentService.updateStudent(studentId, firstname, lastname, address, city, state, zip);
+  }
+  
+  public java.lang.String getAllStudent() throws java.rmi.RemoteException{
+    if (studentService == null)
+      _initStudentServiceProxy();
+    return studentService.getAllStudent();
+  }
+  
+  public java.lang.String enrollStudent(java.lang.String courseId, java.lang.String section, java.lang.String studentId) throws java.rmi.RemoteException{
+    if (studentService == null)
+      _initStudentServiceProxy();
+    return studentService.enrollStudent(courseId, section, studentId);
   }
   
   

@@ -45,7 +45,8 @@ PrintWriter out = response.getWriter();
 		
 		response.setContentType("text/html");
 		String result="";
-		
+		String dayValues = "";
+		String timeValues = "";
 		try {
 			
 			 String firstname = request.getParameter("fname");
@@ -55,15 +56,22 @@ PrintWriter out = response.getWriter();
 			 String state = request.getParameter("state");
 			 String zipCode = request.getParameter("zcode");
 			 String instructorEmpId = request.getParameter("eid");
-			 // TODO : the fields below should be retrieved from the UI form 
-			 String department = "New Department";
-			 String days = "Thursday";
-			 String timing = "4:00 PM - 5:00 PM";
-			 int zip = Integer.parseInt(zipCode);
-					 
+			 String dept = request.getParameter("dept");
+			 String[] days = request.getParameterValues("days");
+
+				for (int i = 0; i < days.length; i++) {
+					dayValues += days[i]+","; 
+				}
+				System.out.println("Days" + dayValues);
+				String[] strttime = request.getParameterValues("starttime");
+				String[] endtime = request.getParameterValues("endtime");
+				for (int i = 0; i < strttime.length; i++) {
+					timeValues += strttime[i]+"-"+endtime[i]+","; 
+				}
+			 
 			proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/InstructorService");
 		    
-			result = proxy.updateInstructor(instructorEmpId, firstname, lastname, address, city, state, zip, department, days,timing);
+			result = proxy.updateInstructor(instructorEmpId, firstname, lastname, address, city, state, zipCode, dept, dayValues, timeValues);
 		
 			request.setAttribute("result",result);
 			request.getRequestDispatcher("/View/Result.jsp").forward(request, response);
@@ -75,4 +83,3 @@ PrintWriter out = response.getWriter();
 	}
 
 }
-

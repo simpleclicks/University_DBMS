@@ -8,7 +8,7 @@
 </head>
 <body>
     <table border="0" cellpadding="0" cellspacing="0" width="700">
-        <tr><td bgcolor="white"><img src="University.jpg" width="80" height="100" /></td>
+        <tr><td bgcolor="white"><img src="http://upload.wikimedia.org/wikipedia/commons/2/23/University_of_Sydney_Main_Quadrangle.jpg" width="80" height="100" /></td>
         <td bgcolor="white"><h6><u><font face="Maiandra GD" color="#4AA02C"><b>UNIVERSITY MANAGEMENT</b></font></u><br /></h6></td>
          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td>
@@ -17,6 +17,38 @@
 
     </table>
     <hr />
-     <a href="Instructor.jsp"><font size="2"><b><u>Instructor</u></b></font></a>&nbsp;|&nbsp;<a href="Student.jsp"><font size="2"><b><u>Student</u></b></font></a>&nbsp;|&nbsp;<a href="Course.jsp"><font size="2"><b><u>Course</u></b></font></a>
+<%
+				if (session.getAttribute("user").toString().equals("admin")) {
+			%>
+	<a href="Instructor.jsp"><font size="5"><b><u>Instructor</u></b></font></a>
+	&nbsp;|&nbsp;
+	<a href="Student.jsp"><font size="5"><b><u>Student</u></b></font></a>&nbsp;|&nbsp;
+	<a href="Course.jsp"><font size="5"><b><u>Course</u></b></font></a>
+	<%} 
+	
+				if (session.getAttribute("user").toString().equals("student")) {
+			%>
+	<a href="Student.jsp"><font size="5"><b><u>Student</u></b></font></a>&nbsp;|&nbsp;
+	<a href="Course.jsp"><font size="5"><b><u>Course</u></b></font></a>
+	<%}
+	if (session.getAttribute("user").toString().equals("instructor")) {
+			%>
+			<a href="Instructor.jsp"><font size="5"><b><u>Instructor</u></b></font></a>&nbsp;|&nbsp;
+			<a href="Course.jsp"><font size="5"><b><u>Course</u></b></font></a>
+	<%} %>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		
+	<a href="Login.jsp"><font size="5"><b><u>Log Out</u></b></font></a>
+
       <hr />
   
