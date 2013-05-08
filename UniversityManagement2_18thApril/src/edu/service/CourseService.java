@@ -26,10 +26,6 @@ public class CourseService {
 				courseSection, location, day, timing)) {
 			return "Please Enter all fields";
 		}
-		String validate_courseID = validations.isValidCourseID(courseId);
-		if (!validate_courseID.equals("True")) {
-			return validate_courseID;
-		}
 
 		Course c = new Course();
 		c.setCourseId(courseId);
@@ -73,25 +69,14 @@ public class CourseService {
 	}
 
 	public String getEnrolledStudentForCourse(String courseId, String section) {
-		String validate_courseID = validations.isValidCourseID(courseId);
-		if (!validate_courseID.equals("True")) {
-			return validate_courseID;
-		}
-		if (section == null) {
-			return "Please Enter section";
-		}
+		
+		
 		CourseDaoImpl cdao = new CourseDaoImpl();
 		return cdao.getEnrolledStudentForCourse(courseId, section);
 	}
 
 	public String getAssignedInstructorForCourse(String courseId, String section) {
-		String validate_courseID = validations.isValidCourseID(courseId);
-		if (!validate_courseID.equals("True")) {
-			return validate_courseID;
-		}
-		if (section == null) {
-			return "Please Enter section";
-		}
+		
 		CourseDaoImpl cdao = new CourseDaoImpl();
 		return cdao.getAssignedInstructorForCourse(courseId, section);
 	}
@@ -115,10 +100,7 @@ public class CourseService {
 				courseSection, courseLocation, days, timing)) {
 			return "Please Enter all fields";
 		}
-		String validate_courseID = validations.isValidCourseID(courseId);
-		if (!validate_courseID.equals("True")) {
-			return validate_courseID;
-		}
+		
 		IDao dao = new CourseDaoImpl();
 		Course c = new Course();
 		c.setCourseId(courseId);

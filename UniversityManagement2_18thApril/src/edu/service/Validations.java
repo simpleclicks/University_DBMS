@@ -66,8 +66,6 @@ public class Validations {
 			return "Please Enter Instructor ID";
 		} else if (!instructorId.startsWith("I")) {
 			return "Please enter valid Instructor Id";
-		} else if (instructorId.length() < 10) {
-			return "Please enter valid instructor Id";
 		} else {
 			return "True";
 		}
@@ -77,8 +75,6 @@ public class Validations {
 			return "Please Enter Student ID";
 		} else if (!studentId.startsWith("S")) {
 			return "Please enter valid Student Id";
-		} else if (studentId.length() < 10) {
-			return "Please enter valid Student Id";
 		} else {
 			return "True";
 		}
@@ -87,12 +83,11 @@ public class Validations {
 	public String isValidCourseID(String courseId) {
 		if (courseId == null) {
 			return "Please enter course Id";
-		} else if (!courseId.startsWith("CMPE ")) {
-			return "Please enter Valid course Id";
-		} else {
-			return "True";
 		}
-	}
+		else{
+			return "True";}
+		}
+	
 
 	public boolean isAllFields_filled(String courseId, String courseName,
 			String courseSection, String location, String day, String timing) {

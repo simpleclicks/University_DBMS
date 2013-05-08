@@ -114,35 +114,12 @@ if (!validations.isAllFields_filled_students(studentId, firstname,
 	public String enrollStudent(String courseId, String section, 
 	String studentId ){
 	
-		String validate_course = validations.isValidCourseID(courseId);
-		
-		if (!validate_course.equals("True")) {
-			return validate_course;
-		}
-		if (section == null) {
-			return "Please enter valid value";
-		}
-		String validate = validations.isValidStudentID(studentId);
-		if (!validate.equals("True")) {
-			return validate;
-		}
-		StudentDaoImpl sdao = new StudentDaoImpl();
+				StudentDaoImpl sdao = new StudentDaoImpl();
 		return sdao.enrollStudent(courseId, section, studentId);
 	}
 
 	public String unEnrollStudent(String studentId, String courseId,
 			String section) {
-		String validate = validations.isValidStudentID(studentId);
-		if (!validate.equals("True")) {
-			return validate;
-		}
-		String validate_course = validations.isValidCourseID(courseId);
-		if (!validate_course.equals("True")) {
-			return validate_course;
-		}
-		if (section == null) {
-			return "Please enter valid value";
-		}
 		StudentDaoImpl sdao = new StudentDaoImpl();
 		return sdao.unEnrollStudent( studentId,  courseId,  section);
 	}

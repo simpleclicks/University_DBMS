@@ -121,18 +121,6 @@ public class InstructorService {
 
 	public String assignInstructor(String courseId, String section,
 			String instructorId) {
-					String validate_instructor = validations.isValidCourseID(courseId);
-		if (!validate_instructor.equals("True")) {
-			return validate_instructor;
-		}
-
-		String validate = validations.isValidInstructorID(instructorId);
-		if (!validate.equals("True")) {
-			return validate;
-		}
-		if (section == null) {
-			return "Please enter section";
-		}
 
 		InstructorDaoImpl Idao = new InstructorDaoImpl();
 		return Idao.assignInstructor(courseId, section, instructorId);
@@ -140,17 +128,6 @@ public class InstructorService {
 
 	public String unAssignInstructor(String instructorId, String courseId,
 			String section) {
-		String validate = validations.isValidInstructorID(instructorId);
-		if (!validate.equals("True")) {
-			return validate;
-		}
-		String validate_instructor = validations.isValidCourseID(courseId);
-		if (!validate_instructor.equals("True")) {
-			return validate_instructor;
-		}
-		if (section == null) {
-			return "Please add section";
-		}
 		InstructorDaoImpl Idao = new InstructorDaoImpl();
 		return Idao.unAssignInstructor(instructorId, courseId, section);
 	}
