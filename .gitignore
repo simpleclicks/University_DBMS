@@ -7,7 +7,6 @@
 .metadata
 bin/
 tmp/
-WebContent/
 *.tmp
 *.bak
 *.swp
