@@ -11,7 +11,7 @@ import edu.db.entity.Person;
 public class PersonService {
 	
 	public String addPerson(String firstname, String lastname, String address,
-		String city, String state, String zipCode) {
+		String city, String state, String zipCode, String password) {
 		Person person = new Person();
 		person.setFirstName(firstname);
 		person.setLastName(lastname);
@@ -19,6 +19,7 @@ public class PersonService {
 		person.setCity(city);
 		person.setState(state);
 		person.setZipCode(zipCode);
+		person.setPassword(password);
 
 		IDao dao = new PersonDaoImpl();
 		return dao.add(person);

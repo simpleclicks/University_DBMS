@@ -15,7 +15,9 @@ import edu.service.PersonService;
 
 @WebService
 public class InstructorService {
-	
+
+	Validations validations = new Validations();
+
 	static Map<String, String> attrToColumn = new HashMap<String, String>() {
 		{
 			put("First Name", "p.firstName");
@@ -37,19 +39,46 @@ public class InstructorService {
 			String department, String days, String timings,String password )
 			
 	{
+		System.out.println("In Instructor service");
+		if (!validations.isAllFieldsFilled(instructorId, firstname, lastname,
+				address, city, state, zipCode, department, days, timings)) {
+			System.out.println("No field is filled");
+			return "Please Enter All fields";
+		}
+		if(validations.hasSpecialCharacter(firstname)){
+			return "No special characters allowed in First Name";
+		}
 		
+		String validate = validations.isValidInstructorID(instructorId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
+		if (!validations.isStateValid(state)) {
+			System.out.println(state);
+			System.out.println("validation" + validations.isStateValid(state));
+			return "Please enter the valid State";
+		}
+
+		if (!validations.isValidZipCode(zipCode)) {
+			return "Please Enter valid Zip Code";
+		}
 		String result = getInstructorById(instructorId);
 		
 		if ( result.equals("false:Not Found"))
 		{
 			PersonService ph = new PersonService();
-			int personId = Integer.parseInt(ph.addPerson(firstname,lastname, address, city, state, zipCode)); 
+			int personId = Integer.parseInt(ph.addPerson(firstname,lastname, address, city, state, zipCode, password)); 
 			Instructor I = new Instructor();
 			I.setInstructorEmpId(instructorId);
+			I.setFirstName(firstname);
+			I.setLastName(lastname);
+			I.setAddress(address);
+			I.setCity(city);
+			I.setState(state);
+			I.setZipCode(zipCode);
 			I.setDepartment(department);
 			I.setDays(days);
 			I.setTiming(timings);
-			I.setPassword(password);
 			//I.setOfficeHours(meetingTime);
 			I.setPersonId(personId);
 			IDao dao = new InstructorDaoImpl();
@@ -60,17 +89,23 @@ public class InstructorService {
 			return "false:Duplicate Entry";
 		}
 	}
-	
-	public String deleteInstructor(String instructorId)
-	{
+
+	public String deleteInstructor(String instructorId) {
+		String validate = validations.isValidInstructorID(instructorId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
 		Instructor I = new Instructor();
 		I.setInstructorEmpId(instructorId);
 		IDao dao = new InstructorDaoImpl();
 		return dao.delete(I);
 	}
 
-	public String getInstructorById(String instructorId )
-	{
+	public String getInstructorById(String instructorId) {
+		String validate = validations.isValidInstructorID(instructorId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
 		Instructor I = new Instructor();
 		I.setInstructorEmpId(instructorId);
 		IDao dao = new InstructorDaoImpl();
@@ -78,24 +113,53 @@ public class InstructorService {
 	}
 	
 	public String getAllInstructor( )
-	{
+		{
 		
 		IDao dao = new InstructorDaoImpl();
 		return dao.findAll();
 	}
-	
-	public String assignInstructor(String courseId, String section, String instructorId) {
+
+	public String assignInstructor(String courseId, String section,
+			String instructorId) {
+					String validate_instructor = validations.isValidCourseID(courseId);
+		if (!validate_instructor.equals("True")) {
+			return validate_instructor;
+		}
+
+		String validate = validations.isValidInstructorID(instructorId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
+		if (section == null) {
+			return "Please enter section";
+		}
+
 		InstructorDaoImpl Idao = new InstructorDaoImpl();
 		return Idao.assignInstructor(courseId, section, instructorId);
 	}
 
-	public String unAssignInstructor(String instructorId, String courseId, String section) {
+	public String unAssignInstructor(String instructorId, String courseId,
+			String section) {
+		String validate = validations.isValidInstructorID(instructorId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
+		String validate_instructor = validations.isValidCourseID(courseId);
+		if (!validate_instructor.equals("True")) {
+			return validate_instructor;
+		}
+		if (section == null) {
+			return "Please add section";
+		}
 		InstructorDaoImpl Idao = new InstructorDaoImpl();
 		return Idao.unAssignInstructor(instructorId, courseId, section);
 	}
-	
-	public String getAssignedCoursesForInstructor(String instructorId)
-	{
+
+	public String getAssignedCoursesForInstructor(String instructorId) {
+		String validate = validations.isValidInstructorID(instructorId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
 		InstructorDaoImpl Idao = new InstructorDaoImpl();
 		return Idao.getAssignedCoursesForInstructor(instructorId);
 	}
@@ -103,6 +167,30 @@ public class InstructorService {
 	public String updateInstructor(String instructorEmpId, String firstname,
 			String lastname, String address, String city, String state,
 			String zip, String department, String days, String timings) {
+		if (!validations.isAllFieldsFilled(instructorEmpId, firstname, lastname,
+				address, city, state, zip, department, days, timings)) {
+			System.out.println("No field is filled");
+			return "Please Enter All fields";
+		}
+		String validate = validations.isValidInstructorID(instructorEmpId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
+
+		if(validations.hasSpecialCharacter(firstname)){
+			return "No special characters allowed in First Name";
+		}
+
+		if (!validations.isStateValid(state)) {
+			System.out.println(state);
+			System.out.println("validation" + validations.isStateValid(state));
+			return "Please enter the valid State";
+		}
+
+		if (!validations.isValidZipCode(zip)) {
+			return "Please Enter valid Zip Code";
+		}
+
 		String result = null;
 		Instructor i = new Instructor();
 		i.setInstructorEmpId(instructorEmpId);
@@ -123,7 +211,10 @@ public class InstructorService {
 	}
 	
 	public String searchInstructor(String attribute, String keyword) {
-		//String result = null;
+		// String result = null;
+		if (attribute == null || keyword == null) {
+			return "Please Entre valid value";
+		}
 		IDao dao = new InstructorDaoImpl();
 		String columnName = attrToColumn.get(attribute);
 		

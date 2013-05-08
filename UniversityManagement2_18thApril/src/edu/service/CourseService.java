@@ -9,7 +9,8 @@ import edu.dao.impl.InstructorDaoImpl;
 import edu.db.entity.Course;
 
 public class CourseService {
-	
+	Validations validations = new Validations();
+
 	static Map<String, String> attrToColumn = new HashMap<String, String>() {
 		{
 			put("Course ID", "c.courseId");
@@ -19,10 +20,17 @@ public class CourseService {
 			put("Course Timing", "ct.time");
 		}
 	};
-	
-	public String addCourse(String courseId, String courseName, String courseSection, String location, String day, String timing)
-	{
-		
+
+	public String addCourse(String courseId, String courseName, String courseSection, String location, String day, String timing) {
+		if (!validations.isAllFields_filled(courseId, courseName,
+				courseSection, location, day, timing)) {
+			return "Please Enter all fields";
+		}
+		String validate_courseID = validations.isValidCourseID(courseId);
+		if (!validate_courseID.equals("True")) {
+			return validate_courseID;
+		}
+
 		Course c = new Course();
 		c.setCourseId(courseId);
 		c.setCourseName(courseName);
@@ -34,20 +42,24 @@ public class CourseService {
 		return dao.add(c);
 
 	}
-	
-	
-	public String deleteCourse(String courseId)
-	{
+
+	public String deleteCourse(String courseId) {
+		String validate_courseID = validations.isValidCourseID(courseId);
+		if (!validate_courseID.equals("True")) {
+			return validate_courseID;
+		}
+
 		Course c = new Course();
 		c.setCourseId(courseId);		
 		IDao dao = new CourseDaoImpl();
 		return dao.delete(c);
 		
 	}
-	
-	
-	public String findCourse(String search)
-	{			
+
+	public String findCourse(String search) {
+		if (search == null) {
+			return "Enter valid value";
+		}
 		Course c = new Course();
 		c.setSearch(search);		
 		IDao dao = new CourseDaoImpl();
@@ -59,20 +71,37 @@ public class CourseService {
 		IDao dao = new CourseDaoImpl();
 		return dao.findAll();
 	}
-	
-	public String getEnrolledStudentForCourse(String courseId, String section)
-	{
+
+	public String getEnrolledStudentForCourse(String courseId, String section) {
+		String validate_courseID = validations.isValidCourseID(courseId);
+		if (!validate_courseID.equals("True")) {
+			return validate_courseID;
+		}
+		if (section == null) {
+			return "Please Enter section";
+		}
 		CourseDaoImpl cdao = new CourseDaoImpl();
 		return cdao.getEnrolledStudentForCourse(courseId, section);
 	}
-	
-	public String getAssignedInstructorForCourse(String courseId, String section)
-	{
+
+	public String getAssignedInstructorForCourse(String courseId, String section) {
+		String validate_courseID = validations.isValidCourseID(courseId);
+		if (!validate_courseID.equals("True")) {
+			return validate_courseID;
+		}
+		if (section == null) {
+			return "Please Enter section";
+		}
 		CourseDaoImpl cdao = new CourseDaoImpl();
 		return cdao.getAssignedInstructorForCourse(courseId, section);
 	}
 
 	public String getCourseById(String courseId) {
+		String validate_courseID = validations.isValidCourseID(courseId);
+		if (!validate_courseID.equals("True")) {
+			return validate_courseID;
+		}
+
 		Course course = new Course();
 		course.setCourseId(courseId);
 		IDao dao = new CourseDaoImpl();
@@ -81,7 +110,15 @@ public class CourseService {
 
 	public String updateCourse(String courseId, String courseSection,
 			String courseName, String courseLocation, String days, String timing) {
-		//String result = null;
+		// String result = null;
+		if (!validations.isAllFields_filled(courseId, courseName,
+				courseSection, courseLocation, days, timing)) {
+			return "Please Enter all fields";
+		}
+		String validate_courseID = validations.isValidCourseID(courseId);
+		if (!validate_courseID.equals("True")) {
+			return validate_courseID;
+		}
 		IDao dao = new CourseDaoImpl();
 		Course c = new Course();
 		c.setCourseId(courseId);
@@ -94,7 +131,10 @@ public class CourseService {
 	}
 
 	public String searchCourse(String attribute, String keyword) {
-		//String result = null;
+		// String result = null;
+		if (attribute == null || keyword == null) {
+			return "Please add all attributes";
+		}
 		IDao dao = new CourseDaoImpl();
 		String columnName = attrToColumn.get(attribute);
 		

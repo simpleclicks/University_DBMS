@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
@@ -12,6 +13,7 @@ import edu.dao.ConnectionPool;
 import edu.dao.IDao;
 import edu.db.entity.Person;
 import edu.db.entity.Student;
+import edu.db.entity.StudentCacheRecord;
 
 // Student working fine.....just add prepared statements.
 
@@ -22,9 +24,24 @@ public class StudentDaoImpl implements IDao {
 	Statement stmt2 = null;
 	java.sql.PreparedStatement stmt = null;
 	boolean isPoolingUsed = false;
+	static boolean  isObjectCachingUsed = true;
+	static boolean  isCacheUpdated = false;
 
+	
+	public static HashMap<String,StudentCacheRecord> studentCache = new HashMap<String,StudentCacheRecord>();
+	
 	public StudentDaoImpl() {
-		getConnectionFromPool();
+		try
+		{
+			getConnectionFromPool();
+			System.out.println("In cons");
+			if(!isCacheUpdated)
+				loadStudentCacheRecord();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	private void getSingleConnection() {
@@ -65,6 +82,14 @@ public class StudentDaoImpl implements IDao {
 			e.printStackTrace();
 		}
 	}
+	
+	private void loadStudentCacheRecord()
+	{
+		// Loads the cache with the current database 
+		System.out.println("Loading cache from DB");
+		findAll(); 
+		isCacheUpdated = true;
+	}
 
 	@Override
 	public String add(Object object) {
@@ -89,6 +114,21 @@ public class StudentDaoImpl implements IDao {
 			if (rowcount > 0) {
 				result = "true";
 				System.out.println("Student inserted successful");
+				
+				if(isObjectCachingUsed)
+				{
+						// Adding entry to cache
+						StudentCacheRecord record = new StudentCacheRecord();
+						record.setFirstName(student.getFirstName());
+						record.setLastName(student.getLastName());
+						record.setAddress(student.getAddress());
+						record.setCity(student.getCity());
+						record.setState(student.getState());
+						record.setZipCode(student.getZipCode());
+						
+						System.out.println("Stoing value in cache");
+						studentCache.put(studentId, record);
+				}
 			} else {
 				result = "false:The data could not be inserted in the databse";
 			}
@@ -123,6 +163,10 @@ public class StudentDaoImpl implements IDao {
 		// return connection instance to the pool
 		if (isPoolingUsed)
 			ConnectionPool.returnConnectionInstanceToPool();
+		
+		if(isObjectCachingUsed)
+			//Remove the entry from cache
+		 	studentCache.remove(studentId);
 
 		return pdao.delete(p);
 
@@ -136,42 +180,54 @@ public class StudentDaoImpl implements IDao {
 		String studentId = student.getStudentId();
 		boolean found = false;
 		String result = "";
-
-		try {
-			//String query = "Select * from 	person  where personId = (Select personId from student where studentId ='"+ studentId + "')";
-			String query = "Select * from 	person  where personId = (Select personId from student where studentId = ?)";
-			stmt = conn.prepareStatement(query);
-			stmt.setString(1, studentId);
-			
-			//rs = stmt.executeQuery(query);
-			rs = stmt.executeQuery();
-
-			while (rs.next()) {
-				found = true;
-				System.out.println("name:" + rs.getString("firstName") + " "
-						+ rs.getString("lastName"));
-				result += studentId + "/"
-						+ rs.getString("firstName") + "/"
-						+ rs.getString("lastName") + "/"
-						+ rs.getString("address") + "/" + rs.getString("city")
-						+ "/" + rs.getString("state") + "/"
-						+ rs.getString("zipCode");
-
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return "false:SQL Exception occured";
-		}
-
-		// return connection instance to the pool
-		if (isPoolingUsed)
-			ConnectionPool.returnConnectionInstanceToPool();
-		if (found)
-			// return rs.toString();
+		
+		if(isObjectCachingUsed == true && studentCache.get(studentId) != null)
+		{	System.out.println("Cache hit");
+			StudentCacheRecord r = studentCache.get(studentId);
+			result =( r.getFirstName() + "/"+ r.getLastName()+ "/"+ r.getAddress() +"/"+ r.getCity() + "/"+ r.getState()  + 
+					"/"+ r.getZipCode());
 			return result;
+		}
 		else
-			return "false:Not Found";
+		{
+		
+			try {
+				System.out.println("Cache not hit");
+				//String query = "Select * from 	person  where personId = (Select personId from student where studentId ='"+ studentId + "')";
+				String query = "Select * from 	person  where personId = (Select personId from student where studentId = ?)";
+				stmt = conn.prepareStatement(query);
+				stmt.setString(1, studentId);
+				
+				//rs = stmt.executeQuery(query);
+				rs = stmt.executeQuery();
+	
+				while (rs.next()) {
+					found = true;
+					System.out.println("name:" + rs.getString("firstName") + " "
+							+ rs.getString("lastName"));
+					result += studentId + "/"
+							+ rs.getString("firstName") + "/"
+							+ rs.getString("lastName") + "/"
+							+ rs.getString("address") + "/" + rs.getString("city")
+							+ "/" + rs.getString("state") + "/"
+							+ rs.getString("zipCode");
+	
+				}
+	
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return "false:SQL Exception occured";
+			}
+	
+			// return connection instance to the pool
+			if (isPoolingUsed)
+				ConnectionPool.returnConnectionInstanceToPool();
+			if (found)
+				// return rs.toString();
+				return result;
+			else
+				return "false:Not Found";
+		}
 	}
 
 	public int getPersonIdForStudent(String studentId) {
@@ -217,44 +273,82 @@ public class StudentDaoImpl implements IDao {
 
 		boolean success = false;
 		String result = "";
-		try {
-			String query = "Select * from 	person INNER JOIN student  ON  person.personId = student.personId";
-			stmt = conn.prepareStatement(query);
-			//rs = stmt.executeQuery(query);
-			rs = stmt.executeQuery();
-			
-			while (rs.next()) {
-				success = true;
-				System.out.println(rs.getString("studentId") + " "
-						+ rs.getString("firstName") + " "
-						+ rs.getString("lastName") + " "
-						+ rs.getString("address") + " " + rs.getString("city")
-						+ " " + rs.getString("state") + " "
-						+ rs.getString("zipCode"));
-				result += rs.getString("studentId") + "/"
-						+ rs.getString("firstName") + "/"
-						+ rs.getString("lastName") + "/"
-						+ rs.getString("address") + "/" + rs.getString("city")
-						+ "/" + rs.getString("state") + "/"
-						+ rs.getString("zipCode");
+		
+		if(isObjectCachingUsed && isCacheUpdated)
+		{	
+			System.out.println("Getting entries from cache");
+			for(String key: studentCache.keySet() )
+			{
+				result += key+ "/"+studentCache.get(key).getFirstName()+ "/"+ studentCache.get(key).getLastName()+ "/"+ 
+						studentCache.get(key).getAddress()+ "/"+ studentCache.get(key).getCity() + "/"+ studentCache.get(key).getState() + 
+					"/"+ studentCache.get(key).getZipCode();
 				result += "!";
-
+		
 			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return "false: SQL Exception occured";
-		}
-
-		// return connection instance to the pool
-		if (isPoolingUsed)
-			ConnectionPool.returnConnectionInstanceToPool();
-
-		// return rs.toString();
-		if(success)
+			
+			if (isPoolingUsed)
+				ConnectionPool.returnConnectionInstanceToPool();
+			
 			return result;
+		}
 		else
-			return "false:No Records found";
+		{
+				System.out.println("Cache not hit");
+				try {
+					String query = "Select * from 	person INNER JOIN student  ON  person.personId = student.personId";
+					stmt = conn.prepareStatement(query);
+					//rs = stmt.executeQuery(query);
+					rs = stmt.executeQuery();
+					
+					while (rs.next()) {
+						success = true;
+						System.out.println(rs.getString("studentId") + " "
+								+ rs.getString("firstName") + " "
+								+ rs.getString("lastName") + " "
+								+ rs.getString("address") + " " + rs.getString("city")
+								+ " " + rs.getString("state") + " "
+								+ rs.getString("zipCode"));
+						result += rs.getString("studentId") + "/"
+								+ rs.getString("firstName") + "/"
+								+ rs.getString("lastName") + "/"
+								+ rs.getString("address") + "/" + rs.getString("city")
+								+ "/" + rs.getString("state") + "/"
+								+ rs.getString("zipCode");
+						result += "!";
+						
+						// updating contents of Cache
+						if(isObjectCachingUsed)
+						{
+							StudentCacheRecord record = new StudentCacheRecord();
+						
+							record.setFirstName(rs.getString("firstName"));
+							record.setLastName(rs.getString("lastName"));
+							record.setAddress(rs.getString("address"));
+							record.setCity(rs.getString("city"));
+							record.setState(rs.getString("state"));
+							record.setZipCode(rs.getString("zipCode"));
+							studentCache.put(rs.getString("studentId"), record);
+						}
+					}
+					
+				
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+					return "false: SQL Exception occured";
+				}
+		
+				// We cannot return when cache is being loaded
+				// return connection instance to the pool
+				if (isPoolingUsed && isCacheUpdated)
+					ConnectionPool.returnConnectionInstanceToPool();
+		
+				// return rs.toString();
+				if(success)
+					return result;
+				else
+					return "false:No Records found";
+		}
 	}
 
 	public String enrollStudent(String courseId, String section, String studentId) {
@@ -387,7 +481,36 @@ public class StudentDaoImpl implements IDao {
 	@Override
 	public String update(Object object) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		String result = "";
+		Student s = (Student) object;
+		
+		PersonDaoImpl pimpl = new PersonDaoImpl();
+		Person p = new Person();
+		p.setAddress(s.getAddress());
+		p.setCity(s.getCity());
+		p.setFirstName(s.getFirstName());
+		p.setLastName(s.getLastName());
+		p.setState(s.getState());
+		p.setZipCode(s.getZipCode());
+		p.setPersonId(s.getPersonId());
+		result = pimpl.update(p);
+		
+		// updating contents of Cache
+		if(isObjectCachingUsed)
+		{
+			StudentCacheRecord record = new StudentCacheRecord();
+		
+			record.setFirstName(s.getFirstName());
+			record.setLastName(s.getLastName());
+			record.setAddress(s.getAddress());
+			record.setCity(s.getCity());
+			record.setState(s.getState());
+			record.setZipCode(s.getZipCode());
+			studentCache.put(s.getStudentId(), record);
+		}
+		
+		return result;
 	}
 
 	@Override

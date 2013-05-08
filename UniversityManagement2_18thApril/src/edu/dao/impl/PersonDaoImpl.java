@@ -71,6 +71,7 @@ public class PersonDaoImpl implements IDao {
 	}
 	
 	
+	
 	@Override
 	public String add(Object object) 
 	{
@@ -97,8 +98,8 @@ public class PersonDaoImpl implements IDao {
 					 stmt = conn.prepareStatement(query);
 					stmt.setString(1, firstName);
 					stmt.setString(2, lastName);
-					stmt.setString(3, city);
-					stmt.setString(4, address);
+					stmt.setString(3, address);
+					stmt.setString(4, city);
 					stmt.setString(5, state);
 					stmt.setString(6, zipCode);
 					stmt.setString(7, password);
@@ -239,6 +240,7 @@ public class PersonDaoImpl implements IDao {
 			stmt.setInt(7, updateMe.getPersonId());
 			
 			res = stmt.executeUpdate();
+			System.out.println(String.valueOf(res));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

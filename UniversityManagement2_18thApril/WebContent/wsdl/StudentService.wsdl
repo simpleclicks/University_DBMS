@@ -13,8 +13,8 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
       <element name="address" type="xsd:string"/>
       <element name="city" type="xsd:string"/>
       <element name="state" type="xsd:string"/>
-      <element name="zipCode" type="xsd:int"/>
-      <element name="courseList" type="xsd:string"/>
+      <element name="zipCode" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -25,8 +25,215 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="searchStudent">
+    <complexType>
+     <sequence>
+      <element name="attribute" type="xsd:string"/>
+      <element name="keyword" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchStudentResponse">
+    <complexType>
+     <sequence>
+      <element name="searchStudentReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateStudent">
+    <complexType>
+     <sequence>
+      <element name="studentId" type="xsd:string"/>
+      <element name="firstname" type="xsd:string"/>
+      <element name="lastname" type="xsd:string"/>
+      <element name="address" type="xsd:string"/>
+      <element name="city" type="xsd:string"/>
+      <element name="state" type="xsd:string"/>
+      <element name="zip" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateStudentResponse">
+    <complexType>
+     <sequence>
+      <element name="updateStudentReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getEnrolledCoursesForStudent">
+    <complexType>
+     <sequence>
+      <element name="studentId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getEnrolledCoursesForStudentResponse">
+    <complexType>
+     <sequence>
+      <element name="getEnrolledCoursesForStudentReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="unEnrollStudent">
+    <complexType>
+     <sequence>
+      <element name="studentId" type="xsd:string"/>
+      <element name="courseId" type="xsd:string"/>
+      <element name="section" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="unEnrollStudentResponse">
+    <complexType>
+     <sequence>
+      <element name="unEnrollStudentReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="enrollStudent">
+    <complexType>
+     <sequence>
+      <element name="courseId" type="xsd:string"/>
+      <element name="section" type="xsd:string"/>
+      <element name="studentId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="enrollStudentResponse">
+    <complexType>
+     <sequence>
+      <element name="enrollStudentReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllStudent">
+    <complexType/>
+   </element>
+   <element name="getAllStudentResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllStudentReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteStudent">
+    <complexType>
+     <sequence>
+      <element name="studentId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteStudentResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteStudentReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getStudentById">
+    <complexType>
+     <sequence>
+      <element name="studentId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getStudentByIdResponse">
+    <complexType>
+     <sequence>
+      <element name="getStudentByIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
  </wsdl:types>
+
+   <wsdl:message name="getStudentByIdResponse">
+
+      <wsdl:part element="impl:getStudentByIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="unEnrollStudentResponse">
+
+      <wsdl:part element="impl:unEnrollStudentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchStudentResponse">
+
+      <wsdl:part element="impl:searchStudentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateStudentRequest">
+
+      <wsdl:part element="impl:updateStudent" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enrollStudentRequest">
+
+      <wsdl:part element="impl:enrollStudent" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="unEnrollStudentRequest">
+
+      <wsdl:part element="impl:unEnrollStudent" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addStudentRequest">
+
+      <wsdl:part element="impl:addStudent" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateStudentResponse">
+
+      <wsdl:part element="impl:updateStudentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteStudentRequest">
+
+      <wsdl:part element="impl:deleteStudent" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchStudentRequest">
+
+      <wsdl:part element="impl:searchStudent" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllStudentRequest">
+
+      <wsdl:part element="impl:getAllStudent" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
 
    <wsdl:message name="addStudentResponse">
 
@@ -36,9 +243,49 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="addStudentRequest">
+   <wsdl:message name="getStudentByIdRequest">
 
-      <wsdl:part element="impl:addStudent" name="parameters">
+      <wsdl:part element="impl:getStudentById" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEnrolledCoursesForStudentRequest">
+
+      <wsdl:part element="impl:getEnrolledCoursesForStudent" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="enrollStudentResponse">
+
+      <wsdl:part element="impl:enrollStudentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteStudentResponse">
+
+      <wsdl:part element="impl:deleteStudentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllStudentResponse">
+
+      <wsdl:part element="impl:getAllStudentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEnrolledCoursesForStudentResponse">
+
+      <wsdl:part element="impl:getEnrolledCoursesForStudentResponse" name="parameters">
 
       </wsdl:part>
 
@@ -53,6 +300,102 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:addStudentResponse" name="addStudentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchStudent">
+
+         <wsdl:input message="impl:searchStudentRequest" name="searchStudentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchStudentResponse" name="searchStudentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateStudent">
+
+         <wsdl:input message="impl:updateStudentRequest" name="updateStudentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateStudentResponse" name="updateStudentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEnrolledCoursesForStudent">
+
+         <wsdl:input message="impl:getEnrolledCoursesForStudentRequest" name="getEnrolledCoursesForStudentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getEnrolledCoursesForStudentResponse" name="getEnrolledCoursesForStudentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="unEnrollStudent">
+
+         <wsdl:input message="impl:unEnrollStudentRequest" name="unEnrollStudentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:unEnrollStudentResponse" name="unEnrollStudentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enrollStudent">
+
+         <wsdl:input message="impl:enrollStudentRequest" name="enrollStudentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:enrollStudentResponse" name="enrollStudentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllStudent">
+
+         <wsdl:input message="impl:getAllStudentRequest" name="getAllStudentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllStudentResponse" name="getAllStudentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteStudent">
+
+         <wsdl:input message="impl:deleteStudentRequest" name="deleteStudentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteStudentResponse" name="deleteStudentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getStudentById">
+
+         <wsdl:input message="impl:getStudentByIdRequest" name="getStudentByIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getStudentByIdResponse" name="getStudentByIdResponse">
 
        </wsdl:output>
 
@@ -75,6 +418,150 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="addStudentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchStudent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchStudentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchStudentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateStudent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateStudentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateStudentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEnrolledCoursesForStudent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEnrolledCoursesForStudentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEnrolledCoursesForStudentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="unEnrollStudent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="unEnrollStudentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="unEnrollStudentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="enrollStudent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="enrollStudentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="enrollStudentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllStudent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllStudentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllStudentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteStudent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteStudentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteStudentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getStudentById">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getStudentByIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getStudentByIdResponse">
 
             <wsdlsoap:body use="literal"/>
 

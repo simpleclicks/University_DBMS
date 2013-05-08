@@ -1,42 +1,23 @@
 package edu.db.entity;
-import java.util.ArrayList;
 
+public class InstructorCacheRecord {
 
-public class Person {
-	
-	private int personId;
+	private String department;
+	private String  instructorEmpId;
+	private String days;
+	private String timing;
 	private String firstName;
 	private String lastName;
 	private String address;
 	private String city;
 	private String state;
 	private String zipCode;
-	private String password;
-	private ArrayList<String> associatedCourses = new ArrayList<String>();
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public ArrayList<String> getAssociatedCourses() {
-		return associatedCourses;
-	}
-
+	
 	public String getFirstName() {
 		return firstName;
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-	}
-	public int getPersonId() {
-		return personId;
-	}
-	public void setPersonId(int personId) {
-		this.personId = personId;
 	}
 	public String getLastName() {
 		return lastName;
@@ -69,5 +50,35 @@ public class Person {
 		this.zipCode = zipCode;
 	}
 	
-	
+	public String getDays() {
+		return days;
+	}
+	public void setDays(String days) {
+		this.days = days;
+	}
+	public String getTiming() {
+		return timing;
+	}
+	public void setTiming(String timing) {
+		this.timing = timing;
+	}
+	private int personId;
+	public String getDepartment() {
+		return department;
+	}
+	public int getPersonId() {
+		return personId;
+	}
+	public void setPersonId(int personId) {
+		this.personId = personId;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	public String getInstructorEmpId() {
+		return instructorEmpId;
+	}
+	public void setInstructorEmpId(String instructorEmpId) {
+		this.instructorEmpId = instructorEmpId;
+	}
 }

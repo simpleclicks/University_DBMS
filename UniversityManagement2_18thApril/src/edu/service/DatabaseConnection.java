@@ -235,7 +235,7 @@ public class DatabaseConnection {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/univesitydb", "root", "root");
+					"jdbc:mysql://localhost:3306/univesitydb", "root", "rushi");
 			stmt = conn.createStatement();
 
 			if (!conn.isClosed())

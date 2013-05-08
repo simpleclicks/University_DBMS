@@ -14,7 +14,8 @@ import edu.service.PersonService;
 
 @WebService
 public class StudentService {
-	
+
+	Validations validations = new Validations();
 	static Map<String, String> attrToColumn = new HashMap<String, String>() {
 		{
 			put("First Name", "firstName");
@@ -31,16 +32,38 @@ public class StudentService {
 	public String addStudent(String studentId, String firstname,
 			String lastname, String address, String city, String state,
 			String zipCode, String password) {
+if (!validations.isAllFields_filled_students(studentId, firstname,
+				lastname, address, city, state, zipCode)) {
+			return "Please add all fields";
+		}
+		if(validations.hasSpecialCharacter(firstname)){
+			return "No special characters allowed in First Name";
+		}
 		
+		if (!validations.isValidZipCode(zipCode)) {
+			return "Please Enter valid Zip Code";
+		}
+		String validate = validations.isValidStudentID(studentId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
+
 		String result = getStudentById(studentId);
 		if ( result.equals("false:Not Found"))
 		{ 
 			PersonService ph = new PersonService();
 			int personId = Integer.parseInt(ph.addPerson(firstname, lastname, address,
-					city, state, zipCode));
+					city, state, zipCode, password));
 			System.out.println("Person inserted");
 			Student student=new Student();
 			student.setStudentId(studentId);
+			student.setFirstName(firstname);
+			student.setLastName(lastname);
+			student.setAddress(address);
+			student.setCity(city);
+			student.setState(state);
+			student.setZipCode(zipCode);
+			
 			student.setPersonId(personId);
 			
 			IDao dao = new StudentDaoImpl();
@@ -56,16 +79,26 @@ public class StudentService {
 
 	
 	public String deleteStudent(String studentId) {
-		Student student=new Student();
+		String validate = validations.isValidStudentID(studentId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
+
+		Student student = new Student();
 		student.setStudentId(studentId);
 		IDao dao = new StudentDaoImpl();
 		return dao.delete(student);
 		
 	}
-	
-	public String getStudentById(String studentId )
-	{
-		Student student=new Student();
+
+	public String getStudentById(String studentId) {
+
+		String validate = validations.isValidStudentID(studentId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
+
+		Student student = new Student();
 		student.setStudentId(studentId);
 		IDao dao = new StudentDaoImpl();
 		return dao.findById(student);
@@ -78,45 +111,88 @@ public class StudentService {
 		return dao.findAll();
 	}
 	
-	public String enrollStudent(String courseId, String section, String studentId )
-	{
+	public String enrollStudent(String courseId, String section, 
+	String studentId ){
+	
+		String validate_course = validations.isValidCourseID(courseId);
+		
+		if (!validate_course.equals("True")) {
+			return validate_course;
+		}
+		if (section == null) {
+			return "Please enter valid value";
+		}
+		String validate = validations.isValidStudentID(studentId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
 		StudentDaoImpl sdao = new StudentDaoImpl();
 		return sdao.enrollStudent(courseId, section, studentId);
 	}
-	
-	public String unEnrollStudent(String studentId, String courseId, String section )
-	{
+
+	public String unEnrollStudent(String studentId, String courseId,
+			String section) {
+		String validate = validations.isValidStudentID(studentId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
+		String validate_course = validations.isValidCourseID(courseId);
+		if (!validate_course.equals("True")) {
+			return validate_course;
+		}
+		if (section == null) {
+			return "Please enter valid value";
+		}
 		StudentDaoImpl sdao = new StudentDaoImpl();
 		return sdao.unEnrollStudent( studentId,  courseId,  section);
 	}
-	
-	public String getEnrolledCoursesForStudent(String studentId)
-	{
+
+	public String getEnrolledCoursesForStudent(String studentId) {
+		String validate = validations.isValidStudentID(studentId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
 		StudentDaoImpl sdao = new StudentDaoImpl();
 		return sdao.getEnrolledCoursesForStudent( studentId);
 	}
 	
-	public String updateStudent(String studentId, String firstname, String lastname, String address, String city, String state, String zip,String password){
-		String result = null;
-		Person s = new Person();
+	public String updateStudent(String studentId, String firstname, String lastname, String address, String city, String state, String zip){
+if (!validations.isAllFields_filled_students(studentId, firstname,
+				lastname, address, city, state, zip)) {
+			return "Please add all fields";
+		}
+		if(validations.hasSpecialCharacter(firstname)){
+			return "No special characters allowed in First Name";
+		}
+		
+		
+		if (!validations.isValidZipCode(zip)) {
+			return "Please Enter valid Zip Code";
+		}
+		String validate = validations.isValidStudentID(studentId);
+		if (!validate.equals("True")) {
+			return validate;
+		}
+        Student s = new Student();
+        s.setStudentId(studentId);
 		s.setFirstName(firstname);
 		s.setLastName(lastname);
 		s.setAddress(address);
 		s.setCity(city);
 		s.setState(state);
 		s.setZipCode(zip);
-		s.setPassword(password);
-		PersonDaoImpl pDao = new PersonDaoImpl();
 		StudentDaoImpl sDao = new StudentDaoImpl();
 		int personId = sDao.getPersonIdForStudent(studentId);
 		s.setPersonId(personId);
-		System.out.println("pers:" + personId);
-		result = pDao.update(s);
-		return result;
+		return sDao.update(s);
+		
 	}
 	
 	public String searchStudent(String attribute, String keyword) {
-		//String result = null;
+		// String result = null;
+		if (attribute == null || keyword == null) {
+			return "Please enter valid values";
+		}
 		IDao dao = new StudentDaoImpl();
 		String columnName = attrToColumn.get(attribute);
 		

@@ -5,12 +5,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 import edu.dao.ConnectionPool;
 import edu.dao.IDao;
 import edu.db.entity.Course;
+import edu.db.entity.InstructorCacheRecord;
 
 
 public class CourseDaoImpl implements IDao {
@@ -18,9 +20,17 @@ public class CourseDaoImpl implements IDao {
 	Statement stmt2 = null;
 	java.sql.PreparedStatement stmt = null;
 	ResultSet rs = null;
-	boolean isPoolingUsed = false;
+	boolean isPoolingUsed = true;
+	boolean isObjectCachingUsed = false;
+	
+	public HashMap<String,InstructorCacheRecord> instructorCache = new HashMap<String,InstructorCacheRecord>();
+	
+	
 	public CourseDaoImpl(){
-		getConnectionFromPool();
+		if(isPoolingUsed)
+			getConnectionFromPool();
+		else
+			getSingleConnection();
 	}
 
 	private void getSingleConnection()
@@ -124,6 +134,9 @@ public class CourseDaoImpl implements IDao {
 			if (rowcount > 0) {
 				result = "true";
 				System.out.println("Course inserted successful");
+				
+				
+				
 			} else {
 				result = "false:The data could not be inserted in the databse";
 			}
@@ -179,78 +192,7 @@ public class CourseDaoImpl implements IDao {
 	
 
 
-	@Override
-	public String find(Object object) {
-		
-		Course c = (Course) object ;
-		
-		String search = c.getSearch();
-		
-		String result = "";
-		ResultSet rs = null;
-		Boolean option = true;
-		System.out.println("1");
-
-if (option==true) //this one if we search by ID
-		
-		{
-			try {
-				
-				System.out.println("2");
-			
-				String query1 = "Select * from course where courseId =" + "'"
-					+ search + "'";
-				System.out.println("3");
-			rs = stmt.executeQuery(query1);
-			System.out.println("4");
-			while (rs.next()) {
-				System.out.println("5");
-                System.out.println("Course Id" + rs.getString("courseId") + "Course Name" + rs.getString("courseName"));
-                result = rs.getString("courseId")+ "/"+rs.getString("courseName")+ "/"+ rs.getString("location");
-			}
-			}
-			catch (SQLException e) {
-				e.printStackTrace();
-			}
-			}
-			
-			
-
-
-else if (option==false) //this one is if we search by name 
-		
-		{
-				
-			try {
-				String query2 = "Select * from course where courseName =" + "'"
-						+ search + "'";
-				
-				rs = stmt.executeQuery(query2);
-		
-				while (rs.next()) {
-	                 
-	                System.out.println("Course Id" + rs.getString("courseId") + "Course Name" + rs.getString("courseName"));
-	                result = rs.getString("courseId")+ "/"+rs.getString("courseName")+ "/"+ rs.getString("location");
-
-				}
-			
-		}
-			//Add some code if the results do not come up in any one of the above searches.
-			
-			catch (SQLException e) {
-			//e.printStackTrace();
-			  System.out.println(e);
-
-		}
-		
-	}
-	// return connection instance to the pool
-	if(isPoolingUsed)	
-	ConnectionPool.returnConnectionInstanceToPool();
-		
-	return result;
-
-}
+	
 
 	
 	@Override
@@ -268,7 +210,7 @@ else if (option==false) //this one is if we search by name
 			while(rs.next())
 			{	success = true;
 				System.out.println(rs.getString("courseId")+ " "+rs.getString("courseName")+ " "+ rs.getString("location")+ " "+ rs.getString("section")+" "+ rs.getString("day")+ " "+ rs.getString("time"));
-				result += rs.getString("courseId")+ "/"+rs.getString("courseName")+ rs.getString("section")+ "/"+ rs.getString("location")+ rs.getString("day")+ rs.getString("time");
+				result += rs.getString("courseId")+ "/"+rs.getString("courseName")+"/"+ rs.getString("section")+ "/"+ rs.getString("location")+"/"+ rs.getString("day")+"/"+ rs.getString("time");
 				result += "!";
 
 			}
@@ -439,8 +381,10 @@ else if (option==false) //this one is if we search by name
 			e.printStackTrace();
 		}
 		
-		if(res == 1)
+		if(res == 1){
+			System.out.println("Data Updated");
 			return String.valueOf(res);
+			}
 		else
 			return "false: Data not Updated";
 	}
@@ -448,18 +392,20 @@ else if (option==false) //this one is if we search by name
 	@Override
 	public String search(String columnName, String keyword) {
 		String result = "";
+		boolean success = false;
 		try {
-			String query = "SELECT c.courseId,c.courseName, c.location,ct.day,ct.time FROM course AS c LEFT JOIN coursetiming AS ct ON ct.courseId = c.courseId where " + columnName +" LIKE "+"'%"+keyword+"%'";
+			String query = "SELECT c.courseId,c.courseName,c.section, c.location,ct.day,ct.time FROM course AS c LEFT JOIN coursetiming AS ct ON ct.courseId = c.courseId where " + columnName +" LIKE "+"'%"+keyword+"%'";
 			rs = stmt2.executeQuery(query);
 
 			while (rs.next()) {
+				success = true;
 				System.out.println(rs.getString("courseId") + " "
 						+ rs.getString("courseName") + " "
 						+ rs.getString("location") + " " 
 						+ rs.getString("day") + " "
 						+ rs.getString("time"));
 
-				result += rs.getString("courseId") + "/"
+				result += rs.getString("courseId") + "/" + rs.getString("section") +"/"
 						+ rs.getString("courseName") + "/"
 						+ rs.getString("location") + "/"
 						+ rs.getString("day") + "/"
@@ -475,8 +421,18 @@ else if (option==false) //this one is if we search by name
 		// return connection instance to the pool
 		if (isPoolingUsed)
 			ConnectionPool.returnConnectionInstanceToPool();
+		
+		if(success)
+			return result;
+		else
+			return "false:No Records found";
 		// return rs.toString();
-		return result;
+	}
+
+	@Override
+	public String find(Object object) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

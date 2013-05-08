@@ -12,7 +12,15 @@ public class LoginService {
 	
 	public String login(String id, String password){
 		String result = null;
-		if(id.startsWith("I")){
+		
+		if(id == null || password == null){
+			System.out.println("Please enter ID and Password");
+			result = "false";
+			
+		} 	
+		
+		
+		else if(id.startsWith("I")){
 			iDao = new InstructorDaoImpl();
 			result = ((InstructorDaoImpl) iDao).login(id,password);
 		}
@@ -20,7 +28,9 @@ public class LoginService {
 			iDao = new StudentDaoImpl();
 			result = ((StudentDaoImpl) iDao).login(id,password);
 		}
-		else{
+		else if (id.equals("admin") && password.equals("admin")){
+			result = "Login successful!";
+		} else {
 			result = "Please enter a valid ID";
 		}
 		return result;
