@@ -70,6 +70,7 @@ public class AddInstructor extends HttpServlet {
 			String[] strttime = request.getParameterValues("starttime");
 			String[] endtime = request.getParameterValues("endtime");
 			for (int i = 0; i < strttime.length; i++) {
+				System.out.println("Start : " + strttime[i] + " End : "+ endtime[i]);
 				timeValues += strttime[i]+"-"+endtime[i]+","; 
 			}
 			System.out.println("Time values "+timeValues);

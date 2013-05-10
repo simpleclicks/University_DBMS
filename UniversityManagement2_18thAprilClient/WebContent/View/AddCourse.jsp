@@ -44,10 +44,6 @@ function isnotsplchar(element,alerttxt)
 function isallfieldsfilled() {
 	//alert("allfield");
 	var flag = 0, cflag = 0;
-	cname = document.form1.cname.value;
-	location = document.form1.location.value;
-	cid = document.form1.cid.value;
-	section = document.form1.section.value;
 	
 	var endtime = document.getElementsByName("endtime");
 	for(var i = 0; i < endtime.length; i++) {
@@ -64,6 +60,23 @@ function isallfieldsfilled() {
 		return false;
 		}
 	}
+	
+	for(var i = 0; i < starttime.length; i++) {
+		var start = starttime[i].value.split(":");
+		var end = endtime[i].value.split(":");
+		
+		if(start[0]>end[0]){
+			alert("Start time should be lesser than the end time");
+			return false;
+		}
+		else if(start[0] == end[0]){
+			if(start[1] >= end[1]){
+				alert("Start time should be lesser than the end time");
+				return false;
+			}
+		}
+	}
+	
 	var days = document.getElementsByName("days");
 	for(var i = 0; i < days.length; i++) {
 		if (days[i] == "" || days[i] == null) {
@@ -85,11 +98,23 @@ function add() {
 
 	add.count = ++add.count || 1;
 
-	var daysText = document.createElement("input");
-	daysText.setAttribute("type", "text");
-	daysText.setAttribute("name", "days");
-	daysText.setAttribute("size", "25");
-
+	var select = document.createElement("select");
+	select.setAttribute("id", "days");
+	select.setAttribute("name", "days");
+	var alldays = new Array();
+	alldays[0] = "Monday";
+	alldays[1] = "Tuesday";
+	alldays[2] = "Wednesday";
+	alldays[3] = "Thursday";
+	alldays[4] = "Friday";
+	alldays[5] = "Saturday";
+	alldays[6] = "Sunday";
+	for(var i = 0; i < alldays.length; i++) {
+	var day = document.createElement("option");
+	day.text = alldays[i];
+	day.value = alldays[i];
+	select.appendChild(day);
+	}
 	var tr = document.createElement("tr");
 	var td1 = document.createElement("td");
 	td1.setAttribute("align", "right");
@@ -123,7 +148,7 @@ function add() {
 	//label.appendChild(daytxt);
 	//td1.appendChild(label);
 	td1.appendChild(daytxt);
-	td2.appendChild(daysText);
+	td2.appendChild(select);
 	td3.appendChild(strttime);
 	td4.appendChild(strtTimeText);
 	td5.appendChild(endtime);
@@ -185,19 +210,28 @@ function add() {
 			    <tr>
 				
 				<td align="right"><span id="days" class="form"></span><label
-					id="label10" for="days" class="detail">Office Hours: Days:</label></td>
-				<td align="left"><input type="text" id="days" name="days"
-					size="25" title="Enter days" required></td>
-				<td align="right"><span id="time" class="form"></span><label
-					id="label11" for="time" class="detail">Start Time:</label></td>
-				<td align="left"><input type="time" id="starttime"
-					name="starttime" size="25" title="Enter Time" required></td>
-				<td align="right"><span id="time" class="form"></span><label
-					id="label12" for="time" class="detail">End Time:</label></td>
-				<td align="left"><input type="time" id="endtime" name="endtime"
-					size="25" title="Enter Time" required></td>
-				<td align="left"><input type="button" value="Add Row"
-					onclick="add()" /></td>
+						id="label10" for="days" class="detail">Office Hours: Days:</label></td>
+					<td align="left"><select id="days" name="days" required>
+					<option selected="selected" value="" > Select Day</option>
+					<option value="Monday" > Monday</option>
+					<option value="Tuesday" > Tuesday</option>
+					<option value="Wednesday" > Wednesday</option>
+					<option  value="Thursday" > Thursday</option>
+					<option  value="Friday" > Friday</option>
+					<option  value="Saturday" > Saturday</option>
+					<option value="Sunday" > Sunday</option>
+					</select>
+						</td>
+					<td align="right"><span id="time" class="form"></span><label
+						id="label11" for="time" class="detail">Start Time:</label></td>
+					<td align="left"><input type="time" id="starttime"
+						name="starttime" size="25" title="Enter Time" required></td>
+					<td align="right"><span id="time" class="form"></span><label
+						id="label12" for="time" class="detail">End Time:</label></td>
+					<td align="left"><input type="time" id="endtime"
+						name="endtime" size="25" title="Enter Time" required></td>
+					<td align="left"><input type="button" value="Add Row"
+						onclick="add()" /></td>
 
 			</tr>
 			
@@ -206,8 +240,8 @@ function add() {
 		
 			   	<table align="center"> 
 			     <tr>
-				<td align="right"> <input type="reset" name="reset" value="Reset"> </td>
-				 <td align="left"><input type="submit" name="Courseinfo" value="Submit"> </td>
+				<td align="right"> <input type="reset" name="reset" value="Reset" > </td>
+				 <td align="left"><input type="submit" name="Courseinfo" value="Submit" onclick=" return isallfieldsfilled()"> </td>
 				</tr> 
 		
 			</table>

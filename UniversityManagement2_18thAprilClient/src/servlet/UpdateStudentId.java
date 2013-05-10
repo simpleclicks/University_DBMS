@@ -48,7 +48,7 @@ public class UpdateStudentId extends HttpServlet {
 		try {
 			ResultSet rs;
 			String studentId = request.getParameter("eid");
-
+			System.out.println("Student Id" + studentId);
 			proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/StudentService");
 			result = proxy.getStudentById(studentId);
 

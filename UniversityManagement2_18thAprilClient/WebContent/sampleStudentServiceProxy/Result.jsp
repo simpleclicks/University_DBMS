@@ -287,13 +287,13 @@ case 84:
         if(!studentId_25id.equals("")){
          studentId_25idTemp  = studentId_25id;
         }
-        java.lang.String deleteStudent84mtemp = sampleStudentServiceProxyid.deleteStudent(studentId_25idTemp);
-if(deleteStudent84mtemp == null){
+        java.lang.String getStudentById84mtemp = sampleStudentServiceProxyid.getStudentById(studentId_25idTemp);
+if(getStudentById84mtemp == null){
 %>
-<%=deleteStudent84mtemp %>
+<%=getStudentById84mtemp %>
 <%
 }else{
-        String tempResultreturnp85 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(deleteStudent84mtemp));
+        String tempResultreturnp85 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getStudentById84mtemp));
         %>
         <%= tempResultreturnp85 %>
         <%
@@ -306,13 +306,13 @@ case 89:
         if(!studentId_26id.equals("")){
          studentId_26idTemp  = studentId_26id;
         }
-        java.lang.String getStudentById89mtemp = sampleStudentServiceProxyid.getStudentById(studentId_26idTemp);
-if(getStudentById89mtemp == null){
+        java.lang.String deleteStudent89mtemp = sampleStudentServiceProxyid.deleteStudent(studentId_26idTemp);
+if(deleteStudent89mtemp == null){
 %>
-<%=getStudentById89mtemp %>
+<%=deleteStudent89mtemp %>
 <%
 }else{
-        String tempResultreturnp90 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getStudentById89mtemp));
+        String tempResultreturnp90 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(deleteStudent89mtemp));
         %>
         <%= tempResultreturnp90 %>
         <%

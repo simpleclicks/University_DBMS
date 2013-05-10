@@ -49,9 +49,10 @@ PrintWriter out = response.getWriter();
 		
 		try {
 			String courseId = request.getParameter("courseid");
+			String section = request.getParameter("coursesec");
 			proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/CourseService");
 		    
-			result = proxy.deleteCourse(courseId);
+			result = proxy.deleteCourse(courseId,section);
 		
 			
 			request.setAttribute("result",result);

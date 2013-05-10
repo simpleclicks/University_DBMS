@@ -69,145 +69,145 @@ case 15:
         if(!courseId_1id.equals("")){
          courseId_1idTemp  = courseId_1id;
         }
-        java.lang.String getCourseById15mtemp = sampleCourseServiceProxyid.getCourseById(courseId_1idTemp);
-if(getCourseById15mtemp == null){
+        String section_2id=  request.getParameter("section20");
+            java.lang.String section_2idTemp = null;
+        if(!section_2id.equals("")){
+         section_2idTemp  = section_2id;
+        }
+        java.lang.String getAssignedInstructorForCourse15mtemp = sampleCourseServiceProxyid.getAssignedInstructorForCourse(courseId_1idTemp,section_2idTemp);
+if(getAssignedInstructorForCourse15mtemp == null){
 %>
-<%=getCourseById15mtemp %>
+<%=getAssignedInstructorForCourse15mtemp %>
 <%
 }else{
-        String tempResultreturnp16 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getCourseById15mtemp));
+        String tempResultreturnp16 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getAssignedInstructorForCourse15mtemp));
         %>
         <%= tempResultreturnp16 %>
         <%
 }
 break;
-case 20:
+case 22:
         gotMethod = true;
-        String courseId_2id=  request.getParameter("courseId23");
-            java.lang.String courseId_2idTemp = null;
-        if(!courseId_2id.equals("")){
-         courseId_2idTemp  = courseId_2id;
+        String courseId_3id=  request.getParameter("courseId25");
+            java.lang.String courseId_3idTemp = null;
+        if(!courseId_3id.equals("")){
+         courseId_3idTemp  = courseId_3id;
         }
-        String section_3id=  request.getParameter("section25");
-            java.lang.String section_3idTemp = null;
-        if(!section_3id.equals("")){
-         section_3idTemp  = section_3id;
+        String section_4id=  request.getParameter("section27");
+            java.lang.String section_4idTemp = null;
+        if(!section_4id.equals("")){
+         section_4idTemp  = section_4id;
         }
-        java.lang.String getEnrolledStudentForCourse20mtemp = sampleCourseServiceProxyid.getEnrolledStudentForCourse(courseId_2idTemp,section_3idTemp);
-if(getEnrolledStudentForCourse20mtemp == null){
+        java.lang.String getEnrolledStudentForCourse22mtemp = sampleCourseServiceProxyid.getEnrolledStudentForCourse(courseId_3idTemp,section_4idTemp);
+if(getEnrolledStudentForCourse22mtemp == null){
 %>
-<%=getEnrolledStudentForCourse20mtemp %>
+<%=getEnrolledStudentForCourse22mtemp %>
 <%
 }else{
-        String tempResultreturnp21 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getEnrolledStudentForCourse20mtemp));
+        String tempResultreturnp23 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getEnrolledStudentForCourse22mtemp));
         %>
-        <%= tempResultreturnp21 %>
+        <%= tempResultreturnp23 %>
         <%
 }
 break;
-case 27:
+case 29:
         gotMethod = true;
-        java.lang.String getAllCourses27mtemp = sampleCourseServiceProxyid.getAllCourses();
-if(getAllCourses27mtemp == null){
+        java.lang.String getAllCourses29mtemp = sampleCourseServiceProxyid.getAllCourses();
+if(getAllCourses29mtemp == null){
 %>
-<%=getAllCourses27mtemp %>
+<%=getAllCourses29mtemp %>
 <%
 }else{
-        String tempResultreturnp28 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getAllCourses27mtemp));
+        String tempResultreturnp30 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getAllCourses29mtemp));
         %>
-        <%= tempResultreturnp28 %>
+        <%= tempResultreturnp30 %>
         <%
 }
 break;
-case 30:
+case 32:
         gotMethod = true;
-        String courseId_4id=  request.getParameter("courseId33");
-            java.lang.String courseId_4idTemp = null;
-        if(!courseId_4id.equals("")){
-         courseId_4idTemp  = courseId_4id;
+        String search_5id=  request.getParameter("search35");
+            java.lang.String search_5idTemp = null;
+        if(!search_5id.equals("")){
+         search_5idTemp  = search_5id;
         }
-        String section_5id=  request.getParameter("section35");
-            java.lang.String section_5idTemp = null;
-        if(!section_5id.equals("")){
-         section_5idTemp  = section_5id;
-        }
-        java.lang.String getAssignedInstructorForCourse30mtemp = sampleCourseServiceProxyid.getAssignedInstructorForCourse(courseId_4idTemp,section_5idTemp);
-if(getAssignedInstructorForCourse30mtemp == null){
+        java.lang.String findCourse32mtemp = sampleCourseServiceProxyid.findCourse(search_5idTemp);
+if(findCourse32mtemp == null){
 %>
-<%=getAssignedInstructorForCourse30mtemp %>
+<%=findCourse32mtemp %>
 <%
 }else{
-        String tempResultreturnp31 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getAssignedInstructorForCourse30mtemp));
+        String tempResultreturnp33 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(findCourse32mtemp));
         %>
-        <%= tempResultreturnp31 %>
+        <%= tempResultreturnp33 %>
         <%
 }
 break;
 case 37:
         gotMethod = true;
-        String attribute_6id=  request.getParameter("attribute40");
-            java.lang.String attribute_6idTemp = null;
-        if(!attribute_6id.equals("")){
-         attribute_6idTemp  = attribute_6id;
+        String courseId_6id=  request.getParameter("courseId40");
+            java.lang.String courseId_6idTemp = null;
+        if(!courseId_6id.equals("")){
+         courseId_6idTemp  = courseId_6id;
         }
-        String keyword_7id=  request.getParameter("keyword42");
-            java.lang.String keyword_7idTemp = null;
-        if(!keyword_7id.equals("")){
-         keyword_7idTemp  = keyword_7id;
+        String courseSection_7id=  request.getParameter("courseSection42");
+            java.lang.String courseSection_7idTemp = null;
+        if(!courseSection_7id.equals("")){
+         courseSection_7idTemp  = courseSection_7id;
         }
-        java.lang.String searchCourse37mtemp = sampleCourseServiceProxyid.searchCourse(attribute_6idTemp,keyword_7idTemp);
-if(searchCourse37mtemp == null){
+        String courseName_8id=  request.getParameter("courseName44");
+            java.lang.String courseName_8idTemp = null;
+        if(!courseName_8id.equals("")){
+         courseName_8idTemp  = courseName_8id;
+        }
+        String courseLocation_9id=  request.getParameter("courseLocation46");
+            java.lang.String courseLocation_9idTemp = null;
+        if(!courseLocation_9id.equals("")){
+         courseLocation_9idTemp  = courseLocation_9id;
+        }
+        String days_10id=  request.getParameter("days48");
+            java.lang.String days_10idTemp = null;
+        if(!days_10id.equals("")){
+         days_10idTemp  = days_10id;
+        }
+        String timing_11id=  request.getParameter("timing50");
+            java.lang.String timing_11idTemp = null;
+        if(!timing_11id.equals("")){
+         timing_11idTemp  = timing_11id;
+        }
+        java.lang.String updateCourse37mtemp = sampleCourseServiceProxyid.updateCourse(courseId_6idTemp,courseSection_7idTemp,courseName_8idTemp,courseLocation_9idTemp,days_10idTemp,timing_11idTemp);
+if(updateCourse37mtemp == null){
 %>
-<%=searchCourse37mtemp %>
+<%=updateCourse37mtemp %>
 <%
 }else{
-        String tempResultreturnp38 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(searchCourse37mtemp));
+        String tempResultreturnp38 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(updateCourse37mtemp));
         %>
         <%= tempResultreturnp38 %>
         <%
 }
 break;
-case 44:
+case 52:
         gotMethod = true;
-        String courseId_8id=  request.getParameter("courseId47");
-            java.lang.String courseId_8idTemp = null;
-        if(!courseId_8id.equals("")){
-         courseId_8idTemp  = courseId_8id;
+        String attribute_12id=  request.getParameter("attribute55");
+            java.lang.String attribute_12idTemp = null;
+        if(!attribute_12id.equals("")){
+         attribute_12idTemp  = attribute_12id;
         }
-        String courseSection_9id=  request.getParameter("courseSection49");
-            java.lang.String courseSection_9idTemp = null;
-        if(!courseSection_9id.equals("")){
-         courseSection_9idTemp  = courseSection_9id;
+        String keyword_13id=  request.getParameter("keyword57");
+            java.lang.String keyword_13idTemp = null;
+        if(!keyword_13id.equals("")){
+         keyword_13idTemp  = keyword_13id;
         }
-        String courseName_10id=  request.getParameter("courseName51");
-            java.lang.String courseName_10idTemp = null;
-        if(!courseName_10id.equals("")){
-         courseName_10idTemp  = courseName_10id;
-        }
-        String courseLocation_11id=  request.getParameter("courseLocation53");
-            java.lang.String courseLocation_11idTemp = null;
-        if(!courseLocation_11id.equals("")){
-         courseLocation_11idTemp  = courseLocation_11id;
-        }
-        String days_12id=  request.getParameter("days55");
-            java.lang.String days_12idTemp = null;
-        if(!days_12id.equals("")){
-         days_12idTemp  = days_12id;
-        }
-        String timing_13id=  request.getParameter("timing57");
-            java.lang.String timing_13idTemp = null;
-        if(!timing_13id.equals("")){
-         timing_13idTemp  = timing_13id;
-        }
-        java.lang.String updateCourse44mtemp = sampleCourseServiceProxyid.updateCourse(courseId_8idTemp,courseSection_9idTemp,courseName_10idTemp,courseLocation_11idTemp,days_12idTemp,timing_13idTemp);
-if(updateCourse44mtemp == null){
+        java.lang.String searchCourse52mtemp = sampleCourseServiceProxyid.searchCourse(attribute_12idTemp,keyword_13idTemp);
+if(searchCourse52mtemp == null){
 %>
-<%=updateCourse44mtemp %>
+<%=searchCourse52mtemp %>
 <%
 }else{
-        String tempResultreturnp45 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(updateCourse44mtemp));
+        String tempResultreturnp53 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(searchCourse52mtemp));
         %>
-        <%= tempResultreturnp45 %>
+        <%= tempResultreturnp53 %>
         <%
 }
 break;
@@ -218,78 +218,88 @@ case 59:
         if(!courseId_14id.equals("")){
          courseId_14idTemp  = courseId_14id;
         }
-        java.lang.String deleteCourse59mtemp = sampleCourseServiceProxyid.deleteCourse(courseId_14idTemp);
-if(deleteCourse59mtemp == null){
+        String courseName_15id=  request.getParameter("courseName64");
+            java.lang.String courseName_15idTemp = null;
+        if(!courseName_15id.equals("")){
+         courseName_15idTemp  = courseName_15id;
+        }
+        String courseSection_16id=  request.getParameter("courseSection66");
+            java.lang.String courseSection_16idTemp = null;
+        if(!courseSection_16id.equals("")){
+         courseSection_16idTemp  = courseSection_16id;
+        }
+        String location_17id=  request.getParameter("location68");
+            java.lang.String location_17idTemp = null;
+        if(!location_17id.equals("")){
+         location_17idTemp  = location_17id;
+        }
+        String day_18id=  request.getParameter("day70");
+            java.lang.String day_18idTemp = null;
+        if(!day_18id.equals("")){
+         day_18idTemp  = day_18id;
+        }
+        String timing_19id=  request.getParameter("timing72");
+            java.lang.String timing_19idTemp = null;
+        if(!timing_19id.equals("")){
+         timing_19idTemp  = timing_19id;
+        }
+        java.lang.String addCourse59mtemp = sampleCourseServiceProxyid.addCourse(courseId_14idTemp,courseName_15idTemp,courseSection_16idTemp,location_17idTemp,day_18idTemp,timing_19idTemp);
+if(addCourse59mtemp == null){
 %>
-<%=deleteCourse59mtemp %>
+<%=addCourse59mtemp %>
 <%
 }else{
-        String tempResultreturnp60 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(deleteCourse59mtemp));
+        String tempResultreturnp60 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(addCourse59mtemp));
         %>
         <%= tempResultreturnp60 %>
         <%
 }
 break;
-case 64:
+case 74:
         gotMethod = true;
-        String search_15id=  request.getParameter("search67");
-            java.lang.String search_15idTemp = null;
-        if(!search_15id.equals("")){
-         search_15idTemp  = search_15id;
+        String courseId_20id=  request.getParameter("courseId77");
+            java.lang.String courseId_20idTemp = null;
+        if(!courseId_20id.equals("")){
+         courseId_20idTemp  = courseId_20id;
         }
-        java.lang.String findCourse64mtemp = sampleCourseServiceProxyid.findCourse(search_15idTemp);
-if(findCourse64mtemp == null){
+        String section_21id=  request.getParameter("section79");
+            java.lang.String section_21idTemp = null;
+        if(!section_21id.equals("")){
+         section_21idTemp  = section_21id;
+        }
+        java.lang.String deleteCourse74mtemp = sampleCourseServiceProxyid.deleteCourse(courseId_20idTemp,section_21idTemp);
+if(deleteCourse74mtemp == null){
 %>
-<%=findCourse64mtemp %>
+<%=deleteCourse74mtemp %>
 <%
 }else{
-        String tempResultreturnp65 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(findCourse64mtemp));
+        String tempResultreturnp75 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(deleteCourse74mtemp));
         %>
-        <%= tempResultreturnp65 %>
+        <%= tempResultreturnp75 %>
         <%
 }
 break;
-case 69:
+case 81:
         gotMethod = true;
-        String courseId_16id=  request.getParameter("courseId72");
-            java.lang.String courseId_16idTemp = null;
-        if(!courseId_16id.equals("")){
-         courseId_16idTemp  = courseId_16id;
+        String courseId_22id=  request.getParameter("courseId84");
+            java.lang.String courseId_22idTemp = null;
+        if(!courseId_22id.equals("")){
+         courseId_22idTemp  = courseId_22id;
         }
-        String courseName_17id=  request.getParameter("courseName74");
-            java.lang.String courseName_17idTemp = null;
-        if(!courseName_17id.equals("")){
-         courseName_17idTemp  = courseName_17id;
+        String courseSec_23id=  request.getParameter("courseSec86");
+            java.lang.String courseSec_23idTemp = null;
+        if(!courseSec_23id.equals("")){
+         courseSec_23idTemp  = courseSec_23id;
         }
-        String courseSection_18id=  request.getParameter("courseSection76");
-            java.lang.String courseSection_18idTemp = null;
-        if(!courseSection_18id.equals("")){
-         courseSection_18idTemp  = courseSection_18id;
-        }
-        String location_19id=  request.getParameter("location78");
-            java.lang.String location_19idTemp = null;
-        if(!location_19id.equals("")){
-         location_19idTemp  = location_19id;
-        }
-        String day_20id=  request.getParameter("day80");
-            java.lang.String day_20idTemp = null;
-        if(!day_20id.equals("")){
-         day_20idTemp  = day_20id;
-        }
-        String timing_21id=  request.getParameter("timing82");
-            java.lang.String timing_21idTemp = null;
-        if(!timing_21id.equals("")){
-         timing_21idTemp  = timing_21id;
-        }
-        java.lang.String addCourse69mtemp = sampleCourseServiceProxyid.addCourse(courseId_16idTemp,courseName_17idTemp,courseSection_18idTemp,location_19idTemp,day_20idTemp,timing_21idTemp);
-if(addCourse69mtemp == null){
+        java.lang.String getCourseById81mtemp = sampleCourseServiceProxyid.getCourseById(courseId_22idTemp,courseSec_23idTemp);
+if(getCourseById81mtemp == null){
 %>
-<%=addCourse69mtemp %>
+<%=getCourseById81mtemp %>
 <%
 }else{
-        String tempResultreturnp70 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(addCourse69mtemp));
+        String tempResultreturnp82 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getCourseById81mtemp));
         %>
-        <%= tempResultreturnp70 %>
+        <%= tempResultreturnp82 %>
         <%
 }
 break;

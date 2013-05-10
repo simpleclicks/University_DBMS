@@ -84,6 +84,24 @@
 			return false;
 			}
 		}
+		
+		for(var i = 0; i < starttime.length; i++) {
+			var start = starttime[i].value.split(":");
+			var end = endtime[i].value.split(":");
+			
+			if(start[0]>end[0]){
+				alert("Start time should be lesser than the end time");
+				return false;
+			}
+			else if(start[0] == end[0]){
+				if(start[1] >= end[1]){
+					alert("Start time should be lesser than the end time");
+					return false;
+				}
+			}
+		}
+		
+		
 		var days = document.getElementsByName("days");
 		for(var i = 0; i < days.length; i++) {
 			if (days[i] == "" || days[i] == null) {
@@ -109,11 +127,23 @@
 
 		add.count = ++add.count || 1;
 
-		var daysText = document.createElement("input");
-		daysText.setAttribute("type", "text");
-		daysText.setAttribute("name", "days");
-		daysText.setAttribute("size", "25");
-
+		var select = document.createElement("select");
+		select.setAttribute("id", "days");
+		select.setAttribute("name", "days");
+		var alldays = new Array();
+		alldays[0] = "Monday";
+		alldays[1] = "Tuesday";
+		alldays[2] = "Wednesday";
+		alldays[3] = "Thursday";
+		alldays[4] = "Friday";
+		alldays[5] = "Saturday";
+		alldays[6] = "Sunday";
+		for(var i = 0; i < alldays.length; i++) {
+		var day = document.createElement("option");
+		day.text = alldays[i];
+		day.value = alldays[i];
+		select.appendChild(day);
+		}
 		var tr = document.createElement("tr");
 		var td1 = document.createElement("td");
 		td1.setAttribute("align", "right");
@@ -128,9 +158,9 @@
 
 		var label = document.createElement("label");
 		label.setAttribute("class", "detail");
-
+		
 		var daytxt = document.createTextNode("Days:");
-
+		
 		var strttime = document.createTextNode("Start time:");
 		var endtime = document.createTextNode("End time:");
 
@@ -143,11 +173,11 @@
 		endTimeText.setAttribute("type", "time");
 		endTimeText.setAttribute("name", "endtime");
 		endTimeText.setAttribute("size", "25");
-
+		
 		//label.appendChild(daytxt);
 		//td1.appendChild(label);
 		td1.appendChild(daytxt);
-		td2.appendChild(daysText);
+		td2.appendChild(select);
 		td3.appendChild(strttime);
 		td4.appendChild(strtTimeText);
 		td5.appendChild(endtime);
@@ -160,10 +190,10 @@
 		tr.appendChild(td5);
 		tr.appendChild(td6);
 
+
 		var tbl = document.getElementById("insTable");
 
 		//tbl.tBodies(0).appendChild(tr);
-		
 		tbl.appendChild(tr);
 
 	}
@@ -339,8 +369,17 @@
 
 					<td align="right"><span id="days" class="form"></span><label
 						id="label10" for="days" class="detail">Office Hours: Days:</label></td>
-					<td align="left"><input type="text" id="days" name="days"
-						size="25" title="Enter days" required></td>
+					<td align="left"><select id="days" name="days" required>
+					<option selected="selected" value="" > Select Day</option>
+					<option value="Monday" > Monday</option>
+					<option value="Tuesday" > Tuesday</option>
+					<option value="Wednesday" > Wednesday</option>
+					<option  value="Thursday" > Thursday</option>
+					<option  value="Friday" > Friday</option>
+					<option  value="Saturday" > Saturday</option>
+					<option value="Sunday" > Sunday</option>
+					</select>
+						</td>
 					<td align="right"><span id="time" class="form"></span><label
 						id="label11" for="time" class="detail">Start Time:</label></td>
 					<td align="left"><input type="time" id="starttime"

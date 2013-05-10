@@ -71,10 +71,12 @@ public class UpdateInstructorId extends HttpServlet {
 				for (int j = 0; j < days.length; j++) {
 					request.setAttribute("days"+j, days[j]);
 				}
+				System.out.println("date is" + data[7]);
 				String time[] = data[7].split(",");
 				for (int j = 0; j < time.length; j++) {
 					String splittime[] = time[j].split("-"); 
-					if(splittime[0].equals("!"))
+					System.out.println(" Start time" + splittime[0]+"End Time "+splittime[1]);
+				if(splittime[0].equals("!"))
 						break;
 					request.setAttribute("starttime"+j, splittime[0]);
 					request.setAttribute("endtime"+j, splittime[1]);

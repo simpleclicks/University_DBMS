@@ -15,8 +15,8 @@
 <LI><A HREF="Input.jsp?method=63" TARGET="inputs"> unEnrollStudent(java.lang.String,java.lang.String,java.lang.String)</A></LI>
 <LI><A HREF="Input.jsp?method=72" TARGET="inputs"> enrollStudent(java.lang.String,java.lang.String,java.lang.String)</A></LI>
 <LI><A HREF="Input.jsp?method=81" TARGET="inputs"> getAllStudent()</A></LI>
-<LI><A HREF="Input.jsp?method=84" TARGET="inputs"> deleteStudent(java.lang.String)</A></LI>
-<LI><A HREF="Input.jsp?method=89" TARGET="inputs"> getStudentById(java.lang.String)</A></LI>
+<LI><A HREF="Input.jsp?method=84" TARGET="inputs"> getStudentById(java.lang.String)</A></LI>
+<LI><A HREF="Input.jsp?method=89" TARGET="inputs"> deleteStudent(java.lang.String)</A></LI>
 </UL>
 </BODY>
 </HTML>

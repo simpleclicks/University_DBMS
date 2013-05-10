@@ -106,6 +106,86 @@ function isallfieldsfilled() {
 
 }
 
+function add() {
+
+	add.count = ++add.count || 1;
+
+	var select = document.createElement("select");
+	select.setAttribute("id", "days");
+	select.setAttribute("name", "days");
+	var alldays = new Array();
+	alldays[0] = "Monday";
+	alldays[1] = "Tuesday";
+	alldays[2] = "Wednesday";
+	alldays[3] = "Thursday";
+	alldays[4] = "Friday";
+	alldays[5] = "Saturday";
+	alldays[6] = "Sunday";
+	for(var i = 0; i < alldays.length; i++) {
+	var day = document.createElement("option");
+	day.text = alldays[i];
+	day.value = alldays[i];
+	select.appendChild(day);
+	}
+	
+
+	var tr = document.createElement("tr");
+	var td1 = document.createElement("td");
+	td1.setAttribute("align", "right");
+	var td2 = document.createElement("td");
+	var td3 = document.createElement("td");
+	td3.setAttribute("align", "right");
+	var td4 = document.createElement("td");
+	var td5 = document.createElement("td");
+	td5.setAttribute("align", "right");
+	var td6 = document.createElement("td");
+	var br = document.createElement("br");
+	
+	
+
+	var label = document.createElement("label");
+	label.setAttribute("class", "detail");
+
+	var daytxt = document.createTextNode("Days:");
+
+	var strttime = document.createTextNode("Start time:");
+	var endtime = document.createTextNode("End time:");
+
+	var strtTimeText = document.createElement("input");
+	strtTimeText.setAttribute("type", "time");
+	strtTimeText.setAttribute("name", "starttime");
+	strtTimeText.setAttribute("size", "25");
+
+	var endTimeText = document.createElement("input");
+	endTimeText.setAttribute("type", "time");
+	endTimeText.setAttribute("name", "endtime");
+	endTimeText.setAttribute("size", "25");
+
+	//label.appendChild(daytxt);
+	//td1.appendChild(label);
+	td1.appendChild(daytxt);
+	td2.appendChild(select);
+	td3.appendChild(strttime);
+	td4.appendChild(strtTimeText);
+	td5.appendChild(endtime);
+	td6.appendChild(endTimeText);
+
+	
+	tr.appendChild(td1);
+	tr.appendChild(td2);
+	tr.appendChild(td3);
+	tr.appendChild(td4);
+	tr.appendChild(td5);
+	tr.appendChild(td6);
+
+	var tbl = document.getElementById("insTable");
+
+	//tbl.tBodies(0).appendChild(tr);
+	
+	tbl.appendChild(tr);
+
+}
+
 </script>
 <!--  </head>
 <body style="background:#C9B2DA;">
@@ -281,9 +361,19 @@ function isallfieldsfilled() {
 
 				<td align="right"><span id="days" class="form"></span><label
 					id="label10" for="days" class="detail">Office Hours: Days:</label></td>
-				<td align="left"><input type="text" id="days" name="days"
-					value="<%=request.getAttribute("days" + i)%>" size="25"
-					title="Enter days"></td>
+				<td align="left">
+				<select id="days" name="days" required>
+					<option selected="selected" value="<%= request.getAttribute("days"+i)%>" > <%= request.getAttribute("days"+i)%></option>
+					<option value="Monday" > Monday</option>
+					<option value="Tuesday" > Tuesday</option>
+					<option value="Wednesday" > Wednesday</option>
+					<option  value="Thursday" > Thursday</option>
+					<option  value="Friday" > Friday</option>
+					<option  value="Saturday" > Saturday</option>
+					<option value="Sunday" > Sunday</option>
+					</select></td>
+				
+			
 				<td align="right"><span id="time" class="form"></span><label
 					id="label11" for="time" class="detail">Start Time:</label></td>
 				<td align="left"><input type="text" id="starttime"

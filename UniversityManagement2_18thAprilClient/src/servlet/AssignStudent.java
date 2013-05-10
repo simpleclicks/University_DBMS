@@ -93,14 +93,11 @@ public class AssignStudent extends HttpServlet {
 		String sectionId="";
 		try {
 			String studentId = request.getParameter("sid");
-			String courseIds[] = request.getParameterValues("cid");
+			String courseIds = request.getParameter("cid");
 			System.out.println("Student id " + studentId);
-			for (int i = 0; i < courseIds.length; i++) {
-				System.out.println("courses " + courseIds[i]);
-				section = courseIds[i].split("-");
-				courses += section[0]+"/";
-				sectionId += section[1]+"/";
-			}
+				section = courseIds.split("-");
+				courses += section[0];
+				sectionId += section[1];
 			 proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/StudentService");
 			 System.out.println("assign studtocourse "+courses + ", "+ sectionId +", "+ studentId);
 			 result = proxy.enrollStudent(courses, sectionId,studentId);

@@ -55,7 +55,7 @@ public class UpdateStudentInfo extends HttpServlet {
 			String state = request.getParameter("state");
 			String zipCode = request.getParameter("zcode");
 			String studentId = request.getParameter("eid");
-
+			System.out.println("Sending info for update "+studentId+ firstname+ lastname+ address+ city+ state +zipCode);
 			proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/StudentService");
 			result = proxy.updateStudent(studentId, firstname, lastname, address, city, state, zipCode);
 			request.setAttribute("result",result);

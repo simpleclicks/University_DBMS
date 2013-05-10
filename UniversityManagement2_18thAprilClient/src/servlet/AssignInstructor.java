@@ -95,30 +95,22 @@ public class AssignInstructor extends HttpServlet {
 
 		response.setContentType("text/html");
 		String result="";
-		String section[]=null;
-		String sectionId="";
 		//String[] data; 
 
 		try {
 			String instructorEmpId = request.getParameter("eid");
-			String courseIds[] = request.getParameterValues("cid");
+			String courseId = request.getParameter("cid");
+			String section =  request.getParameter("section");
 			
-			String Courses="";
-			System.out.println("instruct id "+ instructorEmpId);
-			for (int i = 0; i < courseIds.length; i++) {
-				System.out.println("courses "+courseIds[i]);
-				section = courseIds[i].split("-");
-				Courses += courseIds[i]+"/";
-				sectionId += section[1]+"/";
-			}
 			proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/InstructorService");
-			result = proxy.assignInstructor(Courses,sectionId, instructorEmpId);
+			System.out.println("courses  "+courseId+"Section "+section+"Instructor Emp id " + instructorEmpId);
+			result = proxy.assignInstructor(courseId,section, instructorEmpId);
 			System.out.println("Inside assign instructor "+result); 
 
 			if (result.equalsIgnoreCase("true"))
 				request.setAttribute("assignResult", "Instructor assigned successfully");
 			else
-				request.setAttribute("assignResult", "Failed to assign Instructor");
+				request.setAttribute("assignResult", "Failed to assign Instructor. Instructor is already Assigned to a course");
 
 			request.getRequestDispatcher("/View/AssignInstructor.jsp").forward(request, response);
 		} catch (Exception e) {

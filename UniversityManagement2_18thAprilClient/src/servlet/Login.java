@@ -58,9 +58,13 @@ public class Login extends HttpServlet {
 			}else if (username.startsWith("I")) {
 				
 				session.setAttribute("user", "instructor");
+				session.setAttribute("userId", username);
+				
 				request.getRequestDispatcher("/View/Instructor.jsp").forward(request, response);
 			} else {
 				session.setAttribute("user", "student");
+				session.setAttribute("userId", username);
+				System.out.println("Inside login page" +session.getAttribute("userId").toString()  );
 				request.getRequestDispatcher("/View/Student.jsp").forward(request, response);
 			}
 		} else {

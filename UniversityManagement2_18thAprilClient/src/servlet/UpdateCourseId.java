@@ -52,9 +52,9 @@ public class UpdateCourseId extends HttpServlet {
 		try {
 			ResultSet rs;
 			String courseId = request.getParameter("cid");
-
+			String courseSec = request.getParameter("csec");
 			proxy.setEndpoint("http://localhost:8080/UniversityManagement2/services/CourseService");
-			result = proxy.getCourseById(courseId);
+			result = proxy.getCourseById(courseId,courseSec);
 			System.out.println("Result is "+result);
 			if(!result.startsWith("false")){
 				String[] data = result.split("/");

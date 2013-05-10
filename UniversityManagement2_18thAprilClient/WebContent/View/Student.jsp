@@ -31,6 +31,16 @@
                  <a href="DeleteStudent.jsp"><h2>Delete Student Information</h2></a>
                  </td></tr>
                  <tr>
+                 <tr>
+			
+				<td><a href="<%=request.getContextPath()%>/View/ListStudent"><h2>List all
+							Students</h2></a></td>
+			
+				</tr>
+				<tr>
+				<td><a href="SearchStudent.jsp"><h2>Search
+						Student Information</h2></a></td>
+				</tr>
                  <%} %>
                      <td>
                  <a href="updateStudentId.jsp"><h2>Update Student Information</h2></a>
@@ -38,16 +48,6 @@
                   <tr>
 				<td><a href="<%=request.getContextPath()%>/View/AssignStudent"><h2>Enroll 
 							Student in a Course</h2></a></td>
-		</tr>
-		<tr>
-			
-				<td><a href="<%=request.getContextPath()%>/View/ListStudent"><h2>List all
-							Students</h2></a></td>
-			
-		</tr>
-		<tr>
-			<td><a href="SearchStudent.jsp"><h2>Search
-						Student Information</h2></a></td>
 		</tr>
             <tr>
 			<td><a href="UnenrollStudentId.jsp"><h2>Unenroll
