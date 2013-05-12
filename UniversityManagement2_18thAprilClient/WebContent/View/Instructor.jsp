@@ -1,5 +1,5 @@
-<%@include file="Header.jsp"%>
-
+<%@include file="home.jsp"%>
+<!-- 
 	<style type="text/css">
 .form {
 	font: Lucida Handwriting;
@@ -9,7 +9,7 @@
 }
 </style>
 
-	<marquee behaviour="alternate">
+ -->	<marquee behaviour="alternate">
 		<font face="Lucida Handwriting" color="#357EC7" size="6">Welcome
 			To Instructor Database</font>
 	</marquee>

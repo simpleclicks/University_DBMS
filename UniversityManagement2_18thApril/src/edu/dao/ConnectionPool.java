@@ -61,6 +61,7 @@ public class ConnectionPool {
 
 	public static void  returnConnectionInstanceToPool()
 	{
-		--connectionUsed;
+		if(connectionUsed > 0)
+			connectionUsed--;
 	}
 }

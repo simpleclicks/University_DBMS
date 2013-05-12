@@ -1,5 +1,5 @@
-<%@include file="Header.jsp"%>
-<style type="text/css">
+<%@include file="home.jsp"%>
+<!-- <style type="text/css">
 .form {
 	font: Lucida Handwriting;
 	color: #2554C7;
@@ -13,7 +13,7 @@
 	size: 4;
 }
 </style>
-
+ -->
 <table align="center" class="form" width="100%">
 	<tr>
 		<td>Instructor ID</td>

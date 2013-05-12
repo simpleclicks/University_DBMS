@@ -32,6 +32,10 @@
 					</div>
 					<div id="nav">
 						<ul>
+						<%
+				if (session.getAttribute("user").toString().equals("admin")) {
+			%>
+						
 							<li class="first active">
 								<a href="Instructor.jsp">Instructor</a>
 							</li>
@@ -41,6 +45,35 @@
 							<li>
 								<a href="Course.jsp">Course</a>
 							</li>
+			<%} %>
+					<%
+				if (session.getAttribute("user").toString().equals("student")) {
+			%>
+						
+						<!-- 	<li class="first active">
+								<a href="Instructor.jsp">Instructor</a>
+							</li> -->
+							<li>
+								<a href="Student.jsp">Students</a>
+							</li>
+							 <li>
+								<a href="Course.jsp">Course</a>
+							</li>
+			<%} %>	
+			<%
+				if (session.getAttribute("user").toString().equals("instructor")) {
+			%>
+						
+							<li class="first active">
+								<a href="Instructor.jsp">Instructor</a>
+							</li>
+							<!-- <li>
+								<a href="Student.jsp">Students</a>
+							</li> -->
+							 <li>
+								<a href="Course.jsp">Course</a>
+							</li> 
+			<%} %>			
 							<li>
 								<a href="#"></a>
 							</li>

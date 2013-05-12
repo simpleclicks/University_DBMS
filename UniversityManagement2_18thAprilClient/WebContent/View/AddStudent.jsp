@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<%@include file="Header.jsp"%>
-<style type="text/css">
+<%@include file="home.jsp"%>
+<!-- <style type="text/css">
 .form {
 	font: Lucida Handwriting;
 	color: #2554C7;
@@ -20,7 +20,7 @@
 	size: 4;
 }
 </style>
-
+ -->
 
 <script type="text/javascript">
 	function isnotsplchar(element, alerttxt) {

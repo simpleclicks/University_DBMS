@@ -43,36 +43,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="getAssignedInstructorForCourse">
-    <complexType>
-     <sequence>
-      <element name="courseId" type="xsd:string"/>
-      <element name="section" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getAssignedInstructorForCourseResponse">
-    <complexType>
-     <sequence>
-      <element name="getAssignedInstructorForCourseReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchCourse">
-    <complexType>
-     <sequence>
-      <element name="attribute" type="xsd:string"/>
-      <element name="keyword" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="searchCourseResponse">
-    <complexType>
-     <sequence>
-      <element name="searchCourseReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="updateCourse">
     <complexType>
      <sequence>
@@ -89,6 +59,21 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="updateCourseReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchCourse">
+    <complexType>
+     <sequence>
+      <element name="attribute" type="xsd:string"/>
+      <element name="keyword" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchCourseResponse">
+    <complexType>
+     <sequence>
+      <element name="searchCourseReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -139,6 +124,21 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="getAssignedInstructorForCourse">
+    <complexType>
+     <sequence>
+      <element name="courseId" type="xsd:string"/>
+      <element name="section" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAssignedInstructorForCourseResponse">
+    <complexType>
+     <sequence>
+      <element name="getAssignedInstructorForCourseReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
  </wsdl:types>
 
@@ -182,17 +182,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="deleteCourseResponse">
+   <wsdl:message name="deleteCourseRequest">
 
-      <wsdl:part element="impl:deleteCourseResponse" name="parameters">
+      <wsdl:part element="impl:deleteCourse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="deleteCourseRequest">
+   <wsdl:message name="deleteCourseResponse">
 
-      <wsdl:part element="impl:deleteCourse" name="parameters">
+      <wsdl:part element="impl:deleteCourseResponse" name="parameters">
 
       </wsdl:part>
 
@@ -324,13 +324,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getAssignedInstructorForCourse">
+      <wsdl:operation name="updateCourse">
 
-         <wsdl:input message="impl:getAssignedInstructorForCourseRequest" name="getAssignedInstructorForCourseRequest">
+         <wsdl:input message="impl:updateCourseRequest" name="updateCourseRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:getAssignedInstructorForCourseResponse" name="getAssignedInstructorForCourseResponse">
+         <wsdl:output message="impl:updateCourseResponse" name="updateCourseResponse">
 
        </wsdl:output>
 
@@ -343,18 +343,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:searchCourseResponse" name="searchCourseResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="updateCourse">
-
-         <wsdl:input message="impl:updateCourseRequest" name="updateCourseRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:updateCourseResponse" name="updateCourseResponse">
 
        </wsdl:output>
 
@@ -391,6 +379,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:addCourseResponse" name="addCourseResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssignedInstructorForCourse">
+
+         <wsdl:input message="impl:getAssignedInstructorForCourseRequest" name="getAssignedInstructorForCourseRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAssignedInstructorForCourseResponse" name="getAssignedInstructorForCourseResponse">
 
        </wsdl:output>
 
@@ -456,17 +456,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getAssignedInstructorForCourse">
+      <wsdl:operation name="updateCourse">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="getAssignedInstructorForCourseRequest">
+         <wsdl:input name="updateCourseRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="getAssignedInstructorForCourseResponse">
+         <wsdl:output name="updateCourseResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -485,24 +485,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="searchCourseResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="updateCourse">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="updateCourseRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="updateCourseResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -557,6 +539,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="addCourseResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssignedInstructorForCourse">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAssignedInstructorForCourseRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAssignedInstructorForCourseResponse">
 
             <wsdlsoap:body use="literal"/>
 

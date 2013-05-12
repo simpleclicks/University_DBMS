@@ -12,15 +12,28 @@
       <parameter name="typeMappingVersion" value="1.2"/>
       <operation xmlns:operNS="http://service.edu" xmlns:retNS="http://service.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAllPerson" qname="operNS:getAllPerson" returnQName="retNS:getAllPersonReturn" returnType="rtns:string" soapAction="">
       </operation>
+      <operation xmlns:operNS="http://service.edu" xmlns:retNS="http://service.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="deletePerson" qname="operNS:deletePerson" returnQName="retNS:deletePersonReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:personId" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.edu" xmlns:retNS="http://service.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="updatePerson" qname="operNS:updatePerson" returnQName="retNS:updatePersonReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:personId" type="tns:string"/>
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:firstname" type="tns:string"/>
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:lastname" type="tns:string"/>
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:address" type="tns:string"/>
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:city" type="tns:string"/>
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:state" type="tns:string"/>
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:zip" type="tns:string"/>
+      </operation>
       <operation xmlns:operNS="http://service.edu" xmlns:retNS="http://service.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addPerson" qname="operNS:addPerson" returnQName="retNS:addPersonReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:firstname" type="tns:string"/>
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:lastname" type="tns:string"/>
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:address" type="tns:string"/>
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:city" type="tns:string"/>
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:state" type="tns:string"/>
-        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:zipCode" type="tns:int"/>
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:zipCode" type="tns:string"/>
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
       </operation>
-      <parameter name="allowedMethods" value="addPerson getAllPerson"/>
+      <parameter name="allowedMethods" value="deletePerson addPerson getAllPerson updatePerson"/>
 
   </service>
 </deployment>

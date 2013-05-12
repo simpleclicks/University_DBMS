@@ -91,6 +91,7 @@ public class ListInstructor extends HttpServlet {
 				request.getRequestDispatcher("/View/Error.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
+			System.out.println("Error is : " + e.getMessage());
 			e.printStackTrace();
 			// TODO: handle exception
 		}

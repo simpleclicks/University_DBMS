@@ -4,79 +4,27 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://service.edu" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="getEnrolledCoursesForInstructor">
+   <element name="addInstructor">
     <complexType>
      <sequence>
       <element name="instructorId" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getEnrolledCoursesForInstructorResponse">
-    <complexType>
-     <sequence>
-      <element name="getEnrolledCoursesForInstructorReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="updateInstructor">
-    <complexType>
-     <sequence>
-      <element name="instructorEmpId" type="xsd:string"/>
       <element name="firstname" type="xsd:string"/>
       <element name="lastname" type="xsd:string"/>
       <element name="address" type="xsd:string"/>
       <element name="city" type="xsd:string"/>
       <element name="state" type="xsd:string"/>
-      <element name="zip" type="xsd:int"/>
+      <element name="zipCode" type="xsd:string"/>
       <element name="department" type="xsd:string"/>
       <element name="days" type="xsd:string"/>
       <element name="timings" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="updateInstructorResponse">
+   <element name="addInstructorResponse">
     <complexType>
      <sequence>
-      <element name="updateInstructorReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="unAssignInstructor">
-    <complexType>
-     <sequence>
-      <element name="instructorId" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="unAssignInstructorResponse">
-    <complexType>
-     <sequence>
-      <element name="unAssignInstructorReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="assignInstructor">
-    <complexType>
-     <sequence>
-      <element name="courseId" type="xsd:string"/>
-      <element name="instructorId" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="assignInstructorResponse">
-    <complexType>
-     <sequence>
-      <element name="assignInstructorReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getAllInstructor">
-    <complexType/>
-   </element>
-   <element name="getAllInstructorResponse">
-    <complexType>
-     <sequence>
-      <element name="getAllInstructorReturn" type="xsd:string"/>
+      <element name="addInstructorReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -108,26 +56,97 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="addInstructor">
+   <element name="getAllInstructor">
+    <complexType/>
+   </element>
+   <element name="getAllInstructorResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllInstructorReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="assignInstructor">
+    <complexType>
+     <sequence>
+      <element name="courseId" type="xsd:string"/>
+      <element name="section" type="xsd:string"/>
+      <element name="instructorId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="assignInstructorResponse">
+    <complexType>
+     <sequence>
+      <element name="assignInstructorReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="unAssignInstructor">
     <complexType>
      <sequence>
       <element name="instructorId" type="xsd:string"/>
+      <element name="courseId" type="xsd:string"/>
+      <element name="section" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="unAssignInstructorResponse">
+    <complexType>
+     <sequence>
+      <element name="unAssignInstructorReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateInstructor">
+    <complexType>
+     <sequence>
+      <element name="instructorEmpId" type="xsd:string"/>
       <element name="firstname" type="xsd:string"/>
       <element name="lastname" type="xsd:string"/>
       <element name="address" type="xsd:string"/>
       <element name="city" type="xsd:string"/>
       <element name="state" type="xsd:string"/>
-      <element name="zipCode" type="xsd:int"/>
+      <element name="zip" type="xsd:string"/>
       <element name="department" type="xsd:string"/>
       <element name="days" type="xsd:string"/>
       <element name="timings" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="addInstructorResponse">
+   <element name="updateInstructorResponse">
     <complexType>
      <sequence>
-      <element name="addInstructorReturn" type="xsd:string"/>
+      <element name="updateInstructorReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchInstructor">
+    <complexType>
+     <sequence>
+      <element name="attribute" type="xsd:string"/>
+      <element name="keyword" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchInstructorResponse">
+    <complexType>
+     <sequence>
+      <element name="searchInstructorReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAssignedCoursesForInstructor">
+    <complexType>
+     <sequence>
+      <element name="instructorId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAssignedCoursesForInstructorResponse">
+    <complexType>
+     <sequence>
+      <element name="getAssignedCoursesForInstructorReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -142,25 +161,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getAssignedCoursesForInstructorResponse">
+
+      <wsdl:part element="impl:getAssignedCoursesForInstructorResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="unAssignInstructorRequest">
 
       <wsdl:part element="impl:unAssignInstructor" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="getEnrolledCoursesForInstructorRequest">
-
-      <wsdl:part element="impl:getEnrolledCoursesForInstructor" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="deleteInstructorRequest">
-
-      <wsdl:part element="impl:deleteInstructor" name="parameters">
 
       </wsdl:part>
 
@@ -177,6 +188,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="getInstructorByIdResponse">
 
       <wsdl:part element="impl:getInstructorByIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteInstructorRequest">
+
+      <wsdl:part element="impl:deleteInstructor" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchInstructorRequest">
+
+      <wsdl:part element="impl:searchInstructor" name="parameters">
 
       </wsdl:part>
 
@@ -201,6 +228,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="getAllInstructorResponse">
 
       <wsdl:part element="impl:getAllInstructorResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchInstructorResponse">
+
+      <wsdl:part element="impl:searchInstructorResponse" name="parameters">
 
       </wsdl:part>
 
@@ -246,9 +281,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getEnrolledCoursesForInstructorResponse">
+   <wsdl:message name="getAssignedCoursesForInstructorRequest">
 
-      <wsdl:part element="impl:getEnrolledCoursesForInstructorResponse" name="parameters">
+      <wsdl:part element="impl:getAssignedCoursesForInstructor" name="parameters">
 
       </wsdl:part>
 
@@ -264,61 +299,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="InstructorService">
 
-      <wsdl:operation name="getEnrolledCoursesForInstructor">
+      <wsdl:operation name="addInstructor">
 
-         <wsdl:input message="impl:getEnrolledCoursesForInstructorRequest" name="getEnrolledCoursesForInstructorRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getEnrolledCoursesForInstructorResponse" name="getEnrolledCoursesForInstructorResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="updateInstructor">
-
-         <wsdl:input message="impl:updateInstructorRequest" name="updateInstructorRequest">
+         <wsdl:input message="impl:addInstructorRequest" name="addInstructorRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:updateInstructorResponse" name="updateInstructorResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="unAssignInstructor">
-
-         <wsdl:input message="impl:unAssignInstructorRequest" name="unAssignInstructorRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:unAssignInstructorResponse" name="unAssignInstructorResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="assignInstructor">
-
-         <wsdl:input message="impl:assignInstructorRequest" name="assignInstructorRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:assignInstructorResponse" name="assignInstructorResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getAllInstructor">
-
-         <wsdl:input message="impl:getAllInstructorRequest" name="getAllInstructorRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getAllInstructorResponse" name="getAllInstructorResponse">
+         <wsdl:output message="impl:addInstructorResponse" name="addInstructorResponse">
 
        </wsdl:output>
 
@@ -348,13 +335,73 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="addInstructor">
+      <wsdl:operation name="getAllInstructor">
 
-         <wsdl:input message="impl:addInstructorRequest" name="addInstructorRequest">
+         <wsdl:input message="impl:getAllInstructorRequest" name="getAllInstructorRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:addInstructorResponse" name="addInstructorResponse">
+         <wsdl:output message="impl:getAllInstructorResponse" name="getAllInstructorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="assignInstructor">
+
+         <wsdl:input message="impl:assignInstructorRequest" name="assignInstructorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:assignInstructorResponse" name="assignInstructorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="unAssignInstructor">
+
+         <wsdl:input message="impl:unAssignInstructorRequest" name="unAssignInstructorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:unAssignInstructorResponse" name="unAssignInstructorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateInstructor">
+
+         <wsdl:input message="impl:updateInstructorRequest" name="updateInstructorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateInstructorResponse" name="updateInstructorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchInstructor">
+
+         <wsdl:input message="impl:searchInstructorRequest" name="searchInstructorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchInstructorResponse" name="searchInstructorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssignedCoursesForInstructor">
+
+         <wsdl:input message="impl:getAssignedCoursesForInstructorRequest" name="getAssignedCoursesForInstructorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAssignedCoursesForInstructorResponse" name="getAssignedCoursesForInstructorResponse">
 
        </wsdl:output>
 
@@ -366,89 +413,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="getEnrolledCoursesForInstructor">
+      <wsdl:operation name="addInstructor">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="getEnrolledCoursesForInstructorRequest">
+         <wsdl:input name="addInstructorRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="getEnrolledCoursesForInstructorResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="updateInstructor">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="updateInstructorRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="updateInstructorResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="unAssignInstructor">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="unAssignInstructorRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="unAssignInstructorResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="assignInstructor">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="assignInstructorRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="assignInstructorResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getAllInstructor">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getAllInstructorRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getAllInstructorResponse">
+         <wsdl:output name="addInstructorResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -492,17 +467,107 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="addInstructor">
+      <wsdl:operation name="getAllInstructor">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="addInstructorRequest">
+         <wsdl:input name="getAllInstructorRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="addInstructorResponse">
+         <wsdl:output name="getAllInstructorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="assignInstructor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="assignInstructorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="assignInstructorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="unAssignInstructor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="unAssignInstructorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="unAssignInstructorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateInstructor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateInstructorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateInstructorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchInstructor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchInstructorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchInstructorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssignedCoursesForInstructor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAssignedCoursesForInstructorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAssignedCoursesForInstructorResponse">
 
             <wsdlsoap:body use="literal"/>
 

@@ -1,6 +1,6 @@
 
-<%@include file="Header.jsp"%>
-<style type="text/css">
+<%@include file="home.jsp"%>
+<!-- <style type="text/css">
 
 .form{
 	font: Lucida Handwriting;
@@ -14,7 +14,7 @@
 	size: 4;
 }
 </style>
-<script type="text/javascript">
+ --><script type="text/javascript">
 
 
 function isnotsplchar(element,alerttxt)

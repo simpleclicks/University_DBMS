@@ -87,15 +87,16 @@
 	<form name="form1" id="form1" class="form" method="post"
 		action="UpdateStudentInfo">
 		<table align="center" class="form" width="100%">
-			<tr>
+			<!-- <tr>
 				<td align="right"><h3>Update Student Details</h3></td>
-			</tr>
+			</tr> -->
+			<tr />
 			<tr />
 
 			<tr>
 				<td align="right"><span id="fn" class="form"></span><label
 					id="label1" for="fname" class="detail">First Name:</label></td>
-				<td align="left"><input type="text" id="fname" name="fname"
+				<td align="left"><input type="text" id="fname" name="fname" readonly
 					size="25" value="<%=request.getAttribute("fname")%>"
 					title="Enter your first name"
 					onchange="isnotsplchar(this,'No special characters allowed') "></td>
@@ -116,7 +117,7 @@
 			<tr>
 				<td align="right"><span id="ln" class="form"></span><label
 					id="label2" for="lname" class="detail">Last Name:</label></td>
-				<td align="left"><input type="text" id="lname" name="lname"
+				<td align="left"><input type="text" id="lname" name="lname" readonly
 					size="25" value="<%=request.getAttribute("lname")%>"
 					title="Enter your last name"></td>
 			</tr>
@@ -136,7 +137,7 @@
 			<tr>
 				<td align="right"><span id="add" class="form"></span><label
 					id="label3" for="address" class="detail">Address:</label></td>
-				<td align="left"><input type="text" id="addr" name="addr"
+				<td align="left"><input type="text" id="addr" name="addr" readonly
 					size="25" value="<%=request.getAttribute("address")%>"
 					title="Enter your address"></td>
 			</tr>
@@ -156,7 +157,7 @@
 			<tr>
 				<td align="right"><span id="cityform" class="form"></span><label
 					id="label4" for="city" class="detail">City:</label></td>
-				<td align="left"><input type="text" id="city" name="city"
+				<td align="left"><input type="text" id="city" name="city" readonly
 					size="25" value="<%=request.getAttribute("city")%>"
 					title="Enter City"></td>
 			</tr>
@@ -177,7 +178,7 @@
 				<td align="right"><span id="st" class="form"></span><label
 					id="label5" for="state" class="detail">State:</label></td>
 				<td align="left"><input type="text" id="state" name="state"
-					size="25" value="<%=request.getAttribute("state")%>"
+					size="25" value="<%=request.getAttribute("state")%>" readonly
 					title="Enter State" onchange="isstatevalid(this,'Invalid State')"></td>
 			</tr>
 
@@ -196,7 +197,7 @@
 			<tr>
 				<td align="right"><span id="zc" class="form"></span><label
 					id="label6" for="zipcode" class="detail">Zip Code:</label></td>
-				<td align="left"><input type="text" id="zcode" name="zcode"
+				<td align="left"><input type="text" id="zcode" name="zcode" readonly
 					size="25" value="<%=request.getAttribute("zipcode")%>"
 					title="Enter Zip Code"></td>
 			</tr>
@@ -218,7 +219,7 @@
 			<tr>
 				<td align="right"><span id="empid" class="form"></span><label
 					id="label9" for="emplid" class="detail">Student ID:</label></td>
-				<td align="left"><input type="text" id="eid" name="eid"
+				<td align="left"><input type="text" id="eid" name="eid" 
 					size="25" value="<%=request.getAttribute("eid")%>" readonly
 					title="Enter id"></td>
 			</tr>
@@ -234,18 +235,39 @@
 			<tr />
 			<tr />
 			<tr />
-
-
 			<tr>
+				<td align="right"><span id="empid" class="form"></span><label
+					id="label9" for="emplid" class="detail">Student Enrolled in courses:</label></td>
+					
+					<td align="left">
+				<% 
+				String courses=request.getAttribute("TotalCourses").toString();
+				int totalCurses=Integer.parseInt(courses);
+				for(int i=0;i<totalCurses;i++){
+					
+					%>	<% 
+					 out.print(request.getAttribute("course"+i));
+
+				}
+				
+				%>
+					</td>
+										
+			</tr>
+			
+
+
+<!-- 			<tr>
 				<td align="right"><input type="reset" name="reset"
 					value="Reset"></td>
 				<td align="left"><input type="submit" name="instructorinfo"
 					value="Submit" onclick=" return isallfieldsfilled()"></td>
 			</tr>
-
+ -->
 		</table>
 
 	</form>
+
 </div>
 
 <%@include file="footer.jsp"%>

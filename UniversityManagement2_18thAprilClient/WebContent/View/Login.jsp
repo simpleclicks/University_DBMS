@@ -5,9 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Header</title>
+<%@include file="home_login.jsp" %>
 </head>
 <body>
-    <table border="0" cellpadding="0" cellspacing="0" width="700">
+<!--     <table border="0" cellpadding="0" cellspacing="0" width="700">
         <tr><td bgcolor="white"><img src="http://upload.wikimedia.org/wikipedia/commons/2/23/University_of_Sydney_Main_Quadrangle.jpg" width="80" height="100" /></td>
         <td bgcolor="white"><h6><u><font face="Maiandra GD" color="#4AA02C"><b>UNIVERSITY MANAGEMENT</b></font></u><br /></h6></td>
          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -16,10 +17,10 @@
         </td>
 
     </table>
-    
+ -->    
   
 
-<style type="text/css">
+<!-- <style type="text/css">
 .form {
 	font: Lucida Handwriting;
 	color: #2554C7;
@@ -28,7 +29,7 @@
 }
 
 </style>
-
+ -->
 <form name="form1" id="form1" class="form" method="post" action="Login">
 			<table align="center" class="form" width="100%">
 			<tr>

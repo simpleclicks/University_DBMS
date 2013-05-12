@@ -19,7 +19,7 @@ public class PersonDaoImpl implements IDao {
 	static ResultSet rs;
 	Statement stmt2 = null;
 	java.sql.PreparedStatement stmt = null;
-	boolean isPoolingUsed = false;
+	boolean isPoolingUsed = true;
 	
 	public PersonDaoImpl()
 	{

@@ -1,5 +1,5 @@
-<%@include file="Header.jsp"%>
-
+<%@include file="home.jsp"%>
+<!-- 
 <style type="text/css">
 .form {
 	font: Lucida Handwriting;
@@ -8,7 +8,7 @@
 	size: 5;
 }
 </style>
-
+ -->
 <div align="center" class="form">
  <font face="Lucida Handwriting" color="#357EC7" size="6">Welcome To Admin Page</font>
 

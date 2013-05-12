@@ -16,7 +16,7 @@
  -->
 <table align="center" class="form" width="100%">
 	<tr>
-		<td>Student ID</td>
+		<!-- <td>Student ID</td> -->
 		<td>First Name</td>
 		<td>Last Name</td>
 		<td>Address</td>
@@ -25,13 +25,13 @@
 		<td>Zip Code</td>
 	</tr>
 	<%
-		if (request.getAttribute("numStudent") != null) {
-			String strStudents = request.getAttribute("numStudent").toString();
+		if (request.getAttribute("numPerson") != null) {
+			String strStudents = request.getAttribute("numPerson").toString();
 			int numStudents = Integer.parseInt(strStudents);
 			
 			for (int i = 0; i < numStudents; i++) {
 				out.print("<tr>");
-				out.print("<td>"); out.print(request.getAttribute("sid"+i)); out.print("</td>");
+		/* 		out.print("<td>"); out.print(request.getAttribute("sid"+i)); out.print("</td>"); */
 				out.print("<td>"); out.print(request.getAttribute("fname"+i)); out.print("</td>");
 				out.print("<td>"); out.print(request.getAttribute("lname"+i)); out.print("</td>");
 				out.print("<td>"); out.print(request.getAttribute("address"+i)); out.print("</td>");

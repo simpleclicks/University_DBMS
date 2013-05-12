@@ -19,14 +19,6 @@
       </operation>
       <operation xmlns:operNS="http://service.edu" xmlns:retNS="http://service.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAllCourses" qname="operNS:getAllCourses" returnQName="retNS:getAllCoursesReturn" returnType="rtns:string" soapAction="">
       </operation>
-      <operation xmlns:operNS="http://service.edu" xmlns:retNS="http://service.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAssignedInstructorForCourse" qname="operNS:getAssignedInstructorForCourse" returnQName="retNS:getAssignedInstructorForCourseReturn" returnType="rtns:string" soapAction="">
-        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:courseId" type="tns:string"/>
-        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:section" type="tns:string"/>
-      </operation>
-      <operation xmlns:operNS="http://service.edu" xmlns:retNS="http://service.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="searchCourse" qname="operNS:searchCourse" returnQName="retNS:searchCourseReturn" returnType="rtns:string" soapAction="">
-        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:attribute" type="tns:string"/>
-        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:keyword" type="tns:string"/>
-      </operation>
       <operation xmlns:operNS="http://service.edu" xmlns:retNS="http://service.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="updateCourse" qname="operNS:updateCourse" returnQName="retNS:updateCourseReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:courseId" type="tns:string"/>
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:courseSection" type="tns:string"/>
@@ -34,6 +26,10 @@
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:courseLocation" type="tns:string"/>
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:days" type="tns:string"/>
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:timing" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.edu" xmlns:retNS="http://service.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="searchCourse" qname="operNS:searchCourse" returnQName="retNS:searchCourseReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:attribute" type="tns:string"/>
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:keyword" type="tns:string"/>
       </operation>
       <operation xmlns:operNS="http://service.edu" xmlns:retNS="http://service.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="deleteCourse" qname="operNS:deleteCourse" returnQName="retNS:deleteCourseReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:courseId" type="tns:string"/>
@@ -48,6 +44,10 @@
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:location" type="tns:string"/>
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:day" type="tns:string"/>
         <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:timing" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.edu" xmlns:retNS="http://service.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAssignedInstructorForCourse" qname="operNS:getAssignedInstructorForCourse" returnQName="retNS:getAssignedInstructorForCourseReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:courseId" type="tns:string"/>
+        <parameter xmlns:pns="http://service.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:section" type="tns:string"/>
       </operation>
       <parameter name="allowedMethods" value="deleteCourse getCourseById findCourse getAllCourses searchCourse getAssignedInstructorForCourse getEnrolledStudentForCourse updateCourse addCourse"/>
 

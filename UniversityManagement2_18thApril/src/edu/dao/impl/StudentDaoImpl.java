@@ -23,7 +23,7 @@ public class StudentDaoImpl implements IDao {
 	static ResultSet rs;
 	Statement stmt2 = null;
 	java.sql.PreparedStatement stmt = null;
-	boolean isPoolingUsed = false;
+	boolean isPoolingUsed = true;
 	static boolean  isObjectCachingUsed = true;
 	static boolean  isCacheUpdated = false;
 
@@ -153,7 +153,8 @@ public class StudentDaoImpl implements IDao {
 		// TODO Auto-generated method stub
 		Student student = (Student) object;
 		String studentId = student.getStudentId();
-
+		if (isPoolingUsed)
+			ConnectionPool.returnConnectionInstanceToPool();
 		PersonDaoImpl pdao = new PersonDaoImpl();
 		Person p = new Person();
 		p.setPersonId(getPersonIdForStudent(studentId));
@@ -161,11 +162,9 @@ public class StudentDaoImpl implements IDao {
 		System.out.println("Student Deleted Successfully");
 
 		// return connection instance to the pool
-		if (isPoolingUsed)
-			ConnectionPool.returnConnectionInstanceToPool();
 		
+		//Remove the entry from cache
 		if(isObjectCachingUsed)
-			//Remove the entry from cache
 		 	studentCache.remove(studentId);
 
 		return pdao.delete(p);
