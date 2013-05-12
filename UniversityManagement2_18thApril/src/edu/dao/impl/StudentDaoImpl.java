@@ -74,7 +74,7 @@ public class StudentDaoImpl implements IDao {
 				stmt2 = conn.createStatement();
 				isPoolingUsed = true;
 				if (!conn.isClosed())
-					System.out.println("Successfully connectiod");
+					System.out.println("Successfully connection");
 			} else {
 				System.out.println("Connection Pool Threshold");
 			}

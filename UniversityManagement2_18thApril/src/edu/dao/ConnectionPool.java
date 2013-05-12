@@ -61,7 +61,14 @@ public class ConnectionPool {
 
 	public static void  returnConnectionInstanceToPool()
 	{
-		if(connectionUsed > 0)
-			connectionUsed--;
+		if(connectionUsed > 0){
+			try {
+				conn.get(connectionUsed).close();
+				connectionUsed--;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
 	}
 }

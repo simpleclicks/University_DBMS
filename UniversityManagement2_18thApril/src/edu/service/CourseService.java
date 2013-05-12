@@ -81,7 +81,7 @@ public class CourseService {
 		return cdao.getAssignedInstructorForCourse(courseId, section);
 	}
 
-	public String getCourseById(String courseId) {
+	public String getCourseById(String courseId, String courseSection) {
 		String validate_courseID = validations.isValidCourseID(courseId);
 		if (!validate_courseID.equals("True")) {
 			return validate_courseID;
@@ -89,6 +89,7 @@ public class CourseService {
 
 		Course course = new Course();
 		course.setCourseId(courseId);
+		course.setCourseSection(courseSection);
 		IDao dao = new CourseDaoImpl();
 		return dao.findById(course);
 	}
