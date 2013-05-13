@@ -239,7 +239,7 @@ public class InstructorDaoImpl implements IDao {
 		if(isObjectCachingUsed == true && instructorCache.get(instructorId) != null)
 		{	System.out.println("Cache hit");
 			InstructorCacheRecord r = instructorCache.get(instructorId);
-			result =( r.getFirstName() + "/"+ r.getLastName()+ "/"+ r.getAddress() +"/"+ r.getCity() + "/"+ r.getState()  + 
+			result =( r.getFirstName() + "/"+ r.getLastName()+ "/"+ r.getDepartment()+ "/"+ r.getAddress() +"/"+ r.getCity() + "/"+ r.getState()  + 
 					"/"+ r.getZipCode()+"/"+ r.getDays()+"/"+ r.getTiming());
 			return result;
 		}
