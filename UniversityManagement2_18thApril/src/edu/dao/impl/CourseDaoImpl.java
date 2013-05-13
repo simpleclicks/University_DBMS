@@ -147,10 +147,10 @@ public class CourseDaoImpl implements IDao {
 		try {
 			// String query = "Delete from course where courseId =" + "'"
 			// + courseId + "'";
-			String query = "Delete from course where courseId =?";
+			String query = "Delete from course where courseId =? and section = ?";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, courseId);
-
+			stmt.setString(2, c.getCourseSection());
 			// rowcount = stmt.executeUpdate(query);
 			rowcount = stmt.executeUpdate();
 			if (rowcount > 0) {

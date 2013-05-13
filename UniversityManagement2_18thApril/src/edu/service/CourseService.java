@@ -39,14 +39,15 @@ public class CourseService {
 
 	}
 
-	public String deleteCourse(String courseId) {
+	public String deleteCourse(String courseId, String courseSection) {
 		String validate_courseID = validations.isValidCourseID(courseId);
 		if (!validate_courseID.equals("True")) {
 			return validate_courseID;
 		}
 
 		Course c = new Course();
-		c.setCourseId(courseId);		
+		c.setCourseId(courseId);	
+		c.setCourseSection(courseSection);
 		IDao dao = new CourseDaoImpl();
 		return dao.delete(c);
 		
